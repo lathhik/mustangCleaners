@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/view', function () {
+    return view('backend/master');
+});
+
+Route::get('/test',function (){
+   return view('test');
+});
+Route::get('/come',function (){
+   return view('backend/pages/admin/add-admin');
+});
