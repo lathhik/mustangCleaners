@@ -9,12 +9,12 @@ class AdminController extends Controller
 {
     public function viewAdmin()
     {
-        return view('');
+        return view('backend.pages.admin.view-admin');
     }
 
     public function addAdmin()
     {
-        return view('backend.admin.add-admin');
+        return view('backend.pages.admin.add-admin');
     }
 
     public function addAdminAction(Request $request)

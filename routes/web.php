@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/view', function () {
+    return view('backend.mast');
+});
+Route::get('/add', function () {
+    return view('backend.add-admin');
+});
+
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
     Route::get('admin-login', 'AdminAuthController@index')->name('admin-login');
