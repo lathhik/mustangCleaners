@@ -27,15 +27,6 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('customer-order', 'HomeController@viewOrderPage')->name('customer-order');
     });
 });
-<<<<<<< HEAD
-=======
-Route::get('/view', function () {
-    return view('backend.mast');
-});
-Route::get('/add', function () {
-    return view('backend.add-admin');
-});
->>>>>>> 8657475070e8b2783b387fd48efd7bbef384dc78
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
