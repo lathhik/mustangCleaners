@@ -35,7 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware(['guest', 'guest:admin'])->except('logout');
     }
 
     public function showLoginForm()
@@ -45,7 +45,16 @@ class LoginController extends Controller
 
     public function guard()
     {
-        return Auth::guard('admin');
+        $guard = [];
+        switch ($guard) {
+            case 'admin':
+                $guard = 'admin';
+                break;
+            case 'customer':
+                $guard = 'customer';
+                break;
+        }
+        return Auth::guard($guard);
     }
 
 }

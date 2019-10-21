@@ -10,17 +10,31 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string|null  $guard
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure $next
+     * @param string|null $guard
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        switch ($guard) {
+            case 'admin':
+                $board = 'dashboard';
+                break;
+            case 'customer':
+                $board = 'index';
+                break;
+            default:
+                $board = 'home';
+                break;
+        }
+
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect(route($board));
         }
 
         return $next($request);
     }
 }
+
+

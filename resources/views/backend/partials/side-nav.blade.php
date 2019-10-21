@@ -40,7 +40,7 @@
                         </a>
                         <ul class="mm-collapse">
                             <li>
-                                <a href="pages-login.html">
+                                <a href="{{route('add-admin')}}">
                                     <i class="metismenu-icon"></i>
                                     Add admin
                                 </a>

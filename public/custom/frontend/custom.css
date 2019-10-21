@@ -1,0 +1,32 @@
+.a-register{
+    text-decoration: none;
+    color: white;
+}
+
+.place-order{
+    text-align: center!important;
+    color: #288e6d!important;
+    font-weight: bold;
+}
+
+.noti{
+    color: red;
+}
+
+.hr{
+    margin-top: 10px;
+}
+
+#order_submit{
+    /*margin:0 auto;*/
+    /*text-align: center;*/
+    width: 200px;
+    margin-top: 30px;
+    background: #288e6d!important;
+    color: white;
+    font-weight: bold;
+}
+
+/*.tooltip{*/
+/*    background: #4cae4c;*/
+/*}*/
