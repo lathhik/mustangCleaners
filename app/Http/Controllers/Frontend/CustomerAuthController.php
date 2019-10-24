@@ -39,7 +39,7 @@ class CustomerAuthController extends Controller
     public function logout()
     {
         Auth::guard('customer')->logout();
-        Session::flush();
+//        Session::flush();
         return redirect()->route('index');
     }
 }

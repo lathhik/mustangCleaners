@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Backend\Admin;
+use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Image;
@@ -27,9 +27,9 @@ class AdminController extends Controller
             'first_name' => 'required|min:3|max:20|alpha',
             'last_name' => 'required|min:3|max:20|alpha',
             'email' => 'required|email|unique:admins,email',
-            'password' => 'required',
-            'address' => 'required|min:3|max:20|alpha',
-            'contact' => 'required|min:5|max:20|numeric',
+            'password' => 'required|confirmed',
+            'address' => 'required|regex:/^[A-Za-z0-9\s]{3,30}$/',
+            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             'gender' => 'required',
             'image' => 'required|image'
         ]);
@@ -41,6 +41,7 @@ class AdminController extends Controller
         $admin->password = bcrypt($request->password);
         $admin->address = $request->address;
         $admin->gender = $request->gender;
+        $admin->contact = $request->contact;
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');

@@ -6,7 +6,8 @@
         <br>
         <h1 class="place-order">Place Your Order</h1>
         <hr class="hr">
-        <form action="" class="border" method="post">
+        @include('messages.succFail')
+        <form action="{{route('customer-order')}}" class="border" method="post">
             @csrf
             <div class="form-row">
 
@@ -15,12 +16,23 @@
                         <label for="" class="">Pick Up Address</label>
                     </div>
                     <div class="form-group col-md-6">
-{{--                        <label for="phone">Street Address</label>--}}
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="Street Address">
+                        {{--                        <label for="phone">Street Address</label>--}}
+                        <input class="form-control" type="text" name="pickup_street_addr" id="pick_str"
+                               placeholder="Street Address">
+                        {{--                        @if($errors->has('pickup_street_addr'))--}}
+                        {{--                            <p class="text-danger">{{$errors->first('pickup_street_addr')}}</p>--}}
+                        {{--                        @endif--}}
+                        @error('pickup_street_addr')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-{{--                        <label for="phone">House No.</label>--}}
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="House No.">
+                        {{--                        <label for="phone">House No.</label>--}}
+                        <input class="form-control" type="text" name="pickup_house_no" id="pick_hs"
+                               placeholder="House No.">
+                        @if($errors->has('pickup_house_no'))
+                            <p class="text-danger">{{$errors->first('pickup_house_no')}}</p>
+                        @endif
                     </div>
                 </div>
                 <div class="form-group">
@@ -28,58 +40,89 @@
                         <label for="" class="">Delivery Address</label>
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="Street Address">
+                        <input class="form-control" type="text" name="deli_street_addr" id="deli_adr"
+                               placeholder="Street Address">
+                        @if($errors->has('deli_street_addr'))
+                            <p class="text-danger">{{$errors->first('deli_street_addr')}}</p>
+                        @endif
                     </div>
                     <div class="form-group col-md-6">
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="House No.">
+                        <input class="form-control" type="text" name="deli_house_no" id="deli_hs"
+                               placeholder="House No.">
+                        @if($errors->has('deli_house_no'))
+                            <p class="text-danger">{{$errors->first('deli_house_no')}}</p>
+                        @endif
                     </div>
                 </div>
                 <div class="form-gruop">
                     <div class="form-group col-md-6">
-                        <label for="phone">Service Type</label>
-                        <select name="" id="" class="form-control">
+                        <label for="">Service Type</label>
+                        <select name="service_type" id="" class="form-control">
                             <option value="" selected disabled>Select Service Type</option>
-                            <option value="">Dry Cleaning</option>
-                            <option value="">Wash and Fold</option>
-                            <option value="">Laundered adn Pressed</option>
+                            @foreach($services as $service)
+                                <option value="{{$service->id}}">{{$service->service_types}}</option>
+                            @endforeach
                         </select>
+                        @if($errors->has('service_type'))
+                            <p class="text-danger">{{$errors->first('service_type')}}</p>
+                        @endif
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="phone">Phone</label>
                         <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone No.">
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="phone">Pick Up Date</label>
-                            <input class="form-control" type="date" name="phone" id="phone">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="phone">Pick Up Time</label>
-                        <select name="" id="" class="form-control">
-                            <option value="" selected disabled="">Select Pick Up Time</option>
-                            <option value="">8-10 AM</option>
-                            <option value="">12-2 PM</option>
-                            <option value="">4-6 PM</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="phone">Delivery Date</label>
-                            <input class="form-control" type="date" name="phone" id="phone">
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="phone">Delivery Time</label>
-                        <select name="" id="" class="form-control">
-                            <option value="" selected disabled="">Select Pick Up Time</option>
-                            <option value="">8-10 AM</option>
-                            <option value="">12-2 PM</option>
-                            <option value="">4-6 PM</option>
-                        </select>
-                    </div>
 
+                        @if($errors->has('phone'))
+                            <p class="text-danger">{{$errors->first('phone')}}</p>
+                        @endif
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="pick_date">Pick Up Date</label>
+                            <input class="form-control" type="date" name="pickup_date" id="pick_date">
+                            @if($errors->has('pickup_date'))
+                                <p class="text-danger">{{$errors->first('pickup_date')}}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="pick_time">Pick Up Time</label>
+                            <input type="time" class="form-control" name="pickup_time" id="pick_time">
+{{--                        <select name="pickup_time" id="pick_time" class="form-control">--}}
+{{--                            <option value="" selected disabled="">Select Pick Up Time</option>--}}
+{{--                            <option value="8-10 AM">10-12 AM</option>--}}
+{{--                            <option value="12-2 PM">12-2 PM</option>--}}
+{{--                            <option value="4-6 PM">2-4 PM</option>--}}
+{{--                        </select>--}}
+                        @if($errors->has('pickup_time'))
+                            <p class="text-danger">{{$errors->first('pickup_time')}}</p>
+                        @endif
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="deli_date">Delivery Date (
+                                <small>Two days more from pickup date</small>
+                                )</label>
+                            <input class="form-control" type="date" name="deli_date" id="deli_date">
+                            @if($errors->has('deli_date'))
+                                <p class="text-danger">{{$errors->first('deli_date')}}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="deli_time">Delivery Time</label>
+                        <input type="time" class="form-control" name="deli_time" id="deli_time">
+
+                        {{--                        <select name="deli_time" id="deli_time" class="form-control">--}}
+                        {{--                            <option value="" selected disabled="">Select Pick Up Time</option>--}}
+                        {{--                            <option value="">8-10 AM</option>--}}
+                        {{--                            <option value="">12-2 PM</option>--}}
+                        {{--                            <option value="">4-6 PM</option>--}}
+                        {{--                        </select>--}}
+                        @if($errors->has('deli_time'))
+                            <p class="text-danger">{{$errors->first('deli_time')}}</p>
+                        @endif
+                    </div>
                 </div>
             </div>
 

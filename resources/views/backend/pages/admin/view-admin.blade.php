@@ -1,4 +1,4 @@
-@extends('backend.partials.app')
+@extends('backend.master')
 
 @section('content')
     <div class="app-inner-layout app-inner-layout-page">
@@ -16,7 +16,8 @@
                         </a>
                     </li>
                 </ul>
-            </div>                        <div class="inner-bar-center">
+            </div>
+            <div class="inner-bar-center">
                 <ul class="nav">
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
@@ -43,11 +44,11 @@
                              class="dropdown-menu-right rm-pointers dropdown-menu-shadow dropdown-menu-hover-link dropdown-menu">
                             <h6 tabindex="-1" class="dropdown-header">Header</h6>
                             <button type="button" tabindex="0" class="dropdown-item"><i
-                                        class="dropdown-icon lnr-inbox"> </i><span>Menus</span></button>
+                                    class="dropdown-icon lnr-inbox"> </i><span>Menus</span></button>
                             <button type="button" tabindex="0" class="dropdown-item"><i
-                                        class="dropdown-icon lnr-file-empty"> </i><span>Settings</span></button>
+                                    class="dropdown-icon lnr-file-empty"> </i><span>Settings</span></button>
                             <button type="button" tabindex="0" class="dropdown-item"><i
-                                        class="dropdown-icon lnr-book"> </i><span>Actions</span></button>
+                                    class="dropdown-icon lnr-book"> </i><span>Actions</span></button>
                             <div tabindex="-1" class="dropdown-divider"></div>
                             <div class="p-3 text-right">
                                 <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
@@ -66,7 +67,8 @@
                         </a>
                     </li>
                 </ul>
-            </div>                    </div>
+            </div>
+        </div>
         <div class="app-inner-layout__wrapper">
             <div class="app-inner-layout__sidebar">
                 <div class="app-layout__sidebar-inner dropdown-menu-rounded">
@@ -83,50 +85,52 @@
                         <a class="dropdown-item" href="pm-dashboard.html">Project Management</a>
                         <a class="dropdown-item" href="product-dashboard.html">Product</a>
                         <a class="dropdown-item" href="statistics-dashboard.html">Statistics</a>
-                    </div>                            </div>
+                    </div>
+                </div>
             </div>
-        <div class="app-inner-layout__wrapper">
-            <div class="app-inner-layout__content pt-1">
-                <div class="tab-content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body">
-                                        <table style="width: 100%;" id="example"
-                                               class="table table-hover table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+            <div class="app-inner-layout__wrapper">
+                <div class="app-inner-layout__content pt-1">
+                    <div class="tab-content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body">
+                                            <table style="width: 100%;" id="example"
+                                                   class="table table-hover table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Office</th>
+                                                    <th>Age</th>
+                                                    <th>Start date</th>
+                                                    <th>Salary</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
 
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
+                                                <tr>
+                                                    <td>Donna Snider</td>
+                                                    <td>Customer Support</td>
+                                                    <td>New York</td>
+                                                    <td>27</td>
+                                                    <td>2011/01/25</td>
+                                                    <td>$112,000</td>
+                                                </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Office</th>
+                                                    <th>Age</th>
+                                                    <th>Start date</th>
+                                                    <th>Salary</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +140,5 @@
             </div>
         </div>
     </div>
-    </div>
-{{--    </div>--}}
+    {{--    </div>--}}
 @endsection

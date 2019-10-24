@@ -16,15 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('index');
+
     Route::get('customer-login-form', 'CustomerController@index')->name('customer-login-form');
     Route::get('customer-register', 'CustomerController@register')->name('customer-register');
     Route::post('customer-register', 'CustomerController@registerAction')->name('customer-register');
-
     Route::post('customer-login', 'CustomerAuthController@loginAction')->name('customer-login');
     Route::get('customer-logout', 'CustomerAuthController@logout')->name('customer-logout');
 
+
     Route::group(['middleware' => 'auth:customer'], function () {
         Route::get('customer-order', 'HomeController@viewOrderPage')->name('customer-order');
+        Route::post('customer-order', 'CustomerOrderController@customerOrder')->name('customer-order');
     });
 });
 
@@ -47,8 +49,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('delete-admin/{}', 'AdminController@deleteAdmin')->name('delete-admin');
 
 
-    });
 
+
+    });
 });
 
 

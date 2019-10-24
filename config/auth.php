@@ -81,12 +81,12 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Backend\Admin::class,
+            'model' => App\Models\Admin::class,
         ],
 
         'customers' => [
             'driver' => 'eloquent',
-            'model' => App\Backend\Customer::class,
+            'model' => App\Models\Customer::class,
         ],
 
         // 'users' => [

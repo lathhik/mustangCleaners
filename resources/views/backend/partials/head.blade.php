@@ -19,4 +19,5 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet"></head>
+    <link rel="stylesheet" href="{{asset('custom/backend/custom.css')}}">
 <body>

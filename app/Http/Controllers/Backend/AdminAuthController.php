@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Backend\Admin;
+use App\Models\Admin;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -48,7 +48,7 @@ class AdminAuthController extends Controller
     public function logOut()
     {
         Auth::guard('admin')->logout();
-        Session::flush();
+//        Session::flush();
         return redirect()->route('admin-login');
     }
 }

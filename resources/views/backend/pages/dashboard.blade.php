@@ -1,4 +1,4 @@
-@extends('backend.partials.app')
+@extends('backend.master')
 
 @section('content')
     <div class="app-inner-layout app-inner-layout-page">
