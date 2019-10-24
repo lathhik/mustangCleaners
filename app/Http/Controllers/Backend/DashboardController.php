@@ -12,7 +12,10 @@ class DashboardController extends Controller
         return view('backend.pages.dashboard');
     }
 
-
+public function viewManagement()
+{
+        return view('backend.pages.management');
+}
 
 }
 

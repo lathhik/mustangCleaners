@@ -223,10 +223,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <br>
-
-
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-outline-primary col-2 offset-lg-5"
                                                         name="register"
