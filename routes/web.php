@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
     Route::group(['middleware' => ['auth:admin']], function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('management', 'DashboardController@viewManagement')->name('management');
 
         Route::get('add-admin', 'AdminController@addAdmin')->name('add-admin');
         Route::get('view-admin', 'AdminController@viewAdmin')->name('view-admin');
@@ -45,6 +46,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('edit-admin/{id}', 'AdminController@editAdmin')->name('edit-admin');
         Route::post('edit-admin-action/{id}', 'AdminController@editAdminAction')->name('edit-admin-action');
         Route::get('delete-admin/{}', 'AdminController@deleteAdmin')->name('delete-admin');
+
+        Route::get('add-service', 'ServiceTypeController@addService')->name('add-service');
+        Route::get('view-service', 'ServiceTypeController@viewService')->name('view-service');
 
 
     });

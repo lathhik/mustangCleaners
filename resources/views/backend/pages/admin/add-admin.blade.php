@@ -181,6 +181,8 @@
 
                                                 </div>
 
+                                                <input type="file" name="image" accept="image/*">git
+
                                                 <br>
 
 

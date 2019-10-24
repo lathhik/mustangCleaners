@@ -1,6 +1,7 @@
 @extends('backend.partials.app')
 
 @section('content')
+
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-bar">
             <div class="inner-bar-left">
@@ -20,12 +21,12 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                            <span>Add admin</span>
+                            <span>Add Service</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link" href="#tab-content-1">
-                            <span>View Admin</span>
+                            <span>View Service</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -85,48 +86,49 @@
                         <a class="dropdown-item" href="statistics-dashboard.html">Statistics</a>
                     </div>                            </div>
             </div>
-        <div class="app-inner-layout__wrapper">
-            <div class="app-inner-layout__content pt-1">
-                <div class="tab-content">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="main-card mb-12 card">
-                                    <div class="card-body">
-                                        <table width="935"  id="example"
-                                               class="table table-hover table-striped table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
+            <div class="app-inner-layout__wrapper">
+                <div class="app-inner-layout__content pt-1">
+                    <div class="tab-content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-card mb-12 card">
+                                        <div class="card-body">
+                                            <table width="935"  id="example"
+                                                   class="table table-hover table-striped table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>Service Name</th>
+                                                    <th>Cost</th>
+                                                    <th>Service Available</th>
+                                                    <th>Age</th>
+                                                    <th>Start date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
 
-                                            <tr>
-                                                <td>Donna Snider</td>
-                                                <td>Customer Support</td>
-                                                <td>New York</td>
-                                                <td>27</td>
-                                                <td>2011/01/25</td>
-                                                <td>$112,000</td>
-                                            </tr>
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
+                                                <tr>
+                                                    <td>Donna Snider</td>
+                                                    <td>Customer Support</td>
+                                                    <td>New York</td>
+                                                    <td>27</td>
+                                                    <td>2011/01/25</td>
+                                                    <td>$112,000</td>
+                                                </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th>Office</th>
+                                                    <th>Age</th>
+                                                    <th>Start date</th>
+                                                    <th>Salary</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,5 +138,5 @@
             </div>
         </div>
     </div>
-    </div>
-@endsection
+
+    @endsection
