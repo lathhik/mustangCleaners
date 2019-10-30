@@ -15,6 +15,8 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <link rel="icon" href="{{asset('custom/backend/favicon.ico')}}">
 
+    <title>@yield('title')</title>
+
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 

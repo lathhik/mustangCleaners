@@ -19,9 +19,6 @@
                             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                         </a>
                         <ul class="mm-show mm-collapse">
-
-
-                            <li><a class="mm-active" href="index-2.html">Analytics</a></li>
                             <li><a href="management-dashboard.html">Management</a></li>
                             <li><a href="advertisement-dashboard.html">Advertisement</a></li>
                             <li><a href="helpdesk-dashboard.html">Helpdesk</a></li>

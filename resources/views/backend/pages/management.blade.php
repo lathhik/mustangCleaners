@@ -1,9 +1,5 @@
-@extends('backend.partials.app')
-
+@extends('backend.master')
 @section('content')
-
-
-
                 <div class="app-main__inner">
                     <div class="header-mobile-wrapper">
                         <div class="app-header__logo">
@@ -1719,5 +1715,4 @@
                         </div>
                     </div>
                 </div>
-
-    @endsection
+@endsection

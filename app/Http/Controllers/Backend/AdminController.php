@@ -13,7 +13,9 @@ class AdminController extends Controller
 
     public function viewAdmin()
     {
-        return view('backend.pages.admin.view-admin');
+        $admins = Admin::all();
+
+        return view('backend.pages.admin.view-admin')->with('admins', $admins);
     }
 
     public function addAdmin()
@@ -67,6 +69,7 @@ class AdminController extends Controller
     public function editAdmin($id)
     {
         $admin = Admin::find($id);
+
         return view('backend.pages.admin.edit-admin')->with('admin', $admin);
     }
 

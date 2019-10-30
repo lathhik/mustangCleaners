@@ -47,13 +47,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::post('add-admin-action', 'AdminController@addAdminAction')->name('add-admin-action');
         Route::get('edit-admin/{id}', 'AdminController@editAdmin')->name('edit-admin');
         Route::post('edit-admin-action/{id}', 'AdminController@editAdminAction')->name('edit-admin-action');
-        Route::get('delete-admin/{}', 'AdminController@deleteAdmin')->name('delete-admin');
+        Route::get('delete-admin/{id}', 'AdminController@deleteAdmin')->name('delete-admin');
 
         Route::get('add-service', 'ServiceTypeController@addService')->name('add-service');
         Route::get('view-service', 'ServiceTypeController@viewService')->name('view-service');
-
-
-
+        Route::post('add-service', 'ServiceTypeController@addServiceAction')->name('add-service');
 
     });
 });

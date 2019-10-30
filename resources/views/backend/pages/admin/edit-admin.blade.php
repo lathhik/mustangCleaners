@@ -1,4 +1,5 @@
 @extends('backend.master')
+@section('title','EditAdmin')
 
 @section('content')
     <div class="app-inner-layout app-inner-layout-page">
@@ -37,7 +38,7 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <h2 class=" text-center">Add Admin Form</h2>
+                                        <h2 class=" text-center">Edit Admin Form</h2>
                                         <hr>
                                         @include('messages.succFail')
                                         <form id="" class="col-md-12" method="post"
@@ -50,7 +51,8 @@
                                                         <label for="firstname">First name</label>
                                                         <div>
                                                             <input type="text" class="form-control" id="first_name"
-                                                                   name="first_name" placeholder="First name"/>
+                                                                   name="first_name"
+                                                                   placeholder="{{$admin->first_name}}"/>
                                                             @if($errors->has('first_name'))
                                                                 <p class="text-danger">{{$errors->first('first_name')}}</p>
                                                             @endif
@@ -63,7 +65,8 @@
                                                         <label for="lastname">Last name</label>
                                                         <div>
                                                             <input type="text" class="form-control" id="last_name"
-                                                                   name="last_name" placeholder="Last name"/>
+                                                                   name="last_name"
+                                                                   placeholder="{{$admin->last_name}}"/>
                                                             @if($errors->has('last_name'))
                                                                 <p class="text-danger">{{$errors->first('last_name')}}</p>
                                                             @endif
@@ -73,51 +76,14 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="username">Email</label>
-                                                        <div>
-                                                            <input type="text" class="form-control" id="email"
-                                                                   name="email" placeholder="example@gmail.com"/>
-                                                            @if($errors->has('email'))
-                                                                <p class="text-danger">{{$errors->first('email')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
                                                         <label for="confirm_password">Address</label>
                                                         <div>
                                                             <input type="text" class="form-control"
                                                                    id="address" name="address"
-                                                                   placeholder="address"/>
+                                                                   placeholder="{{$admin->address}}"/>
                                                             @if($errors->has('address'))
                                                                 <p class="text-danger">{{$errors->first('address')}}</p>
                                                             @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="email">Password</label>
-                                                        <div>
-                                                            <input type="password" class="form-control" id="password"
-                                                                   name="password" placeholder="Password"/>
-                                                            @if($errors->has('password'))
-                                                                <p class="text-danger">{{$errors->first('password')}}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="confirm_password">Confirm password</label>
-                                                        <div>
-                                                            <input type="password" class="form-control"
-                                                                   id="confirm_password" name="password_confirmation"
-                                                                   placeholder="Confirm password"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,7 +94,7 @@
                                                         <label for="firstname">Contact</label>
                                                         <div>
                                                             <input type="text" class="form-control" id="contact"
-                                                                   name="contact" placeholder="Phone No."/>
+                                                                   name="contact" placeholder="{{$admin->contact}}"/>
                                                             @if($errors->has('contact'))
                                                                 <p class="text-danger">{{$errors->first('contact')}}</p>
                                                             @endif
@@ -137,14 +103,18 @@
                                                 </div>
 
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label for="firstname">Privilege</label>
                                                         <div>
                                                             <select class="form-control" name="privilege">
-                                                                <option value="SA">Super Admin</option>
-                                                                <option value="LA">Laundry Admin</option>
-                                                                <option value="PA">Pickup Admin</option>
+                                                                @if($admin->privilege == 'SA' or $admin->privilege == 'PA' or $admin->privilege == 'LA' )
+                                                                    <option value="SA" selected>Super Admin</option>
+{{--                                                                @elseif($admin->privilege == 'LA')--}}
+                                                                    <option value="LA">Laundry Admin</option>
+{{--                                                                @elseif($admin->privilege == 'PA')--}}
+                                                                    <option value="PA">Pickup Admin</option>
+                                                                @endif
                                                             </select>
                                                             @if($errors->has('parivilege'))
                                                                 <p class="text-danger">{{$errors->first('privilege')}}</p>
@@ -172,9 +142,13 @@
                                                     <div class="form-group">
                                                         <label for="firstname">Gender</label>
                                                         <div>
-                                                            <input type="radio" name="gender" id="male" value="male">&nbsp<label for="male"> Male</label> &nbsp;
-                                                            <input type="radio" name="gender" id="female" value="female">&nbsp<label for="female"> Female</label>&nbsp;
-                                                            <input type="radio" name="gender" id="other" value="other">&nbsp<label for="other"> Other</label>
+                                                            <input type="radio" name="gender" id="male" value="male">&nbsp<label
+                                                                for="male"> Male</label> &nbsp;
+                                                            <input type="radio" name="gender" id="female"
+                                                                   value="female">&nbsp<label for="female">
+                                                                Female</label>&nbsp;
+                                                            <input type="radio" name="gender" id="other" value="other">&nbsp<label
+                                                                for="other"> Other</label>
                                                             @if($errors->has('gender'))
                                                                 <p class="text-danger">{{$errors->first('gender')}}</p>
                                                             @endif
