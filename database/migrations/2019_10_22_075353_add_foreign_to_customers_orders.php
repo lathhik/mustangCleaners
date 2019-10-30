@@ -14,7 +14,7 @@ class AddForeignToCustomersOrders extends Migration
     public function up()
     {
         Schema::table('customers_orders', function (Blueprint $table) {
-            $table->integer('order_status_id')->unsigned();
+            $table->integer('order_status_id')->unsigned()->after('customer_id');
             $table->foreign('order_status_id')->references('id')->on('orders_status');
 
         });

@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-2 col-sm-6 col-xs-6">
                 <div class="header-logo">
-                    <a href="index.html"><img src="{{asset('custom/frontend/assets/img/logo/logo.png')}}" alt=""/></a>
+                    <a href="{{route('index')}}"><img src="{{asset('custom/frontend/assets/img/logo/logo.png')}}" alt=""/></a>
                 </div>
             </div>
             <div class="col-md-10 hidden-sm hidden-xs">
@@ -41,7 +41,7 @@
                             </div>
                             <div class="header-right-text">
                                 <span class="text">Phone Number :</span>
-                                <span class="phone">00 (700) 124-7854</span>
+                                <span class="phone">xxxxxxxxxx</span>
                             </div>
                         </div>
                     </div>

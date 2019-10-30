@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('view-service', 'ServiceTypeController@viewService')->name('view-service');
         Route::post('add-service', 'ServiceTypeController@addServiceAction')->name('add-service');
 
+//        Route::get('view-orders','');
     });
 });
 

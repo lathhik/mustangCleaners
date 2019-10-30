@@ -70,6 +70,10 @@
 }
 .header-logo{}
 .header-logo a{}
+.header-logo img{
+    width:200px;
+}
+
 .get-quote a {
   background: #52b6bc none repeat scroll 0 0;
   border-radius: 5px;
@@ -549,18 +553,18 @@ span.cd-words-wrapper  b{
   height: 998px;
 }
 .works-title{}
-.works-title span{  
+.works-title span{
   color: #fff;
   display: inline-block;
   font-family: courgette;
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 9px;}
-.works-title h3{ 
+.works-title h3{
   color: #fff;
   font-size: 34px;
   font-weight: 700;}
-  
+
 .works-title p {
   color: #fff;
   font-size: 16px;

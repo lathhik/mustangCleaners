@@ -20,12 +20,7 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-1">
-                            <span>View Service</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-0">
-                            <span>Add Service</span>
+                            <span>View Orders</span>
                         </a>
                     </li>
                 </ul>
@@ -74,20 +69,23 @@
                                                 <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>Service Name</th>
-                                                    <th>Cost</th>
+                                                    <th>Order Type Name</th>
+                                                    <th>Pick Up Location</th>
+                                                    <th>Pick Up Time</th>
+                                                    <th>Delivery Location</th>
+                                                    <th>Delivery Time</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                                 @foreach($services as $service)
-                                                <tr>
-                                                    <td>{{$loop->iteration}}</td>
-                                                    <td>{{$service->service_types}}</td>
-                                                    <td>$100</td>
-                                                    <td></td>
-                                                </tr>
-                                                    @endforeach
+                                                    <tr>
+                                                        <td>{{$loop->iteration}}</td>
+                                                        <td>{{$service->service_types}}</td>
+                                                        <td>$100</td>
+                                                        <td></td>
+                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>

@@ -12,11 +12,8 @@
             <div class="form-row">
 
                 <div class="form-group">
-                    <div class="col-md-offset-0 col-md-12 ">
-                        <label for="" class="">Pick Up Address</label>
-                    </div>
                     <div class="form-group col-md-6">
-                        {{--                        <label for="phone">Street Address</label>--}}
+                        <label for="pick_str" class="">Pick Up Address</label>
                         <input class="form-control" type="text" name="pickup_street_addr" id="pick_str"
                                placeholder="Street Address">
                         {{--                        @if($errors->has('pickup_street_addr'))--}}
@@ -27,7 +24,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        {{--                        <label for="phone">House No.</label>--}}
+                        <label for="pick_hs">Pick Up House No.</label>
                         <input class="form-control" type="text" name="pickup_house_no" id="pick_hs"
                                placeholder="House No.">
                         @if($errors->has('pickup_house_no'))
@@ -36,10 +33,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-0 col-md-12 ">
-                        <label for="" class="">Delivery Address</label>
-                    </div>
                     <div class="form-group col-md-6">
+                        <label for="" class="">Delivery Address</label>
                         <input class="form-control" type="text" name="deli_street_addr" id="deli_adr"
                                placeholder="Street Address">
                         @if($errors->has('deli_street_addr'))
@@ -47,6 +42,7 @@
                         @endif
                     </div>
                     <div class="form-group col-md-6">
+                        <label for="deli_hs">Delivery  House No.</label>
                         <input class="form-control" type="text" name="deli_house_no" id="deli_hs"
                                placeholder="House No.">
                         @if($errors->has('deli_house_no'))
