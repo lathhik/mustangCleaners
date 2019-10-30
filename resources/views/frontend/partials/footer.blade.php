@@ -6,7 +6,7 @@
                 <div class="action-wrapper mb-30">
                     <div class="action-text">
                         <h1>Don’t Miss any Action!</h1>
-                        <p>But I must explain to you how alltmistaken idea of denouncing</p>
+                        <p>Production demo phase.</p>
                     </div>
                 </div>
             </div>

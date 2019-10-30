@@ -42,8 +42,7 @@
             <div class="section-title text-center mb-70">
                 <span>What we offer </span>
                 <h3>Featured Services</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row">
                 <div class="col-md-3 col-sm-6">
@@ -57,7 +56,7 @@
                             </div>
                             <div class="service-text">
                                 <h4>Floor Cleaning</h4>
-                                <p>But I must explain to you howen idea of deno pleanpising pain was born and</p>
+                                <p>Production demo phase.</p>
                                 <a href="single-service.html">More Info</a>
                             </div>
                         </div>
@@ -74,7 +73,7 @@
                             </div>
                             <div class="service-text">
                                 <h4>Trash treatment</h4>
-                                <p>But I must explain to you howen idea of deno pleanpising pain was born and</p>
+                                <p>Production demo phase.</p>
                                 <a href="single-service.html">More Info</a>
                             </div>
                         </div>
@@ -91,7 +90,7 @@
                             </div>
                             <div class="service-text">
                                 <h4>Extra Shiny</h4>
-                                <p>But I must explain to you howen idea of deno pleanpising pain was born and</p>
+                                <p>Production demo phase.</p>
                                 <a href="single-service.html">More Info</a>
                             </div>
                         </div>
@@ -108,7 +107,7 @@
                             </div>
                             <div class="service-text">
                                 <h4>Cloth Ironing </h4>
-                                <p>But I must explain to you howen idea of deno pleanpising pain was born and</p>
+                                <p>Production demo phase.</p>
                                 <a href="single-service.html">More Info</a>
                             </div>
                         </div>
@@ -124,8 +123,7 @@
             <div class="section-title text-center mb-70">
                 <span>What we offer </span>
                 <h3>How It Works</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
@@ -138,8 +136,7 @@
                         </div>
                         <div class="featured-services-text featured-services-info">
                             <h3><a href="single-service.html">Choose Any Time For Delivery</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born and I will give you</p>
+                            <p>Production demo phase.</p>
                         </div>
                     </div>
                 </div>
@@ -153,8 +150,7 @@
                         </div>
                         <div class="featured-services-text featured-services-info">
                             <h3><a href="single-service.html">We Can Wash and Dry Dirty Laundry</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born and I will give you</p>
+                            <p>Production demo phase.</p>
                         </div>
                     </div>
                 </div>
@@ -168,8 +164,7 @@
                         </div>
                         <div class="featured-services-text featured-services-info">
                             <h3><a href="single-service.html">Relax and Enjoy Clean Clothes.</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born and I will give you</p>
+                            <p>Production demo phase.</p>
                         </div>
                     </div>
                 </div>
@@ -259,8 +254,7 @@
             <div class="section-title text-center mb-110">
                 <span>What we offer </span>
                 <h3>Pricing Plans</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row m-0 pricing-inner">
                 <div class="col-md-4 col-sm-4">
@@ -342,8 +336,7 @@
             <div class="booking-title text-center mb-50">
                 <span>What we offer </span>
                 <h3>Service Booking</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row">
                 <div class="col-md-offset-1 col-md-10">
@@ -365,8 +358,7 @@
             <div class="section-title text-center">
                 <span>Testimonials</span>
                 <h3>What Clients Say</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row">
                 <div class="col-offset">
@@ -431,8 +423,7 @@
             <div class="section-title text-center mb-70">
                 <span>Company News</span>
                 <h3>Latest News</h3>
-                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was
-                    born and I will give you a complete account of the.</p>
+                <p>Production demo phase.</p>
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-6">
@@ -442,8 +433,7 @@
                         </div>
                         <div class="news-content">
                             <h3><a href="blog-details.html">The standard Lorem Ipsum passag GIve you</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born I will give you</p>
+                            <p>Production demo phase.</p>
                             <div class="news-meta">
                                 <span class="date"><i class="zmdi zmdi-time"></i>June 7, 2017</span>
                                 <span class="comment"><i class="zmdi zmdi-comment-outline"></i>2 Comment</span>
@@ -457,9 +447,8 @@
                             <a href="blog-details.html"><img src="assets/img/news/2.jpg" alt=""/></a>
                         </div>
                         <div class="news-content">
-                            <h3><a href="blog-details.html">But I must explain to you how all mistaken</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born I will give you</p>
+                            <h3><a href="blog-details.html">Production demo phase.</a></h3>
+                            <p>Production demo phase.</p>
                             <div class="news-meta">
                                 <span class="date"><i class="zmdi zmdi-time"></i>June 7, 2017</span>
                                 <span class="comment"><i class="zmdi zmdi-comment-outline"></i>2 Comment</span>
@@ -474,8 +463,7 @@
                         </div>
                         <div class="news-content">
                             <h3><a href="blog-details.html">The standard Lorem Ipsum passag GIve you</a></h3>
-                            <p>But I must explain to you how all tmistaken idea of denouncing pleasure and praisi pain
-                                was born I will give you</p>
+                            <p>Production demo phase.</p>
                             <div class="news-meta">
                                 <span class="date"><i class="zmdi zmdi-time"></i>June 7, 2017</span>
                                 <span class="comment"><i class="zmdi zmdi-comment-outline"></i>2 Comment</span>

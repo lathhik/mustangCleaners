@@ -1917,11 +1917,7 @@
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div class="chat-box">But I must explain to you
-                                                        how all this mistaken idea of denouncing
-                                                        pleasure and praising pain was born and I
-                                                        will give you a complete account of the
-                                                        system.
+                                                    <div class="chat-box">Production demo phase.
                                                     </div>
                                                     <small class="opacity-6">
                                                         <i class="fa fa-calendar-alt mr-1"></i>

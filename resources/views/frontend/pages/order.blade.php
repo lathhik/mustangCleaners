@@ -131,3 +131,26 @@
     </div>
     <br><br><br>
 @endsection
+@section('script')
+    <script>
+        $(function () {
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+                return [year, month, day].join('-');
+            }
+
+            $('#pick_date').change(function () {
+                var date = new Date($("#pick_date").val());
+                date.setDate(date.getDate() + 2);
+                $('#deli_date').val(formatDate(date));
+            });
+        })
+    </script>
+    @endsection
