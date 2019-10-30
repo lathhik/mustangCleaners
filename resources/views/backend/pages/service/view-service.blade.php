@@ -20,41 +20,14 @@
             <div class="inner-bar-center">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                            <span>Add Service</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link" href="#tab-content-1">
+                        <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-1">
                             <span>View Service</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link" href="#tab-content-2">
-                            <span>Demographics</span>
+                        <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-0">
+                            <span>Add Service</span>
                         </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                           class="nav-link opacity-8">
-                            <span>More</span>
-                            <i class="fa fa-angle-down ml-1 opacity-6"></i>
-                        </a>
-                        <div tabindex="-1" role="menu" aria-hidden="true"
-                             class="dropdown-menu-right rm-pointers dropdown-menu-shadow dropdown-menu-hover-link dropdown-menu">
-                            <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                    class="dropdown-icon lnr-inbox"> </i><span>Menus</span></button>
-                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                    class="dropdown-icon lnr-file-empty"> </i><span>Settings</span></button>
-                            <button type="button" tabindex="0" class="dropdown-item"><i
-                                    class="dropdown-icon lnr-book"> </i><span>Actions</span></button>
-                            <div tabindex="-1" class="dropdown-divider"></div>
-                            <div class="p-3 text-right">
-                                <button class="mr-2 btn-shadow btn-sm btn btn-link">View Details</button>
-                                <button class="mr-2 btn-shadow btn-sm btn btn-primary">Action</button>
-                            </div>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -94,40 +67,35 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @include('messages.succFail')
                                     <div class="main-card mb-12 card">
                                         <div class="card-body">
+                                            @include('messages.succFail')
                                             <table width="935" id="example"
                                                    class="table table-hover table-striped table-bordered">
                                                 <thead>
                                                 <tr>
+                                                    <th></th>
                                                     <th>Service Name</th>
                                                     <th>Cost</th>
-                                                    <th>Service Available</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-
+                                                @foreach($services as $service)
                                                 <tr>
-                                                    <td>Donna Snider</td>
+                                                    <td>{{$loop->iteration}}</td>
                                                     <td>Customer Support</td>
                                                     <td>New York</td>
                                                     <td>27</td>
-                                                    <td>2011/01/25</td>
-                                                    <td>$112,000</td>
                                                 </tr>
+                                                    @endforeach
                                                 </tbody>
                                                 <tfoot>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Position</th>
-                                                    <th>Office</th>
-                                                    <th>Age</th>
-                                                    <th>Start date</th>
-                                                    <th>Salary</th>
+                                                    <th></th>
+                                                    <th>Service Name</th>
+                                                    <th>Cost</th>
+                                                    <th>Action</th>
                                                 </tr>
                                                 </tfoot>
                                             </table>

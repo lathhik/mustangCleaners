@@ -15,7 +15,8 @@ class ServiceTypeController extends Controller
 
     public function viewService()
     {
-        return view('backend.pages.service.view-service');
+        $services = ServiceType::all();
+        return view('backend.pages.service.view-service',compact('services'));
     }
 
 
