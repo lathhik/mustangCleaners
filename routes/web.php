@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
     Route::get('admin-logout', 'AdminAuthController@logOut')->name('admin-logout');
 
     Route::group(['middleware' => ['auth:admin']], function () {
-        Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/', 'DashboardController@viewManagement')->name('dashboard');
         Route::get('management', 'DashboardController@viewManagement')->name('management');
 
         Route::get('add-admin', 'AdminController@addAdmin')->name('add-admin');

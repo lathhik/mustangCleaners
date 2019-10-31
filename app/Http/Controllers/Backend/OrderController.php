@@ -12,5 +12,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         return view('backend.pages.order.view-order', compact('orders'));
+
+
     }
 }

@@ -72,8 +72,6 @@ class CustomerOrderController extends Controller
             return redirect()->back()->with('success','Your Order Was Successfully Placed. Please View Your Dashboard.');
         }
 
-
-
     }
 
 }
