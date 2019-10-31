@@ -64,37 +64,32 @@
                                     <div class="main-card mb-12 card">
                                         <div class="card-body">
                                             @include('messages.succFail')
-                                            <table width="935" id="example"
+                                            <table style="width: 950px" id="example"
                                                    class="table table-hover table-striped table-bordered">
                                                 <thead>
                                                 <tr>
                                                     <th></th>
                                                     <th>Order Type Name</th>
+                                                    <th>Order Status</th>
                                                     <th>Pick Up Location</th>
-                                                    <th>Pick Up Time</th>
+                                                    <th>Pick Up Date/Time</th>
                                                     <th>Delivery Location</th>
                                                     <th>Delivery Time</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($services as $service)
+                                                @foreach($orders as $order)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
-                                                        <td>{{$service->service_types}}</td>
-                                                        <td>$100</td>
-                                                        <td></td>
+                                                        <td>{{$order->serviceType->service_types}}</td>
+                                                        <td>{{$order->orderStatus->status}}</td>
+                                                        <td>{{$order->pickup_street_address}}</td>
+                                                        <td>{{$order->pickup_date}} / {{$order->pickup_time}}</td>
+                                                        <td>{{$order->delivery_street_address}}</td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
-                                                <tfoot>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Service Name</th>
-                                                    <th>Cost</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                     </div>

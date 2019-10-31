@@ -11,12 +11,12 @@ class CustomerOrder extends Model
 
     public function serviceType()
     {
-        return $this->belongsTo(ServiceType::class);
+        return $this->belongsTo(ServiceType::class,'service_type');
     }
 
     public function orderStatus()
     {
-        return $this->belongsTo(OrderStatus::class);
+        return $this->belongsTo(OrderStatus::class,'order_status_id');
     }
 
     public function customer()

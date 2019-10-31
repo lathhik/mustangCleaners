@@ -91,6 +91,14 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li class="app-sidebar__heading">Service Section</li>
+                            <li>
+                                <a href="{{route('view-orders')}}">
+                                    <i class=""></i>
+                                    Customer Orders
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
