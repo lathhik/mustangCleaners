@@ -78,7 +78,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="components-tabs.html">
+                                        <a href="{{route('add-order-status')}}">
                                             <i class="">
                                             </i>Add Order Status
                                         </a>
@@ -90,168 +90,6 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-display2"></i>
-                                    Tables
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="tables-data-tables.html">
-                                            <i class="metismenu-icon">
-                                            </i>Data Tables
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-regular.html">
-                                            <i class="metismenu-icon">
-                                            </i>Regular Tables
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="tables-grid.html">
-                                            <i class="metismenu-icon">
-                                            </i>Grid Tables
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="app-sidebar__heading">Dashboard Widgets</li>
-                            <li>
-                                <a href="widgets-chart-boxes.html">
-                                    <i class="metismenu-icon pe-7s-graph">
-                                    </i>Chart Boxes 1
-                                </a>
-                            </li>
-                            <li>
-                                <a href="widgets-chart-boxes-2.html">
-                                    <i class="metismenu-icon pe-7s-way">
-                                    </i>Chart Boxes 2
-                                </a>
-                            </li>
-                            <li>
-                                <a href="widgets-chart-boxes-3.html">
-                                    <i class="metismenu-icon pe-7s-ball">
-                                    </i>Chart Boxes 3
-                                </a>
-                            </li>
-                            <li>
-                                <a href="widgets-profile-boxes.html">
-                                    <i class="metismenu-icon pe-7s-id">
-                                    </i>Profile Boxes
-                                </a>
-                            </li>
-                            <li class="app-sidebar__heading">Forms</li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-light"></i>
-                                    Elements
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="forms-controls.html">
-                                            <i class="metismenu-icon">
-                                            </i>Controls
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-layouts.html">
-                                            <i class="metismenu-icon">
-                                            </i>Layouts
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-validation.html">
-                                            <i class="metismenu-icon">
-                                            </i>Validation
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-wizard.html">
-                                            <i class="metismenu-icon">
-                                            </i>Wizard
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="metismenu-icon pe-7s-joy"></i>
-                                    Widgets
-                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="forms-datepicker.html">
-                                            <i class="metismenu-icon">
-                                            </i>Datepicker
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-range-slider.html">
-                                            <i class="metismenu-icon">
-                                            </i>Range Slider
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-input-selects.html">
-                                            <i class="metismenu-icon">
-                                            </i>Input Selects
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-toggle-switch.html">
-                                            <i class="metismenu-icon">
-                                            </i>Toggle Switch
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-wysiwyg-editor.html">
-                                            <i class="metismenu-icon">
-                                            </i>WYSIWYG Editor
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-input-mask.html">
-                                            <i class="metismenu-icon">
-                                            </i>Input Mask
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-clipboard.html">
-                                            <i class="metismenu-icon">
-                                            </i>Clipboard
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="forms-textarea-autosize.html">
-                                            <i class="metismenu-icon">
-                                            </i>Textarea Autosize
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="app-sidebar__heading">Charts</li>
-                            <li>
-                                <a href="charts-chartjs.html">
-                                    <i class="metismenu-icon pe-7s-graph2">
-                                    </i>ChartJS
-                                </a>
-                            </li>
-                            <li>
-                                <a href="charts-apexcharts.html">
-                                    <i class="metismenu-icon pe-7s-graph">
-                                    </i>Apex Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="charts-sparklines.html">
-                                    <i class="metismenu-icon pe-7s-graph1">
-                                    </i>Chart Sparklines
-                                </a>
                             </li>
                         </ul>
                     </div>
@@ -284,10 +122,7 @@
                 </div>
                 <div class="app-header">
                     <div class="page-title-heading">
-                        Analytics
-                        <div class="page-title-subheading">
-                            This is an example dashboard created using build-in elements and components.
-                        </div>
+                     Mustang Cleaners
                     </div>
                     <div class="app-header-right">
                         <div class="search-wrapper">
@@ -315,26 +150,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <ul class="tabs-animated-shadow tabs-animated nav nav-justified tabs-shadow-bordered p-3">
-                                            <li class="nav-item">
-                                                <a role="tab" class="nav-link active" data-toggle="tab"
-                                                   href="#tab-messages-header">
-                                                    <span>Messages</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a role="tab" class="nav-link" data-toggle="tab"
-                                                   href="#tab-events-header">
-                                                    <span>Events</span>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a role="tab" class="nav-link" data-toggle="tab"
-                                                   href="#tab-errors-header">
-                                                    <span>System</span>
-                                                </a>
-                                            </li>
-                                        </ul>
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab-messages-header" role="tabpanel">
                                                 <div class="scroll-area-sm">
@@ -542,188 +357,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane" id="tab-events-header" role="tabpanel">
-                                                <div class="scroll-area-sm">
-                                                    <div class="scrollbar-container">
-                                                        <div class="p-3">
-                                                            <div
-                                                                class="vertical-without-time vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-success"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title">All Hands
-                                                                                Meeting</h4>
-                                                                            <p>Lorem ipsum dolor sic amet, today at <a
-                                                                                    href="javascript:void(0);">12:00
-                                                                                    PM</a></p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <p>Another meeting today, at <b
-                                                                                    class="text-danger">12:00 PM</b>
-                                                                            </p>
-                                                                            <p>Yet another one, at <span
-                                                                                    class="text-success">15:00 PM</span>
-                                                                            </p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title">Build the
-                                                                                production release</h4>
-                                                                            <p>Lorem ipsum dolor sit amit,consectetur
-                                                                                eiusmdd tempor incididunt ut labore et
-                                                                                dolore magna elit enim at minim veniam
-                                                                                quis nostrud</p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title text-success">
-                                                                                Something not important</h4>
-                                                                            <p>Lorem ipsum dolor sit amit,consectetur
-                                                                                elit enim at minim veniam quis
-                                                                                nostrud</p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-success"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title">All Hands
-                                                                                Meeting</h4>
-                                                                            <p>Lorem ipsum dolor sic amet, today at <a
-                                                                                    href="javascript:void(0);">12:00
-                                                                                    PM</a></p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-warning"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <p>Another meeting today, at <b
-                                                                                    class="text-danger">12:00 PM</b>
-                                                                            </p>
-                                                                            <p>Yet another one, at <span
-                                                                                    class="text-success">15:00 PM</span>
-                                                                            </p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-danger"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title">Build the
-                                                                                production release</h4>
-                                                                            <p>Lorem ipsum dolor sit amit,consectetur
-                                                                                eiusmdd tempor incididunt ut labore et
-                                                                                dolore magna elit enim at minim veniam
-                                                                                quis nostrud</p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="vertical-timeline-item vertical-timeline-element">
-                                                                    <div>
-                                                                        <span
-                                                                            class="vertical-timeline-element-icon bounce-in"><i
-                                                                                class="badge badge-dot badge-dot-xl badge-primary"> </i></span>
-                                                                        <div
-                                                                            class="vertical-timeline-element-content bounce-in">
-                                                                            <h4 class="timeline-title text-success">
-                                                                                Something not important</h4>
-                                                                            <p>Lorem ipsum dolor sit amit,consectetur
-                                                                                elit enim at minim veniam quis
-                                                                                nostrud</p><span
-                                                                                class="vertical-timeline-element-date"></span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane" id="tab-errors-header" role="tabpanel">
-                                                <div class="scroll-area-sm">
-                                                    <div class="scrollbar-container">
-                                                        <div class="no-results pt-3 pb-0">
-                                                            <div
-                                                                class="swal2-icon swal2-success swal2-animate-success-icon">
-                                                                <div class="swal2-success-circular-line-left"
-                                                                     style="background-color: rgb(255, 255, 255);"></div>
-                                                                <span class="swal2-success-line-tip"></span>
-                                                                <span class="swal2-success-line-long"></span>
-                                                                <div class="swal2-success-ring"></div>
-                                                                <div class="swal2-success-fix"
-                                                                     style="background-color: rgb(255, 255, 255);"></div>
-                                                                <div class="swal2-success-circular-line-right"
-                                                                     style="background-color: rgb(255, 255, 255);"></div>
-                                                            </div>
-                                                            <div class="results-subtitle">All caught up!</div>
-                                                            <div class="results-title">There are no system errors!</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
-                                        <ul class="nav flex-column">
-                                            <li class="nav-item-divider nav-item"></li>
-                                            <li class="nav-item-btn text-center nav-item">
-                                                <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
-                                                    Latest Changes
-                                                </button>
-                                            </li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -757,76 +391,11 @@
                                                                     <div class="widget-content-left">
                                                                         <div class="widget-heading">Minnie Betts
                                                                         </div>
-                                                                        <div class="widget-subheading opacity-8">A short
-                                                                            profile description
+                                                                        <div class="widget-subheading opacity-8">Super Admin
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="widget-content-right mr-2">
-                                                                        <button
-                                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">
-                                                                            Logout
-                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="scroll-area-xs" style="height: 150px;">
-                                                    <div class="scrollbar-container ps">
-                                                        <ul class="nav flex-column">
-                                                            <li class="nav-item-header nav-item">Activity
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="javascript:void(0);" class="nav-link">Chat
-                                                                    <div class="ml-auto badge badge-pill badge-info">8
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="javascript:void(0);" class="nav-link">Recover
-                                                                    Password
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item-header nav-item">My Account
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="javascript:void(0);" class="nav-link">Settings
-                                                                    <div class="ml-auto badge badge-success">New
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="javascript:void(0);" class="nav-link">Messages
-                                                                    <div class="ml-auto badge badge-warning">512
-                                                                    </div>
-                                                                </a>
-                                                            </li>
-                                                            <li class="nav-item">
-                                                                <a href="javascript:void(0);" class="nav-link">Logs
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item-divider mb-0 nav-item"></li>
-                                                </ul>
-                                                <div class="grid-menu grid-menu-2col">
-                                                    <div class="no-gutters row">
-                                                        <div class="col-sm-6">
-                                                            <button
-                                                                class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-warning">
-                                                                <i class="pe-7s-chat icon-gradient bg-amy-crisp btn-icon-wrapper mb-2"></i>
-                                                                Message Inbox
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-sm-6">
-                                                            <button
-                                                                class="btn-icon-vertical btn-transition btn-transition-alt pt-2 pb-2 btn btn-outline-danger">
-                                                                <i class="pe-7s-ticket icon-gradient bg-love-kiss btn-icon-wrapper mb-2"></i>
-                                                                <b>Support Tickets</b>
-                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -835,7 +404,7 @@
                                                     </li>
                                                     <li class="nav-item-btn text-center nav-item">
                                                         <button class="btn-wide btn btn-primary btn-sm">
-                                                            Open Messages
+                                                           Log Out
                                                         </button>
                                                     </li>
                                                 </ul>
