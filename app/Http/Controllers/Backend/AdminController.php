@@ -78,8 +78,8 @@ class AdminController extends Controller
         $this->validate($request, [
             'first_name' => 'required|min:3|max:20|alpha',
             'last_name' => 'required|min:3|max:20|alpha',
-            'address' => 'required|min:3|max:20|alpha',
-            'contact' => 'required|min:5|max:17|numeric',
+            'address' => 'required|min:3|max:30|alpha',
+            'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'gender' => 'required',
         ]);
 

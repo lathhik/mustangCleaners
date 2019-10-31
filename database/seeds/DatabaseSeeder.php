@@ -31,16 +31,14 @@ class DatabaseSeeder extends Seeder
 //            ['service_types' => 'Laundered And Pressed']
 //        ]);
 //
-//        DB::table('orders_status')->insert([
-//            ['status' => 'New Order'],
-//            ['status' => 'Sent For Pickup'],
-//            ['status' => 'Picked Up'],
-//            ['status' => 'Sent For Processing'],
-//            ['status' => 'Processing Completed'],
-//            ['status' => 'Sent For Delivery'],
-//            ['status' => 'Delivered'],
-//            ['status' => 'Cancelled']
-//        ]);
+        DB::table('orders_status')->insert([
+            ['status' => 'New Order'],
+            ['status' => 'Picked Up'],
+            ['status' => 'Sent For Processing'],
+            ['status' => 'Processing Completed'],
+            ['status' => 'Delivered'],
+            ['status' => 'Cancelled']
+        ]);
     }
 }
 

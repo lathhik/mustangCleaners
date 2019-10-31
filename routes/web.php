@@ -52,6 +52,17 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('add-service', 'ServiceTypeController@addService')->name('add-service');
         Route::get('view-service', 'ServiceTypeController@viewService')->name('view-service');
         Route::post('add-service', 'ServiceTypeController@addServiceAction')->name('add-service');
+        Route::get('delete-service/{id}', 'ServiceTypeController@deleteService')->name('delete-service');
+        Route::get('edit-service/{id}', 'ServiceTypeController@editService')->name('edit-service');
+        Route::post('edit-service-action/{id}', 'ServiceTypeController@editServiceAction')->name('edit-service-action');
+
+
+        Route::get('add-order-status', 'OrderStatusController@addOrderStatus')->name('add-order-status');
+        Route::post('add-order-status', 'OrderStatusController@addOrderStatusAction')->name('add-order-status');
+        Route::get('view-order-status', 'OrderStatusController@viewOrderStatus')->name('view-order-status');
+        Route::get('edit-order-status/{id}', 'OrderStatusController@editOrderStatus')->name('edit-order-status');
+        Route::get('delete-order-status/{id}', 'OrderStatusController@deleteOrderStatus')->name('delete-order-status');
+
 
 //        Route::get('view-orders','');
     });

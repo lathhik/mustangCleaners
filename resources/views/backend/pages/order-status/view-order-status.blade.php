@@ -25,7 +25,7 @@
                     </li>
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-0">
-                            <span>Add Service</span>
+                            <span>Order Status</span>
                         </a>
                     </li>
                 </ul>
@@ -74,21 +74,21 @@
                                                 <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>Service Name</th>
+                                                    <th>Order Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($services as $service)
+                                                @foreach($order_status as $os)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
-                                                        <td>{{$service->service_types}}</td>
+                                                        <td>{{$os->status}}</td>
                                                         <td>
-                                                            <a href="{{route('edit-service', $service->id)}}" class="btn btn-sm btn-success">
+                                                            <a href="{{route('edit-order-status', $os->id)}}" class="btn btn-sm btn-success">
                                                                 <li class="fa fa-edit"></li>
                                                             </a>
                                                             &nbsp
-                                                            <a href="{{route('delete-service', $service->id)}}"
+                                                            <a href="{{route('delete-order-status', $os->id)}}"
                                                                class="btn btn-sm btn-danger"><i
                                                                     class="fa fa-trash"></i></a>
                                                         </td>

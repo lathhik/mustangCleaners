@@ -78,7 +78,7 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="components-tabs.html">
+                                        <a href="{{route('add-order-status')}}">
                                             <i class="">
                                             </i>Add Order Status
                                         </a>
