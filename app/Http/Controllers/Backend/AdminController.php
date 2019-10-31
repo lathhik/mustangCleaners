@@ -20,7 +20,8 @@ class AdminController extends Controller
 
     public function addAdmin()
     {
-        return view('backend.pages.admin.add-admin');
+        $admins = Admin::all();
+        return view('backend.pages.admin.add-admin')->with('admins', $admins);
     }
 
     public function addAdminAction(Request $request)
