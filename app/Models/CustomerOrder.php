@@ -23,4 +23,13 @@ class CustomerOrder extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function pickUpAddress()
+    {
+        return $this->belongsTo(Address::class,'pickup_address_id');
+    }
+    public function deliveryAddress()
+    {
+        return $this->belongsTo(Address::class,'delivery_address_id');
+    }
 }

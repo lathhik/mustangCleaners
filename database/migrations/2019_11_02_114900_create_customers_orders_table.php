@@ -18,15 +18,15 @@ class CreateCustomersOrdersTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->integer('service_type')->unsigned();
             $table->integer('order_status_id')->unsigned();
-            $table->string('pickup_street_address');
-            $table->string('pickup_house_no');
-            $table->string('delivery_street_address');
-            $table->string('delivery_house_no');
+            $table->integer('pickup_address_id')->unsigned();
+            $table->integer('delivery_address_id')->unsigned();
             $table->date('pickup_date');
-            $table->time('pickup_time');
+            $table->time('pickup_time_from');
+            $table->time('pickup_time_to');
             $table->date('delivery_date');
-            $table->time('delivery_time');
-            $table->bigInteger('phone');
+            $table->time('delivery_time_from');
+            $table->time('delivery_time_to');
+            $table->bigInteger('phone')->nullable();
 
             $table->timestamps();
         });
@@ -35,6 +35,8 @@ class CreateCustomersOrdersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('service_type')->references('id')->on('service_types');
             $table->foreign('order_status_id')->references('id')->on('orders_status');
+            $table->foreign('pickup_address_id')->references('id')->on('addresses');
+            $table->foreign('delivery_address_id')->references('id')->on('addresses');
 
         });
     }

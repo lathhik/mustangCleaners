@@ -15,15 +15,15 @@ class OrderController extends Controller
     {
 
 
-        $pickup_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+        $pickup_orders = CustomerOrder::with('pickUpAddress','deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', '<', 3);
         })->get();
 
-        $delivery_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+        $delivery_orders = CustomerOrder::with('pickUpAddress','deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', '>', 3);
         })->get();
 
-        $laundry_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+        $laundry_orders = CustomerOrder::with('pickUpAddress','deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', 3);
         })->get();
 
