@@ -10,12 +10,6 @@
             <div class="col-md-10 hidden-sm hidden-xs">
                 <div class="header-wrapper">
 
-                    @if(Auth::guard('customer')->user())
-                        <div class="get-quote floatright ">
-                            <a href="{{route('customer-logout')}}">Log Out</a>
-                        </div>
-                    @endif
-
                     @if(!Auth::guard('customer')->user())
                         <div class="get-quote floatright offset-md-2" style="margin-right: 4px">
                             <a href="{{route('customer-login-form')}}">Order Now</a>

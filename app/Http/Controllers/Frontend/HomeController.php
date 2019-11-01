@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
+
+use App\Models\CustomerOrder;
 use App\Models\ServiceType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,11 +15,15 @@ class HomeController extends Controller
         return view('frontend.pages.home');
     }
 
+    public function dashboard()
+    {
+        $orders = CustomerOrder::all();
+        return view('frontend.pages.dashboard',compact('orders'));
+    }
 
     public function viewOrderPage()
     {
         $services = ServiceType::all();
-
         return view('frontend.pages.order')->with('services', $services);
     }
 

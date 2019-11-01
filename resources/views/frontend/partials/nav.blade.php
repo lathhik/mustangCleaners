@@ -7,12 +7,6 @@
                     <nav>
                         <ul>
                             <li class="active"><a href="{{route('index')}}">home</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home 01</a></li>
-                                    <li><a href="index-2.html">Home 02</a></li>
-                                    <li><a href="index-3.html">Home 03</a></li>
-                                    <li><a href="index-box.html">Home Box</a></li>
-                                </ul>
                             </li>
                             <li><a href="about.html">About Us</a></li>
                             <li><a href="service.html">service</a>
@@ -27,14 +21,6 @@
                                 </ul>
                             </li>
                             <li><a href="blog-3-column.html">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog-3-column.html">blog-3-column</a></li>
-                                    <li><a href="blog-left-sidebar.html">blog-left-sidebar</a></li>
-                                    <li><a href="blog-right-sidebar.html">blog-right-sidebar</a></li>
-                                    <li><a href="blog-no-sidebar.html">blog-no-sidebar</a></li>
-                                    <li><a href="blog-details.html">blog-details</a></li>
-                                    <li><a href="blog-details-no-sideber.html">blog-details-no-sideber</a></li>
-                                </ul>
                             </li>
                             <li><a href="contact.html">contact</a></li>
                         </ul>
@@ -44,30 +30,30 @@
             @if(Auth::guard('customer')->user())
                 <div class="col-md-4 hidden-sm hidden-xs">
                     <div class="icon floatright">
-                        <a href="#" data-toggle="tooltip"  title="Notification"><i
-                                class="fa ion-email"></i></a>
-                        <a href="#" data-toggle="tooltip" title="Profile"><i class="fa fa-user"></i></a>
-                        <a href="#" data-toggle="tooltip" title="History"><i class="fa fa-history"></i></a>
-                        <a href="#"><i class="fa fa-user-secret">&nbsp&nbsp
-                                <small>{{strtoupper(substr(Auth::guard('customer')->user()->first_name,0,1))}}
-                                    .{{strtoupper(substr(Auth::guard('customer')->user()->last_name,0,1))}}</small>
-                            </i></a>
-
-                    </div>
-                </div>
-            @else
-                <div class="col-md-4 hidden-sm hidden-xs">
-                    <div class="icon floatright">
-                        <a href="#" class="noti"><i class="fa fa-facebook"></i></a>
-                        {{--                        <p class="text_noti" style="display: none"><small>Notifications</small></p>--}}
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-pinterest"></i></a>
-                        <a href="#"><i class="fa fa-google"></i></a>
-
+                        <a href="#" data-toggle="tooltip" title="Notification">
+                            <i class="fa ion-email"></i>
+                        </a>
+                        <a href="{{route('customer-dashboard')}}" data-toggle="tooltip" title="Dashboard"><i
+                                class="fa fa-tachometer"></i></a>
+                        <a href="#" data-toggle="tooltip" title="Your Orders"><i class="fa fa-history"></i></a>
+                        <div class="dropdown" style="display: inline">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown">
+                                <i class="fa fa-user-secret">&nbsp&nbsp
+                                    <small>
+                                        {{strtoupper(Auth::guard('customer')->user()->last_name)}}
+                                    </small>
+                                </i>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Profile</a>
+                                <a class="dropdown-item" href="{{route('customer-logout')}}">Log Out</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             @endif
-
             <div class="col-xs-12">
                 <div class="mobile-menu"></div>
             </div>
