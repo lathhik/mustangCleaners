@@ -25,16 +25,21 @@ class Order extends FormRequest
     public function rules()
     {
         return [
-            'pickup_street_addr' => 'required',
-            'pickup_house_no' => 'required',
-            'deli_street_addr' => 'required',
-            'deli_house_no' => 'required',
-            'service_type' => 'required',
-            'phone' => 'required',
-            'pickup_date' => 'required',
-            'pickup_time' =>    'required',
-            'deli_date' => 'required',
-            'deli_time' => 'required'
+            "pickup_address_line_1" => 'required',
+            "pickup_address_line_2" => 'required',
+            "pickup_city" => 'required',
+            "pickup_state" => 'required',
+            "pickup_zip" => 'required',
+            "delivery_address_line_1" => 'required',
+            "delivery_address_line_2" => 'required',
+            "delivery_city" => 'required',
+            "delivery_state" => 'required',
+            "delivery_zip" => 'required',
+            "pickup_date" => 'required',
+            "pickup_time_from" => 'required',
+            "pickup_time_to" => 'required',
+            "deli_time_from" => 'required',
+            "deli_time_to" => 'required',
         ];
     }
 }

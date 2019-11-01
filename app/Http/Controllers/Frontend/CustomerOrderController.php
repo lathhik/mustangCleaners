@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\Order;
+use App\Models\Address;
 use App\Models\CustomerOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -15,61 +16,40 @@ class CustomerOrderController extends Controller
 
     public function customerOrder(Order $request)
     {
-
-//        $this->validate($request, [
-//            'pickup_street_addr' => 'required',
-//            'pickup_house_no' => 'required',
-//            'deli_street_addr' => 'required',
-//            'deli_house_no' => 'required',
-//            'service_type' => 'required',
-//            'phone' => 'required',
-//            'pickup_date' => 'required',
-//            'pickup_time' => 'required',
-//            'deli_date' => 'required|after:tomorrow',
-//            'deli_time' => 'required'
-//        ]);
-
-
-//        Validator::make($request->all(), [
-//            'pickup_street_addr' => 'required',
-//            'pickup_house_no' => 'required',
-//            'deli_street_addr' => 'required',
-//            'deli_house_no' => 'required',
-//            'service_type' => 'required',
-//            'phone' => 'required',
-//            'pickup_date' => 'required',
-//            'pickup_time' =>    'required',
-//            'deli_date' => 'required',
-//            'deli_time' => 'required'
-//        ])->validate();
-
+        $pickup_address = new Address();
+        $pickup_address->address_line_1 = $request->input("pickup_address_line_1");
+        $pickup_address->address_line_2 = $request->input("pickup_address_line_2");
+        $pickup_address->city = $request->input("pickup_city");
+        $pickup_address->state = $request->input("pickup_state");
+        $pickup_address->zip = $request->input("pickup_zip");
+        $pickup_address->save();
+        if ($request->input("delivery_address")) {
+            $delivery_address_id = $pickup_address->id;
+        } else {
+            $delivery_address = new Address();
+            $delivery_address->address_line_1 = $request->input("delivery_address_line_1");
+            $delivery_address->address_line_2 = $request->input("delivery_address_line_2");
+            $delivery_address->city = $request->input("delivery_city");
+            $delivery_address->state = $request->input("delivery_state");
+            $delivery_address->zip = $request->input("delivery_zip");
+            $delivery_address->save();
+            $delivery_address_id = $delivery_address->id;
+        }
         $deli_date = Carbon::parse($request->pickup_date)->addDays(2)->toDateString();
-//
-//        if ($deli_date<$request->deli_date) {
-////            $validator->errors()->add('deli_date', 'Delivery date is two days more from pick up date');
-//            return session()->put('error','The delivery date should be at least 2 days further');
-//        }
-
-
-
         $orders = new CustomerOrder();
-
         $orders->customer_id = Auth::guard('customer')->user()->id;
         $orders->order_status_id = 1;
         $orders->service_type = $request->service_type;
-        $orders->pickup_street_address = $request->pickup_street_addr;
-        $orders->pickup_house_no = $request->pickup_house_no;
-        $orders->delivery_street_address = $request->deli_street_addr;
-        $orders->delivery_house_no = $request->deli_house_no;
+        $orders->pickup_address_id = $pickup_address->id;
+        $orders->delivery_address_id = $delivery_address_id;
+        $orders->pickup_time_from = $request->pickup_time_from;
+        $orders->pickup_time_to = $request->pickup_time_to;
+        $orders->delivery_time_from = $request->deli_time_from;
+        $orders->delivery_time_to = $request->deli_time_to;
         $orders->pickup_date = $request->pickup_date;
-        $orders->pickup_time = $request->pickup_time;
-        $orders->delivery_date = $request->deli_date;
-        $orders->delivery_time = $request->deli_time;
-        $orders->phone = $request->phone;
-
-
-        if ($orders->save()){
-            return redirect()->back()->with('success','Your Order Was Successfully Placed. Please View Your Dashboard.');
+        $orders->delivery_date = $deli_date;
+        if ($orders->save()) {
+            return redirect()->back()->with('success', 'Your Order Was Successfully Placed. Please View Your Dashboard.');
         }
 
     }

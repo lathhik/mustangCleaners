@@ -10,122 +10,172 @@
         <form action="{{route('customer-order')}}" class="border" method="post">
             @csrf
             <div class="form-row">
-
-                <div class="form-group">
-                    <div class="form-group col-md-6">
-                        <label for="pick_str" class="">Pick Up Address</label>
-                        <input class="form-control" type="text" name="pickup_street_addr" id="pick_str"
-                               placeholder="Street Address">
-                        {{--                        @if($errors->has('pickup_street_addr'))--}}
-                        {{--                            <p class="text-danger">{{$errors->first('pickup_street_addr')}}</p>--}}
-                        {{--                        @endif--}}
-                        @error('pickup_street_addr')
-                        <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="pick_hs">Pick Up House No.</label>
-                        <input class="form-control" type="text" name="pickup_house_no" id="pick_hs"
-                               placeholder="House No.">
-                        @if($errors->has('pickup_house_no'))
-                            <p class="text-danger">{{$errors->first('pickup_house_no')}}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-group col-md-6">
-                        <label for="" class="">Delivery Address</label>
-                        <input class="form-control" type="text" name="deli_street_addr" id="deli_adr"
-                               placeholder="Street Address">
-                        @if($errors->has('deli_street_addr'))
-                            <p class="text-danger">{{$errors->first('deli_street_addr')}}</p>
-                        @endif
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="deli_hs">Delivery  House No.</label>
-                        <input class="form-control" type="text" name="deli_house_no" id="deli_hs"
-                               placeholder="House No.">
-                        @if($errors->has('deli_house_no'))
-                            <p class="text-danger">{{$errors->first('deli_house_no')}}</p>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-gruop">
-                    <div class="form-group col-md-6">
-                        <label for="">Service Type</label>
-                        <select name="service_type" id="" class="form-control">
-                            <option value="" selected disabled>Select Service Type</option>
-                            @foreach($services as $service)
-                                <option value="{{$service->id}}">{{$service->service_types}}</option>
-                            @endforeach
-                        </select>
-                        @if($errors->has('service_type'))
-                            <p class="text-danger">{{$errors->first('service_type')}}</p>
-                        @endif
-                    </div>
-
-                    <div class="form-group col-md-6">
-                        <label for="phone">Phone</label>
-                        <input class="form-control" type="text" name="phone" id="phone" placeholder="Phone No.">
-
-                        @if($errors->has('phone'))
-                            <p class="text-danger">{{$errors->first('phone')}}</p>
-                        @endif
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="pick_date">Pick Up Date</label>
-                            <input class="form-control" type="date" name="pickup_date" id="pick_date">
-                            @if($errors->has('pickup_date'))
-                                <p class="text-danger">{{$errors->first('pickup_date')}}</p>
+                <div class="col -md-12">
+                    {{--Pick Up Address--}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Pick Up Address</h3>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_address_line_1" class="">Address Line 1</label>
+                            <input class="form-control" type="text" name="pickup_address_line_1"
+                                   id="pickup_address_line_1"
+                                   placeholder="456 Main Street SE">
+                            @if($errors->has('pickup_address_line_1   '))
+                                <p class="text-danger">{{$errors->first('pickup_address_line_1')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_address_line_2" class="">Address Line 2</label>
+                            <input class="form-control" type="text" name="pickup_address_line_2"
+                                   id="pickup_address_line_2"
+                                   placeholder="456 Main Street SE">
+                            @if($errors->has('pickup_address_line_2'))
+                                <p class="text-danger">{{$errors->first('pickup_address_line_2')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_city" class="">City</label>
+                            <input class="form-control" type="text" name="pickup_city" id="pickup_city"
+                                   placeholder="New York">
+                            @if($errors->has('pickup_city'))
+                                <p class="text-danger">{{$errors->first('pickup_city')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_state" class="">State</label>
+                            <input class="form-control" type="text" name="pickup_state" id="pickup_state"
+                                   placeholder="Mary Land">
+                            @if($errors->has('pickup_state'))
+                                <p class="text-danger">{{$errors->first('pickup_state')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_zip" class="">Zip</label>
+                            <input class="form-control" type="text" name="pickup_zip" id="pickup_zip"
+                                   placeholder="99501 ">
+                            @if($errors->has('pickup_zip'))
+                                <p class="text-danger">{{$errors->first('pickup_zip')}}</p>
                             @endif
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="pick_time">Pick Up Time</label>
-                            <input type="time" class="form-control" name="pickup_time" id="pick_time">
-{{--                        <select name="pickup_time" id="pick_time" class="form-control">--}}
-{{--                            <option value="" selected disabled="">Select Pick Up Time</option>--}}
-{{--                            <option value="8-10 AM">10-12 AM</option>--}}
-{{--                            <option value="12-2 PM">12-2 PM</option>--}}
-{{--                            <option value="4-6 PM">2-4 PM</option>--}}
-{{--                        </select>--}}
-                        @if($errors->has('pickup_time'))
-                            <p class="text-danger">{{$errors->first('pickup_time')}}</p>
-                        @endif
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="deli_date">Delivery Date (
-                                <small>Estimated</small>
-                                )</label>
-                            <input class="form-control" type="date" name="deli_date" id="deli_date">
-                            @if($errors->has('deli_date'))
-                                <p class="text-danger">{{$errors->first('deli_date')}}</p>
+                    {{--Delivery Address--}}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Delivery Address</h3>
+                            <div class="checkbox">
+                                <label for=""><input type="checkbox" name="delivery_address" value="1" id="delivery_address">Same As Pick Up
+                                    Address</label>
+                            </div>
+
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pickup_address_line_1" class="">Address Line 1</label>
+                            <input class="form-control" type="text" name="delivery_address_line_1"
+                                   id="delivery_address_line_1"
+                                   placeholder="456 Main Street SE">
+                            @if($errors->has('delivery_address_line_1   '))
+                                <p class="text-danger">{{$errors->first('delivery_address_line_1')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="delivery_address_line_2" class="">Address Line 2</label>
+                            <input class="form-control" type="text" name="delivery_address_line_2"
+                                   id="delivery_address_line_2"
+                                   placeholder="456 Main Street SE">
+                            @if($errors->has('delivery_address_line_2'))
+                                <p class="text-danger">{{$errors->first('delivery_address_line_2')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="delivery_city" class="">City</label>
+                            <input class="form-control" type="text" name="delivery_city" id="delivery_city"
+                                   placeholder="New York">
+                            @if($errors->has('delivery_city'))
+                                <p class="text-danger">{{$errors->first('delivery_city')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="delivery_state" class="">State</label>
+                            <input class="form-control" type="text" name="delivery_state" id="delivery_state"
+                                   placeholder="Mary Land">
+                            @if($errors->has('delivery_state'))
+                                <p class="text-danger">{{$errors->first('delivery_state')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="delivery_zip" class="">Zip</label>
+                            <input class="form-control" type="text" name="delivery_zip" id="delivery_zip"
+                                   placeholder="99501 ">
+                            @if($errors->has('delivery_zip'))
+                                <p class="text-danger">{{$errors->first('delivery_zip')}}</p>
                             @endif
                         </div>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="deli_time">Delivery Time</label>
-                        <input type="time" class="form-control" name="deli_time" id="deli_time">
-
-                        {{--                        <select name="deli_time" id="deli_time" class="form-control">--}}
-                        {{--                            <option value="" selected disabled="">Select Pick Up Time</option>--}}
-                        {{--                            <option value="">8-10 AM</option>--}}
-                        {{--                            <option value="">12-2 PM</option>--}}
-                        {{--                            <option value="">4-6 PM</option>--}}
-                        {{--                        </select>--}}
-                        @if($errors->has('deli_time'))
-                            <p class="text-danger">{{$errors->first('deli_time')}}</p>
-                        @endif
+                    <div class="row">
+                        <h3>Service Type</h3>
+                        <div class="form-group col-md-6">
+                            <label for="">Service Type</label>
+                            <select name="service_type" id="" class="form-control">
+                                <option value="" selected disabled>Select Service Type</option>
+                                @foreach($services as $service)
+                                    <option value="{{$service->id}}">{{$service->service_types}}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('service_type'))
+                                <p class="text-danger">{{$errors->first('service_type')}}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Pick Up Date/Time</h3>
+                        <div class="form-group col-md-6 ">
+                            <div class="form-group">
+                                <label for="pick_date">Pick Up Date</label>
+                                <input class="form-control" type="date" name="pickup_date" id="pick_date">
+                                @if($errors->has('pickup_date'))
+                                    <p class="text-danger">{{$errors->first('pickup_date')}}</p>
+                                @endif
+                            </div>
+                        </div>
+                       <div class="row"></div>
+                        <div class="form-group col-md-6">
+                            <label for="pick_time_from">Time From</label>
+                            <input type="time" class="form-control" name="pickup_time_from" id="pick_time_from">
+                            @if($errors->has('pickup_time_from'))
+                                <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="pick_time_to">Time To</label>
+                            <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">
+                            @if($errors->has('pickup_time_to'))
+                                <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>Delivery Time</h3>
+                        <div class="form-group col-md-6">
+                            <label for="deli_time_from">Time From</label>
+                            <input type="time" class="form-control" name="deli_time_from" id="deli_time_from">
+                            @if($errors->has('deli_time_from'))
+                                <p class="text-danger">{{$errors->first('deli_time_from')}}</p>
+                            @endif
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="deli_time_to">Time To</label>
+                            <input type="time" class="form-control" name="deli_time_to" id="deli_time_to">
+                            @if($errors->has('deli_time_to'))
+                                <p class="text-danger">{{$errors->first('deli_time_to')}}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
-
             <div>
                 <button class="btn btn-lg col-md-offset-5" type="submit" id="order_submit">Order</button>
             </div>
-
         </form>
 
     </div>
@@ -151,6 +201,22 @@
                 date.setDate(date.getDate() + 2);
                 $('#deli_date').val(formatDate(date));
             });
+            $('#delivery_address').change(function () {
+               if($('#delivery_address').prop('checked')){
+                   $('#delivery_address_line_1').val($('#pickup_address_line_1').val());
+                   $('#delivery_address_line_2').val($('#pickup_address_line_2').val());
+                   $('#delivery_city').val($('#pickup_city').val());
+                   $('#delivery_state').val($('#pickup_state').val());
+                   $('#delivery_zip').val($('#pickup_zip').val());
+               }else{
+                   $('#delivery_address_line_1').val('');
+                   $('#delivery_address_line_2').val('');
+                   $('#delivery_city').val('');
+                   $('#delivery_state').val('');
+                   $('#delivery_zip').val('');
+               }
+            });
+
         })
     </script>
-    @endsection
+@endsection
