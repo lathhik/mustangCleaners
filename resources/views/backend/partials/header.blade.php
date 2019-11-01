@@ -28,13 +28,15 @@
                                     Customer Orders
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">Manage Admin</li>
-                            <li>
-                                <a href="{{route('view-admin')}}">
-                                    <i class="fas fa-user-shield"></i>
-                                    Admin
-                                </a>
-                            </li>
+                            @if(Auth::guard('admin')->user()->privilege=='SA')
+                                <li class="app-sidebar__heading">Manage Admin</li>
+                                <li>
+                                    <a href="{{route('view-admin')}}">
+                                        <i class="fas fa-user-shield"></i>
+                                        Admin
+                                    </a>
+                                </li>
+                            @endif
                             <li class="app-sidebar__heading">Services Section</li>
                             <li>
                                 <a href="{{route('view-service')}}">
@@ -80,7 +82,7 @@
                 </div>
                 <div class="app-header">
                     <div class="page-title-heading">
-                     Mustang Cleaners
+                        Mustang Cleaners
                     </div>
                     <div class="app-header-right">
                         <div class="search-wrapper">
@@ -328,8 +330,8 @@
                                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                                class="p-0 btn">
                                                 <img width="42" class="rounded"
-                                                     src="{{asset('custom/backend/assets/images/avatars/3.jpg')}}"
-                                                     alt="">
+                                                     src="{{asset('custom/backend/images/admins/'.Auth::guard('admin')->user()->image)}}"
+                                                     alt="" height="50px">
                                                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             </a>
                                             <div tabindex="-1" role="menu" aria-hidden="true"
@@ -343,13 +345,22 @@
                                                                 <div class="widget-content-wrapper">
                                                                     <div class="widget-content-left mr-3">
                                                                         <img width="42" class="rounded-circle"
-                                                                             src="{{asset('custom/backend/assets/images/avatars/3.jpg')}}"
-                                                                             alt="">
+                                                                             src="{{asset('custom/backend/images/admins/'.Auth::guard('admin')->user()->image)}}"
+                                                                             alt="img" height="50px">
                                                                     </div>
                                                                     <div class="widget-content-left">
-                                                                        <div class="widget-heading">Minnie Betts
+                                                                        <div
+                                                                            class="widget-heading">{{Auth::guard('admin')->user()->first_name}} {{Auth::guard('admin')->user()->last_name}}
                                                                         </div>
-                                                                        <div class="widget-subheading opacity-8">Super Admin
+                                                                        <div
+                                                                            class="widget-subheading opacity-8">
+                                                                            @if (Auth::guard('admin')->user()->privilege == 'SA')
+                                                                                {{'Super Admin'}}
+                                                                            @elseif(Auth::guard('admin')->user()->privilege == 'PA')
+                                                                                {{'Pickup Admin'}}
+                                                                            @elseif(Auth::guard('admin')->user()->privilege == 'LA')
+                                                                                {{'Laundry Admin'}}
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -361,9 +372,10 @@
                                                     <li class="nav-item-divider nav-item">
                                                     </li>
                                                     <li class="nav-item-btn text-center nav-item">
-                                                        <button class="btn-wide btn btn-primary btn-sm">
-                                                           Log Out
-                                                        </button>
+                                                        <a href="{{route('admin-logout')}}"
+                                                           class="btn-wide btn btn-primary btn-sm">
+                                                            Log Out
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </div>

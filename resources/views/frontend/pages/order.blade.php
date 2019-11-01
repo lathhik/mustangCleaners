@@ -97,7 +97,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="deli_date">Delivery Date (
-                                <small>Two days more from pickup date</small>
+                                <small>Estimated</small>
                                 )</label>
                             <input class="form-control" type="date" name="deli_date" id="deli_date">
                             @if($errors->has('deli_date'))

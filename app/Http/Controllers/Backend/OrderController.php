@@ -13,13 +13,27 @@ class OrderController extends Controller
 
     public function getAllOrders()
     {
-        $orders = CustomerOrder::all();
+        $orders = CustomerOrder::whereHas('orderStatus',function ($q){
+            $q->where('identifier','<',5);
+        })->get();
+        $laundry_orders = CustomerOrder::whereHas('orderStatus',function ($q){
+            $q->where('identifier',3);
+        })->get();
+
         $order_status = OrderStatus::all();
-        return view('backend.pages.order.view-order', compact('orders','order_status'));
+        return view('backend.pages.order.view-order', compact('orders',
+            'order_status','laundry_orders'));
     }
 
     public function updateOrderStatus($id)
     {
-        $orders_status = OrderStatus::all();
+        $customer_orders = CustomerOrder::find($id);
+
+        $identi = $customer_orders->orderStatus->identifier;
+        $identi ++;
+        $order_status_id = OrderStatus::where('identifier',$identi)->first()->id;
+        $customer_orders->order_status_id =$order_status_id;
+        $customer_orders->save();
+        return redirect()->route('view-orders');
     }
 }

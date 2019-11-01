@@ -208,7 +208,7 @@
                                                                             {{old('privilege')==$key?'selected':''}}>{{$value}}</option>
                                                                     @endforeach
                                                                 </select>
-                                                                @if($errors->has('parivilege'))
+                                                                @if($errors->has('privilege'))
                                                                     <p class="text-danger">{{$errors->first('privilege')}}</p>
                                                                 @endif
                                                             </div>

@@ -26,6 +26,7 @@ class AdminController extends Controller
 
     public function addAdminAction(Request $request)
     {
+
         $this->validate($request, [
             'first_name' => 'required|min:3|max:20|alpha',
             'last_name' => 'required|min:3|max:20|alpha',
@@ -34,8 +35,10 @@ class AdminController extends Controller
             'address' => 'required|regex:/^[A-Za-z0-9\s]{3,30}$/',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             'gender' => 'required',
+            'privilege' => 'required',
             'image' => 'required|image'
         ]);
+
 
         $admin = new Admin();
         $admin->first_name = $request->first_name;
@@ -45,6 +48,8 @@ class AdminController extends Controller
         $admin->address = $request->address;
         $admin->gender = $request->gender;
         $admin->contact = $request->contact;
+        $admin->privilege = $request->privilege;
+
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -82,7 +87,9 @@ class AdminController extends Controller
             'address' => 'required|min:3|max:30|alpha',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'gender' => 'required',
+            'privilege'=>'required'
         ]);
+
 
         $admin = Admin::find($id);
         $admin->first_name = $request->first_name;
@@ -90,6 +97,7 @@ class AdminController extends Controller
         $admin->address = $request->address;
         $admin->contact = $request->contact;
         $admin->gender = $request->gender;
+        $admin->privilege = $request->privilege;
 
         if ($request->hasFile('image')) {
             $this->validate($request, [
