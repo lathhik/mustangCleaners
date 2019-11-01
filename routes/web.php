@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 
     Route::group(['middleware' => 'auth:customer'], function () {
+        Route::get('dashboard', 'HomeController@dashboard')->name('customer-dashboard');
         Route::get('customer-order', 'HomeController@viewOrderPage')->name('customer-order');
         Route::post('customer-order', 'CustomerOrderController@customerOrder')->name('customer-order');
     });
