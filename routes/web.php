@@ -64,6 +64,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('delete-order-status/{id}', 'OrderStatusController@deleteOrderStatus')->name('delete-order-status');
 
         Route::get('view-orders', 'OrderController@getAllOrders')->name('view-orders');
+        Route::get('status/{id}','OrderController@status')->name('status');
+
 
     });
 });
