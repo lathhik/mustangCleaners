@@ -22,7 +22,7 @@
                                         <div class="card-body">
                                             @include('messages.succFail')
                                             <table style="width: 950px" id="example"
-                                                   class="table table-hover table-striped table-bordered">
+                                                   class="table table-hover table-striped table-bordered text-center">
                                                 <thead>
                                                 <tr>
                                                     <th>Order Number</th>
@@ -42,9 +42,9 @@
                                                         <td>{{$order->serviceType->service_types}}</td>
                                                         <td>{{$order->orderStatus->status}}</td>
                                                         <td>{{$order->pickup_street_address}}</td>
-                                                        <td>{{$order->pickup_date}} / {{$order->pickup_time}}</td>
+                                                        <td>{{$order->pickup_date}}  {{$order->pickup_time}}</td>
                                                         <td>{{$order->delivery_street_address}}</td>
-                                                        <td></td>
+                                                        <td>{{$order->delivery_date}} {{$order->delivery_time}}</td>
                                                         <td>
                                                             <a href="{{route('update.order.status',$order->id)}}" class="btn btn-success btn-sm" style="color: #fff;">
                                                                 Send for {{$order_status->where('id',$order->order_status_id+1)->first()->status}}

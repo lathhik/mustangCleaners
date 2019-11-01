@@ -65,8 +65,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
         Route::get('view-orders', 'OrderController@getAllOrders')->name('view-orders');
         Route::get('update-order', 'OrderController@updateOrderStatus')->name('update.order.status');
-
-
     });
 });
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerOrder;
 use App\Models\OrderStatus;
+use Illuminate\Support\Facades\DB;
+
 
 class OrderController extends Controller
 {
@@ -18,6 +20,6 @@ class OrderController extends Controller
 
     public function updateOrderStatus($id)
     {
-
+        $orders_status = OrderStatus::all();
     }
 }
