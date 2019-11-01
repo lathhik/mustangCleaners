@@ -16,11 +16,11 @@ class OrderController extends Controller
 
 
         $pickup_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
-            $q->where('identifier', 1);
+            $q->where('identifier', '<', 3);
         })->get();
 
         $delivery_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
-            $q->where('identifier', '>', 4);
+            $q->where('identifier', '>', 3);
         })->get();
 
         $laundry_orders = CustomerOrder::whereHas('orderStatus', function ($q) {

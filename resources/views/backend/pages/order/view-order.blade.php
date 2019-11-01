@@ -18,15 +18,19 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="main-card mb-12 card">
-                                    <div class="card-body">
-                                        @include('messages.succFail')
-                                        @if(Auth::guard('admin')->user()->privilege != 'LA' )
+
+                                @if(Auth::guard('admin')->user()->privilege != 'LA' )
+                                    <div class="main-card mb-12 card">
+                                        <div class="card-body">
+                                            @include('messages.succFail')
+
                                             <table style="width: 950px" id="example"
                                                    class="table table-hover table-striped table-bordered text-center">
                                                 <thead>
                                                 <tr>
                                                     <th>Order Number</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Customer Phone</th>
                                                     <th>Order Type Name</th>
                                                     <th>Order Status</th>
                                                     <th>Pick Up Location</th>
@@ -44,6 +48,8 @@
                                                     @endphp
                                                     <tr>
                                                         <td>{{$order->id}}</td>
+                                                        <td>{{$order->customer->first_name}}</td>
+                                                        <td>{{$order->customer->phone}}</td>
                                                         <td>{{$order->serviceType->service_types}}</td>
                                                         <td>{{$order->orderStatus->status}}</td>
                                                         <td>{{$order->pickup_street_address}}</td>
@@ -52,20 +58,88 @@
                                                         <td>{{$order->delivery_date}} {{$order->delivery_time}}</td>
                                                         <td>
                                                             @if($order->orderStatus->identifier < 5)
-                                                            <a href="{{route('update-order-status',$order->id)}}"
-                                                               class="btn btn-success btn-sm">
-                                                                {{$status}}
-                                                            </a>
-                                                                @else
-                                                                <button class="btn btn-secondary btn-sm">Completed</button>
+                                                                <a href="{{route('update-order-status',$order->id)}}"
+                                                                   class="btn btn-success btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                    {{$status}}
+                                                                </a>
+                                                            @else
+                                                                <button class="btn btn-secondary btn-sm">Completed
+                                                                </button>
                                                             @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>
-                                        @else
-                                            <table style="width: 950px" id="example"
+
+                                        </div>
+                                    </div>
+                                    <br>
+
+
+                                    <div class="main-card mb-12 card">
+                                        <div class="card-body">
+                                            @include('messages.succFail')
+
+                                            <table style="width: 950px" id="example2"
+                                                   class="table table-hover table-striped table-bordered text-center">
+                                                <thead>
+                                                <tr>
+                                                    <th>Order Number</th>
+                                                    <th>Customer Name</th>
+                                                    <th>Customer Phone</th>
+                                                    <th>Order Type Name</th>
+                                                    <th>Order Status</th>
+                                                    <th>Delivery Location</th>
+                                                    <th>Delivery Time</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($delivery_orders as $order)
+                                                    @php
+                                                        $identifier = $order->orderStatus->identifier +1;
+                                                        $status = $order_status->where('identifier',$identifier)->first()->status;
+                                                    @endphp
+                                                    <tr>
+                                                        <td>{{$order->id}}</td>
+                                                        <td>{{$order->customer->first_name}}</td>
+                                                        <td>{{$order->customer->phone}}</td>
+                                                        <td>{{$order->serviceType->service_types}}</td>
+                                                        <td>{{$order->orderStatus->status}}</td>
+                                                        <td>{{$order->delivery_street_address}}</td>
+                                                        <td>{{$order->delivery_date}} {{$order->delivery_time}}</td>
+                                                        <td>
+                                                            @if($order->orderStatus->identifier < 5)
+                                                                <a href="{{route('update-order-status',$order->id)}}"
+                                                                   class="btn btn-success btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                    {{$status}}
+                                                                </a>
+                                                            @else
+                                                                <button
+                                                                    class="btn btn-secondary btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                    Completed
+                                                                </button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                @endif
+
+                                <br>
+
+
+                                @if(Auth::guard('admin')->user()->privilege != 'PA' )
+                                    <h3>Processing</h3>
+                                    <div class="main-card mb-12 card">
+                                        <div class="card-body">
+                                            @include('messages.succFail')
+                                            <table style="width: 950px" id="example3"
                                                    class="table table-hover table-striped table-bordered text-center">
                                                 <thead>
                                                 <tr>
@@ -89,20 +163,17 @@
                                                         <td>{{$order->delivery_date}} {{$order->delivery_time}}</td>
                                                         <td>
                                                             <a href="{{route('update-order-status',$order->id)}}"
-                                                               class="btn btn-success btn-sm">
-                                                                Send
-                                                                for {{$status}}
+                                                               class="btn btn-success btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                {{$status}}
                                                             </a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>
                                             </table>
-
-
-                                        @endif
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
