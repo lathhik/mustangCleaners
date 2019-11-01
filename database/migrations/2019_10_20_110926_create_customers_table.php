@@ -20,6 +20,12 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->bigInteger('phone');
+            $table->string('job/company')->nullable();
+            $table->string('street_address')->nullable();
+            $table->string('house_no')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -32,12 +32,12 @@ class DatabaseSeeder extends Seeder
 //        ]);
 //
         DB::table('orders_status')->insert([
-            ['status' => 'New Order'],
-            ['status' => 'Picked Up'],
-            ['status' => 'Sent For Processing'],
-            ['status' => 'Processing Completed'],
-            ['status' => 'Delivered'],
-            ['status' => 'Cancelled']
+            ['status' => 'New Order', 'identifier' => 1],
+            ['status' => 'Picked Up', 'identifier' => 2],
+            ['status' => 'Processing Started', 'identifier' => 3],
+            ['status' => 'Ready For Delivery', 'identifier' => 4],
+            ['status' => 'Delivered', 'identifier' => 5],
+            ['status' => 'Cancelled', 'identifier' => 6]
         ]);
     }
 }

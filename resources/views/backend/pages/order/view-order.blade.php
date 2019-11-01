@@ -47,7 +47,7 @@
                                                         <td>{{$order->delivery_date}} {{$order->delivery_time}}</td>
                                                         <td>
                                                             <a href="{{route('update.order.status',$order->id)}}" class="btn btn-success btn-sm" style="color: #fff;">
-                                                                Send for {{$order_status->where('id',$order->order_status_id+1)->first()->status}}
+                                                                Send for {{$order_status->where('id',$order->order_status_id+1)->first()}}
                                                             </a>
                                                         </td>
                                                     </tr>
