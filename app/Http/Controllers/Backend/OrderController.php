@@ -13,16 +13,26 @@ class OrderController extends Controller
 
     public function getAllOrders()
     {
-        $orders = CustomerOrder::whereHas('orderStatus',function ($q){
-            $q->where('identifier','<',5);
+
+
+        $pickup_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+            $q->where('identifier', 1);
         })->get();
-        $laundry_orders = CustomerOrder::whereHas('orderStatus',function ($q){
-            $q->where('identifier',3);
+
+        $delivery_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+            $q->where('identifier', '>', 4);
+        })->get();
+
+        $laundry_orders = CustomerOrder::whereHas('orderStatus', function ($q) {
+            $q->where('identifier', 3);
         })->get();
 
         $order_status = OrderStatus::all();
         return view('backend.pages.order.view-order', compact('orders',
-            'order_status','laundry_orders'));
+            'order_status',
+            'laundry_orders',
+            'pickup_orders',
+            'delivery_orders'));
     }
 
     public function updateOrderStatus($id)
@@ -30,9 +40,9 @@ class OrderController extends Controller
         $customer_orders = CustomerOrder::find($id);
 
         $identi = $customer_orders->orderStatus->identifier;
-        $identi ++;
-        $order_status_id = OrderStatus::where('identifier',$identi)->first()->id;
-        $customer_orders->order_status_id =$order_status_id;
+        $identi++;
+        $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
+        $customer_orders->order_status_id = $order_status_id;
         $customer_orders->save();
         return redirect()->route('view-orders');
     }

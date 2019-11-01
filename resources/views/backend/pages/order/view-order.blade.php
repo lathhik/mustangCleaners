@@ -37,7 +37,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($orders as $order)
+                                                @foreach($pickup_orders as $order)
                                                     @php
                                                         $identifier = $order->orderStatus->identifier +1;
                                                         $status = $order_status->where('identifier',$identifier)->first()->status;
