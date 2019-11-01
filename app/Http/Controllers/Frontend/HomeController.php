@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function viewOrderPage()
     {
         $services = ServiceType::all();
+
         return view('frontend.pages.order')->with('services', $services);
     }
 

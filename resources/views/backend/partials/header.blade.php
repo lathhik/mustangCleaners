@@ -16,89 +16,39 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Menu</li>
                             <li class="mm-active">
-                                <a href="#">
-                                    <i class="">
-                                    </i>
+                                <a href="{{route('dashboard')}}">
+                                    <i class="fas fa-tachometer-alt"></i>
                                     Dashboards
                                 </a>
-                                <ul class="mm-show">
-                                    <li><a href="{{route('management')}}">Management</a></li>
-                                </ul>
                             </li>
-
-                            <li class="app-sidebar__heading">Admin Panel</li>
-                            <li>
-                                <a href="#">
-                                    <i class=""></i>
-                                    Admin
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{route('add-admin')}}">
-                                            <i class="metismenu-icon"></i>
-                                            Add admin
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{route('view-admin')}}">
-                                            <i class="metismenu-icon">
-                                            </i>View Admin
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="app-sidebar__heading">Service Section</li>
-
-                            <li>
-                                <a href="#">
-                                    <i class=""></i>
-                                    Our Services
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{route('add-service')}}">
-                                            <i class=""></i>
-                                            Add Service
-                                            <i class=""></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{route('view-service')}}">
-                                            <i class="">
-                                            </i>View Services
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class=""></i>
-                                    Order Status
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a href="{{route('add-order-status')}}">
-                                            <i class="">
-                                            </i>Add Order Status
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components-accordions.html">
-                                            <i class="metismenu-icon">
-                                            </i>View Order Status
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
                             <li class="app-sidebar__heading">Service Section</li>
                             <li>
                                 <a href="{{route('view-orders')}}">
-                                    <i class=""></i>
+                                    <i class="fas fa-users"></i>
                                     Customer Orders
                                 </a>
                             </li>
+                            <li class="app-sidebar__heading">Manage Admin</li>
+                            <li>
+                                <a href="{{route('view-admin')}}">
+                                    <i class="fas fa-user-shield"></i>
+                                    Admin
+                                </a>
+                            </li>
+                            <li class="app-sidebar__heading">Services Section</li>
+                            <li>
+                                <a href="{{route('view-service')}}">
+                                    <i class="fas fa-book"></i>
+                                    Our Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('view-order-status')}}">
+                                    <i class="fas fa-question-circle"></i>
+                                    Order Status
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

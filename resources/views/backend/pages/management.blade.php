@@ -10,11 +10,6 @@
                                 <span>Overview</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a role="tab" data-toggle="tab" class="nav-link" href="#tab-content-1">
-                                <span>Audiences</span>
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>

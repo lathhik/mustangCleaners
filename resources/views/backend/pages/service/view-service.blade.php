@@ -2,100 +2,91 @@
 @section('content')
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-bar">
-            <div class="inner-bar-left">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link show-menu-btn">
-                            <i class="fa fa-align-left mr-2"></i>
-                            <span class="hide-text-md">Show page menu</span>
-                        </a>
-                        <a href="#" class="nav-link close-menu-btn">
-                            <i class="fa fa-align-right mr-2"></i>
-                            <span class="hide-text-md">Close page menu</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
             <div class="inner-bar-center">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-1">
+                        <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
                             <span>View Service</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-0">
+                        <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-1">
                             <span>Add Service</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="inner-bar-right">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" class="nav-link open-right-drawer">
-                            <span class="hide-text-md">Show right drawer</span>
-                            <i class="fa fa-align-right ml-2"></i>
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="app-inner-layout__wrapper">
-            <div class="app-inner-layout__sidebar">
-                <div class="app-layout__sidebar-inner dropdown-menu-rounded">
-                    <div class="nav flex-column">
-                        <div class="nav-item-header text-primary nav-item">
-                            Dashboards Examples
-                        </div>
-                        <a class="dropdown-item active" href="analytics-dashboard.html">Analytics</a>
-                        <a class="dropdown-item" href="management-dashboard.html">Management</a>
-                        <a class="dropdown-item" href="advertisement-dashboard.html">Advertisement</a>
-                        <a class="dropdown-item" href="index-2.html">Helpdesk</a>
-                        <a class="dropdown-item" href="monitoring-dashboard.html">Monitoring</a>
-                        <a class="dropdown-item" href="crypto-dashboard.html">Cryptocurrency</a>
-                        <a class="dropdown-item" href="pm-dashboard.html">Project Management</a>
-                        <a class="dropdown-item" href="product-dashboard.html">Product</a>
-                        <a class="dropdown-item" href="statistics-dashboard.html">Statistics</a>
-                    </div>
-                </div>
-            </div>
-            <div class="app-inner-layout__wrapper">
                 <div class="app-inner-layout__content pt-1">
                     <div class="tab-content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="main-card mb-12 card">
-                                        <div class="card-body">
-                                            @include('messages.succFail')
-                                            <table width="935" id="example"
-                                                   class="table table-hover table-striped table-bordered text-center">
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Service Name</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                @foreach($services as $service)
+                        <div class="tab-pane tabs-animation fade show active" id="tab-content-0"
+                             role="tabpanel">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-12 card">
+                                            <div class="card-body">
+                                                @include('messages.succFail')
+                                                <table width="935" id="example"
+                                                       class="table table-hover table-striped table-bordered text-center">
+                                                    <thead>
                                                     <tr>
-                                                        <td>{{$loop->iteration}}</td>
-                                                        <td>{{$service->service_types}}</td>
-                                                        <td>
-                                                            <a href="{{route('edit-service', $service->id)}}" class="btn btn-sm btn-success">
-                                                                <li class="fa fa-edit"></li>
-                                                            </a>
-                                                            &nbsp
-                                                            <a href="{{route('delete-service', $service->id)}}"
-                                                               class="btn btn-sm btn-danger"><i
-                                                                    class="fa fa-trash"></i></a>
-                                                        </td>
+                                                        <th></th>
+                                                        <th>Service Name</th>
+                                                        <th>Action</th>
                                                     </tr>
-                                                @endforeach
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                    @foreach($services as $service)
+                                                        <tr>
+                                                            <td>{{$loop->iteration}}</td>
+                                                            <td>{{$service->service_types}}</td>
+                                                            <td>
+                                                                <a href="{{route('edit-service', $service->id)}}"
+                                                                   class="btn btn-sm btn-success">
+                                                                    <li class="fa fa-edit"></li>
+                                                                </a>
+                                                                &nbsp
+                                                                <a href="{{route('delete-service', $service->id)}}"
+                                                                   class="btn btn-sm btn-danger"><i
+                                                                        class="fa fa-trash"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane tabs-animation fade" id="tab-content-1"
+                             role="tabpanel">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="main-card mb-3 card">
+                                            <div class="card-body">
+                                                <h2 class="text-center">Add Service</h2>
+                                                <form class="" method="post" action="{{route('add-service')}}">
+                                                    @csrf
+                                                    <div class="position-relative form-group col-md-6"><label
+                                                            for="example" class="">Service Type:</label>
+                                                        <input name="service_type" id="exampleEmail"
+                                                               placeholder="" type="text"
+                                                               class="form-control">
+                                                        @if($errors->has('service_type'))
+                                                            <p class="text-danger">{{$errors->first('service_type')}}</p>
+                                                        @endif
+                                                        <br>
+                                                        <button class="mt-1 btn btn-outline-primary float-right">Submit
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -103,7 +94,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
