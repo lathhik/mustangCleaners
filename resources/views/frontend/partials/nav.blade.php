@@ -8,21 +8,21 @@
                         <ul>
                             <li class="active"><a href="{{route('index')}}">home</a>
                             </li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="service.html">service</a>
+                            <li><a href="">About Us</a></li>
+                            <li><a href="">service</a>
                                 <ul class="sub-menu">
-                                    <li><a href="single-service.html">single-service</a></li>
+                                    <li><a href="">single-service</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="gallery.html">gallery</a></li>
-                                    <li><a href="testimonial.html">testimonial</a></li>
+                                    <li><a href="">gallery</a></li>
+                                    <li><a href="">testimonial</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog-3-column.html">blog</a>
+                            <li><a href="">blog</a>
                             </li>
-                            <li><a href="contact.html">contact</a></li>
+                            <li><a href="">contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -33,7 +33,8 @@
                         <a href="#" data-toggle="tooltip" title="Notification">
                             <i class="fa ion-email"></i>
                         </a>
-                        <a href="{{route('customer-dashboard')}}" data-toggle="tooltip" title="Dashboard"><i
+                        <a href="{{route('customer-dashboard')}}"
+                           data-toggle="tooltip" title="Dashboard"><i
                                 class="fa fa-tachometer"></i></a>
                         <a href="#" data-toggle="tooltip" title="Your Orders"><i class="fa fa-history"></i></a>
                         <div class="dropdown" style="display: inline">
@@ -41,7 +42,7 @@
                                data-toggle="dropdown">
                                 <i class="fa fa-user-secret">&nbsp&nbsp
                                     <small>
-                                        {{strtoupper(Auth::guard('customer')->user()->last_name)}}
+                                        {{ucfirst(Auth::guard('customer')->user()->last_name)}}
                                     </small>
                                 </i>
                                 <span class="caret"></span>

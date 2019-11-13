@@ -34,7 +34,7 @@ class OrderStatusController extends Controller
     }
 
 
-    public function editOrderStatus()
+    public function editOrderStatus($id)
     {
         return 'test';
     }

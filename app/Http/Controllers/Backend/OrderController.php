@@ -14,7 +14,6 @@ class OrderController extends Controller
     public function getAllOrders()
     {
 
-
         $pickup_orders = CustomerOrder::with('pickUpAddress','deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', '<', 3);
         })->get();
@@ -28,6 +27,7 @@ class OrderController extends Controller
         })->get();
 
         $order_status = OrderStatus::all();
+
         return view('backend.pages.order.view-order', compact('orders',
             'order_status',
             'laundry_orders',

@@ -47,7 +47,7 @@
                                                         $status = $order_status->where('identifier',$identifier)->first()->status;
                                                         $pickup_address = $order->pickUpAddress->address_line_1.','.$order->pickUpAddress->address_line_2.','.$order->pickUpAddress->city.','.$order->pickUpAddress->zip;
                                                         $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
-                                                        @endphp
+                                                    @endphp
                                                     <tr>
                                                         <td>{{$order->id}}</td>
                                                         <td>{{$order->customer->first_name}}</td>
@@ -57,7 +57,8 @@
                                                         <td>{{$pickup_address}}</td>
                                                         <td>{{$order->pickup_time_from}}-{{$order->pickup_time_to}}</td>
                                                         <td>{{$delivery_address}}</td>
-                                                        <td>{{$order->delivery_time_from}}-{{$order->delivery_time_to}}</td>
+                                                        <td>{{$order->delivery_time_from}}
+                                                            -{{$order->delivery_time_to}}</td>
                                                         <td>
                                                             @if($order->orderStatus->identifier < 5)
                                                                 <a href="{{route('update-order-status',$order->id)}}"
@@ -111,7 +112,8 @@
                                                         <td>{{$order->serviceType->service_types}}</td>
                                                         <td>{{$order->orderStatus->status}}</td>
                                                         <td>{{$delivery_address}}</td>
-                                                        <td>{{$order->delivery_time_from}}-{{$order->delivery_time_to}}</td>
+                                                        <td>{{$order->delivery_time_from}}
+                                                            -{{$order->delivery_time_to}}</td>
                                                         <td>
                                                             @if($order->orderStatus->identifier < 5)
                                                                 <a href="{{route('update-order-status',$order->id)}}"
@@ -163,7 +165,8 @@
                                                         <td>{{$order->id}}</td>
                                                         <td>{{$order->serviceType->service_types}}</td>
                                                         <td>{{$order->orderStatus->status}}</td>
-                                                        <td>{{$order->delivery_time_from}}-{{$order->delivery_time_to}}</td>
+                                                        <td>{{$order->delivery_time_from}}
+                                                            -{{$order->delivery_time_to}}</td>
                                                         <td>
                                                             <a href="{{route('update-order-status',$order->id)}}"
                                                                class="btn btn-success btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">

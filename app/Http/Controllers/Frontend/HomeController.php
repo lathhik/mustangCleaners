@@ -17,7 +17,9 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $orders = CustomerOrder::all();
+        $id = Auth::guard('customer')->user()->id;
+        $orders = CustomerOrder::with('customer')->where('customer_id','=',$id)->get();
+
         return view('frontend.pages.dashboard',compact('orders'));
     }
 

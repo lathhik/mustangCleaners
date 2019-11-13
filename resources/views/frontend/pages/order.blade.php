@@ -152,24 +152,7 @@
                             @if($errors->has('pickup_time_to'))
                                 <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
                             @endif
-                        </div>
-                    </div>
-                    <div class="row">
-                        <h3>Delivery Time</h3>
-                        <div class="form-group col-md-6">
-                            <label for="deli_time_from">Time From</label>
-                            <input type="time" class="form-control" name="deli_time_from" id="deli_time_from">
-                            @if($errors->has('deli_time_from'))
-                                <p class="text-danger">{{$errors->first('deli_time_from')}}</p>
-                            @endif
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="deli_time_to">Time To</label>
-                            <input type="time" class="form-control" name="deli_time_to" id="deli_time_to">
-                            @if($errors->has('deli_time_to'))
-                                <p class="text-danger">{{$errors->first('deli_time_to')}}</p>
-                            @endif
-                        </div>
+                        </div   >
                     </div>
                 </div>
             </div>

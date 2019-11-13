@@ -54,6 +54,7 @@ class AdminController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $newName = str_random(20) . '.' . $file->getClientOriginalExtension();
+
             $image = Image::make($file);
 
             if (!file_exists(public_path('custom/backend/images/admins'))) {
