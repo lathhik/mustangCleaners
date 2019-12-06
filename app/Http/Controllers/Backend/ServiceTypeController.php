@@ -23,13 +23,12 @@ class ServiceTypeController extends Controller
     public function addServiceAction(Request $request)
     {
         $this->validate($request, [
-            'service_type' => 'required|regex:/^[A-Za-z\s]{3,30}$/'
+            'service_type' => 'required|regex:/^[A-Za-z\s]{3,30}$/',
         ]);
 
         $service = new ServiceType();
 
         $service->service_types = $request->service_type;
-
         if ($service->save()) {
             return redirect()->route('view-service')->with('success', 'Service Type was successfully added');
         }
@@ -56,14 +55,13 @@ class ServiceTypeController extends Controller
     public function editServiceAction(Request $request, $id)
     {
         $this->validate($request, [
-            'service_type' => 'required|regex:/^[A-Za-z\s]{3,30}$/'
+            'service_type' => 'required|regex:/^[A-Za-z\s]{3,30}$/',
         ]);
 
 
         $serviceType = ServiceType::find($id);
 
         $serviceType->service_types = $request->service_type;
-
         if ($serviceType->save()) {
             return redirect()->route('view-service')->with('success', 'Service Type was successfully edited');
         }

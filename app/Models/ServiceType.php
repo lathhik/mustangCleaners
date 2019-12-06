@@ -8,4 +8,9 @@ class ServiceType extends Model
 {
     protected $table = 'service_types';
 
+    public function items()
+    {
+        return $this->hasMany(ItemList::class);
+    }
+
 }

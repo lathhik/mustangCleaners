@@ -81,17 +81,32 @@
                                             <h2 class="text-center">Add Service</h2>
                                             <form class="" method="post" action="{{route('add-service')}}">
                                                 @csrf
-                                                <div class="position-relative form-group col-md-6"><label
-                                                        for="example" class="">Service Type:</label>
-                                                    <input name="service_type" id="exampleEmail"
-                                                           placeholder="" type="text"
-                                                           class="form-control">
-                                                    @if($errors->has('service_type'))
-                                                        <p class="text-danger">{{$errors->first('service_type')}}</p>
-                                                    @endif
-                                                    <br>
-                                                    <button class="mt-1 btn btn-outline-primary float-right">Submit
-                                                    </button>
+                                                <div class="position-relative form-group col-md-6">
+
+                                                    <div class="row">
+                                                        <label
+                                                            for="example" class="">Price:</label>
+                                                        <input name="price" id="exampleEmail"
+                                                               placeholder="" type="number"
+                                                               class="form-control">
+                                                        @if($errors->has('price'))
+                                                            <p class="text-danger">{{$errors->first('price')}}</p>
+                                                        @endif
+
+
+                                                        <label
+                                                            for="example" class="">Service Type:</label>
+                                                        <input name="service_type" id="exampleEmail"
+                                                               placeholder="" type="text"
+                                                               class="form-control">
+                                                        @if($errors->has('service_type'))
+                                                            <p class="text-danger">{{$errors->first('service_type')}}</p>
+                                                        @endif
+
+                                                        <br>
+                                                        <button class="mt-1 btn btn-outline-primary float-right">Submit
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>

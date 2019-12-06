@@ -21,7 +21,7 @@
                                     Dashboards
                                 </a>
                             </li>
-                            <li class="app-sidebar__heading">Service Section</li>
+                            <li class="app-sidebar__heading">Orders Section</li>
                             <li>
                                 <a href="{{route('view-orders')}}">
                                     <i class="fas fa-users"></i>
@@ -42,6 +42,12 @@
                                 <a href="{{route('view-service')}}">
                                     <i class="fas fa-book"></i>
                                     Our Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{route('view-items')}}">
+                                    <i class="fas fa-book"></i>
+                                    Our Items
                                 </a>
                             </li>
                             <li>

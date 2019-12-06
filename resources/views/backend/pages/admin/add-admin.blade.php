@@ -100,7 +100,7 @@
                                                     <div class="col-md-6">
 
                                                         <div class="form-group">
-                                                            <label for="firstname">First name</label>
+                                                            <label for="first_name">First name</label>
                                                             <div>
                                                                 <input type="text" class="form-control" id="first_name"
                                                                        name="first_name" value="{{old('first_name')}}"

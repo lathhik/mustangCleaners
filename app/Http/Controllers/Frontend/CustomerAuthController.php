@@ -14,14 +14,14 @@ class CustomerAuthController extends Controller
 
     public function loginAction(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
+
+        $this->validate($request, ['login_email' => 'required|email',
+            'login_password' => 'required'
         ]);
 
         $customer = [];
-        $customer['email'] = $request->email;
-        $customer['password'] = $request->password;
+        $customer['email'] = $request->login_email;
+        $customer['password'] = $request->login_password;
 
         $remember = false;
 
@@ -30,7 +30,7 @@ class CustomerAuthController extends Controller
         }
 
         if (Auth::guard('customer')->attempt($customer, $remember)) {
-            return redirect()->intended(route('index'));
+            return redirect()->intended(route('customer-dashboard'));
         };
         return redirect()->back()->with('fail', 'Invalid Credentials');
 

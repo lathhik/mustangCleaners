@@ -16,6 +16,8 @@ class CustomerOrderController extends Controller
 
     public function customerOrder(Order $request)
     {
+        return $request->all();
+
         $pickup_address = new Address();
         $pickup_address->address_line_1 = $request->input("pickup_address_line_1");
         $pickup_address->address_line_2 = $request->input("pickup_address_line_2");
@@ -44,13 +46,11 @@ class CustomerOrderController extends Controller
         $orders->delivery_address_id = $delivery_address_id;
         $orders->pickup_time_from = $request->pickup_time_from;
         $orders->pickup_time_to = $request->pickup_time_to;
-        $orders->delivery_time_from = $request->deli_time_from;
-        $orders->delivery_time_to = $request->deli_time_to;
         $orders->pickup_date = $request->pickup_date;
-        $orders->delivery_date = $deli_date;
         if ($orders->save()) {
             return redirect()->back()->with('success', 'Your Order Was Successfully Placed. Please View Your Dashboard.');
         }
+
 
     }
 

@@ -32,11 +32,11 @@ class AdminController extends Controller
             'last_name' => 'required|min:3|max:20|alpha',
             'email' => 'required|email|unique:admins,email',
             'password' => 'required|confirmed',
-            'address' => 'required|regex:/^[A-Za-z0-9\s]{3,30}$/',
+            'address' => 'required|regex:/^[A-Za-z0-9\s\,]{3,30}$/',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/',
             'gender' => 'required',
             'privilege' => 'required',
-            'image' => 'required|image'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048'
         ]);
 
 

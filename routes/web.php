@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('index');
 
-    Route::get('customer-login-form', 'CustomerController@index')->name('customer-login-form');
-    Route::get('customer-register', 'CustomerController@register')->name('customer-register');
     Route::post('customer-register', 'CustomerController@registerAction')->name('customer-register');
     Route::post('customer-login', 'CustomerAuthController@loginAction')->name('customer-login');
     Route::get('customer-logout', 'CustomerAuthController@logout')->name('customer-logout');
@@ -29,6 +27,8 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('customer-order', 'HomeController@viewOrderPage')->name('customer-order');
         Route::post('customer-order', 'CustomerOrderController@customerOrder')->name('customer-order');
     });
+
+
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
@@ -57,6 +57,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('edit-service/{id}', 'ServiceTypeController@editService')->name('edit-service');
         Route::post('edit-service-action/{id}', 'ServiceTypeController@editServiceAction')->name('edit-service-action');
 
+        Route::get('view-items', 'ItemListController@index')->name('view-items');
+        Route::post('add-item', 'ItemListController@addItem')->name('add-item');
+        Route::get('edit-item/{id}', 'ItemListController@editItem')->name('edit-item');
+        Route::post('edit-item-action/{id}', 'ItemListController@editItemAction')->name('edit-item-action');
+        Route::get('delete-item/{id}', 'ItemListController@deleteItem')->name('delete-item');
 
         Route::get('add-order-status', 'OrderStatusController@addOrderStatus')->name('add-order-status');
         Route::post('add-order-status', 'OrderStatusController@addOrderStatusAction')->name('add-order-status');
@@ -65,8 +70,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('delete-order-status/{id}', 'OrderStatusController@deleteOrderStatus')->name('delete-order-status');
 
         Route::get('view-orders', 'OrderController@getAllOrders')->name('view-orders');
-        Route::get('update-order/{id}', 'OrderController@updateOrderStatus')->name('update-order-status');
+        Route::post('update-order/{id}', 'OrderController@updateOrderStatus')->name('update-order-status');
+
+        // Ajax Route
+        Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
     });
+
 });
 
 

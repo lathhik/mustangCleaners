@@ -20,7 +20,7 @@
                             <td>{{$order->serviceType->service_types}}</td>
                             <td>{{$order->orderStatus->status}}</td>
                             <td>{{$order->delivery_date}}</td>
-                            <td>{{$order->delivery_time}}</td>
+                            <td>{{$order->delivery_time_from}}-{{$order->delivery_time_to}}</td>
                             <td>
                                 <a class="btn btn-sm btn-danger {{($order->orderStatus->identifier > 1)?'disabled':'' }}">
                                     Cancel

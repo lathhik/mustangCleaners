@@ -15,18 +15,21 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('address_id')->unsigned();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email');
             $table->string('password');
             $table->bigInteger('phone');
+            $table->bigInteger('phone_optional')->nullable();
             $table->string('job/company')->nullable();
-            $table->string('street_address')->nullable();
-            $table->string('house_no')->nullable();
-            $table->string('city')->nullable();
-            $table->string('country')->nullable();
             $table->string('image')->nullable();
+            $table->string('remember_token',255)->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('customers', function (Blueprint $table) {
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

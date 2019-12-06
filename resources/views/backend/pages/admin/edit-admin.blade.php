@@ -110,7 +110,7 @@
 
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label for="firstname">Privilege</label>
+                                                        <label for="first_name">Privilege</label>
                                                         <div>
                                                             <select class="form-control" name="privilege">
                                                                 @foreach($privilege as $key => $value )

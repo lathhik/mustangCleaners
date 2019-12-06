@@ -35,11 +35,10 @@ class Order extends FormRequest
             "delivery_city" => 'required',
             "delivery_state" => 'required',
             "delivery_zip" => 'required',
-            "pickup_date" => 'required',
+            "service_type"=>'required',
+            "pickup_date"=>'required',
             "pickup_time_from" => 'required',
             "pickup_time_to" => 'required',
-            "deli_time_from" => 'required',
-            "deli_time_to" => 'required',
         ];
     }
 }

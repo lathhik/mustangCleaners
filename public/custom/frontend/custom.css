@@ -1,28 +1,28 @@
-.a-register{
+.a-register {
     text-decoration: none;
     color: white;
 }
 
-.place-order{
-    text-align: center!important;
-    color: #288e6d!important;
+.place-order {
+    text-align: center !important;
+    color: #288e6d !important;
     font-weight: bold;
 }
 
-.noti{
-    color: red;
-}
+/*.noti{*/
+/*    color: red;*/
+/*}*/
 
-.hr{
+.hr {
     margin-top: 10px;
 }
 
-#order_submit{
+#order_submit {
     /*margin:0 auto;*/
     /*text-align: center;*/
     width: 200px;
     margin-top: 30px;
-    background: #288e6d!important;
+    background: #288e6d !important;
     color: white;
     font-weight: bold;
 }
@@ -30,3 +30,7 @@
 /*.tooltip{*/
 /*    background: #4cae4c;*/
 /*}*/
+
+.modal-submit {
+    margin-left: 250px !important;
+}

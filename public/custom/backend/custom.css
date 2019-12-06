@@ -1,4 +1,8 @@
-.admin-logout{
-    color: white!important;
-    text-decoration: none!important;
+.admin-logout {
+    color: white !important;
+    text-decoration: none !important;
+}
+
+body {
+    width: 100%;
 }

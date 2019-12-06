@@ -72,14 +72,19 @@
                                                 <h2 class="text-center">Add Service</h2>
                                                 <form class="" method="post" action="{{route('add-service')}}">
                                                     @csrf
-                                                    <div class="position-relative form-group col-md-6"><label
-                                                            for="example" class="">Service Type:</label>
-                                                        <input name="service_type" id="exampleEmail"
-                                                               placeholder="" type="text"
-                                                               class="form-control">
-                                                        @if($errors->has('service_type'))
-                                                            <p class="text-danger">{{$errors->first('service_type')}}</p>
-                                                        @endif
+                                                    <div class="position-relative form-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label
+                                                                    for="example" class="">Service Type:</label>
+                                                                <input name="service_type" id="exampleEmail"
+                                                                       placeholder="" type="text"
+                                                                       class="form-control">
+                                                                @if($errors->has('service_type'))
+                                                                    <p class="text-danger">{{$errors->first('service_type')}}</p>
+                                                                @endif
+                                                            </div>
+                                                        </div>
                                                         <br>
                                                         <button class="mt-1 btn btn-outline-primary float-right">Submit
                                                         </button>

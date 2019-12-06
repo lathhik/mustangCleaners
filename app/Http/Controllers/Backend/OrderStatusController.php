@@ -36,7 +36,7 @@ class OrderStatusController extends Controller
 
     public function editOrderStatus($id)
     {
-        return 'test';
+//        return 'test';
     }
 
 

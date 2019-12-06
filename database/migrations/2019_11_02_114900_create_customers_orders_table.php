@@ -16,16 +16,15 @@ class CreateCustomersOrdersTable extends Migration
         Schema::create('customers_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned();
-            $table->integer('service_type')->unsigned();
             $table->integer('order_status_id')->unsigned();
             $table->integer('pickup_address_id')->unsigned();
             $table->integer('delivery_address_id')->unsigned();
             $table->date('pickup_date');
             $table->time('pickup_time_from');
             $table->time('pickup_time_to');
-            $table->date('delivery_date');
-            $table->time('delivery_time_from');
-            $table->time('delivery_time_to');
+            $table->date('delivery_date')->nullable();
+            $table->time('delivery_time_from')->nullable();
+            $table->time('delivery_time_to')->nullable();
             $table->bigInteger('phone')->nullable();
 
             $table->timestamps();
@@ -33,7 +32,6 @@ class CreateCustomersOrdersTable extends Migration
 
         Schema::table('customers_orders', function (Blueprint $table) {
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('service_type')->references('id')->on('service_types');
             $table->foreign('order_status_id')->references('id')->on('orders_status');
             $table->foreign('pickup_address_id')->references('id')->on('addresses');
             $table->foreign('delivery_address_id')->references('id')->on('addresses');
