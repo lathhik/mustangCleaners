@@ -2620,33 +2620,109 @@ a.next-btn {
   margin: auto;
   width: 1230px;
 }
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
-.{}
+
+/* How it works section*/
+.box-step{
+  overflow: hidden;
+  
+}
+
+.animation.no-animate {
+  opacity: 1 !important;
+  -webkit-animation-name: none !important;
+}
+
+.box-step .item {
+  float: left;
+  position: relative;
+  padding-bottom: 19px;
+}
+.box-step .icon {
+  text-align: center;
+}
+
+.box-step .icon img {
+  height: auto;
+  transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -ms-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s!important;
+}
+
+.entry-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-responsive1 {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+}
+.box-step .description {
+  text-align: center;
+  transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  margin-top: 23px;
+  margin-bottom: 0;
+} 
+
+h6{
+  font-size: 18px;
+  line-height: 22px;
+  font-family: "Lato", sans-serif !important;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+.box-step .title {
+  text-align: center;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 9px;
+}
+
+.box-step .item:hover .description {
+  color: #009cdc;
+}
+
+.box-step .title span {
+  color: #009cdc!important;
+}
+
+.box-step .item:nth-child(2n+1)::after {
+  background: rgba(0, 0, 0, 0) url(../../../assets/images/step-arrow1.png) no-repeat scroll 0 0;
+  background-size: cover;
+}
+.box-step .item:nth-child(4):after{
+  background: none;
+}
+
+.box-step .item::after {
+  background: rgba(0, 0, 0, 0) url(../../../assets/images/step-arrow2.png) no-repeat scroll 0 0 / cover;
+  content: "";
+  height: 100px;
+  position: absolute;
+  right: -24%;
+  top: 0;
+  width: 120px;
+}
+
+.box-step .item:hover .title {
+  margin-top: 19px!important;
+  margin-bottom: -10px!important;
+}
+
+.box-step .icon img:hover{
+  transform: rotateY(180deg);
+}
+
