@@ -27,9 +27,7 @@ class HomeController extends Controller
     public function viewOrderPage()
     {
         $services = ServiceType::all();
-        $laundry_service_type_items = ItemList::where('service_type_id', 1)->get();
-        $dryclean_service_type_items = ItemList::where('service_type_id', 2)->get();
-//        return  $dryclean_service_type_items;
+
         return view('frontend.pages.order', compact('services', 'laundry_service_type_items', 'dryclean_service_type_items'));
     }
 
