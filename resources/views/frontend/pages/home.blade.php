@@ -136,14 +136,14 @@
     </div>
     <!-- service-area-end -->
     <!-- featured-services-area-start -->
-    <div class="featured-services-area pt-120 pb-90 gray-bg">
+    <div class="featured-services-area pt-60 pb-30 gray-bg">
         <div class="container">
             <div class="section-title text-center mb-70">
                 <span>What we offer </span>
                 <h3>How It Works</h3>
                 <p>Production demo phase.</p>
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="featured-services-wrapper mb-30 white-bg">
                         <div class="featured-services-img">
@@ -185,6 +185,39 @@
                             <p>Production demo phase.</p>
                         </div>
                     </div>
+                </div>
+            </div> --}}
+            <div class="row ">
+                <div class="box-step animation animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0s" style="animation-delay: 0s;">								
+                    <a class="item col-xs-12 col-sm-3 col-md-3 ">
+                        <div class="icon">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_01.png" class="img-responsive1 " alt="">
+                        </div>
+                        <h6 class="description">Step 1</h6>
+                        <h4 class="title" style="font-size: 22px;line-height: 28px; margin: 0; padding: 0;"><span>Bag up</span> all your dirty clothes</h4>
+                    </a>
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.25s" style="animation-delay: 0.25s;">
+                        <div class="icon">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_02.png" class="img-responsive1 img-xs--lg" alt="">
+                        </div>
+                        <h6 class="description">Step 2</h6>
+                        <h4 class="title">We <span>pick up</span> yourclothes</h4>
+                    </a>
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.50s" style="animation-delay: 0.5s;">
+                        <div class="icon">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_03.png" class="img-responsive1 img-xs--sm" alt="">
+                        </div>
+                        <h6 class="description">Step 3</h6>
+                        <h4 class="title">We <span>clean</span> yourclothes</h4>
+                    </a>
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.75s" style="animation-delay: 0.75s;">
+                        <div class="icon">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_04.png" class="img-responsive1 " alt="">
+                        </div>
+                        <h6 class="description">Step 4</h6>
+                        <h4 class="title">We <span>deliver</span> clean, folded clothes</h4>
+                    </a>
+                </div>
                 </div>
             </div>
         </div>

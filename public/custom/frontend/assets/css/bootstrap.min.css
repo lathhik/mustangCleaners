@@ -6277,9 +6277,11 @@ button.close {
     right: 0;
     bottom: 0;
     left: 0;
+    /*width: 900px;*/
     z-index: 1050;
     -webkit-overflow-scrolling: touch;
     outline: 0
+
 }
 
 .modal.fade .modal-dialog {
@@ -6401,7 +6403,7 @@ button.close {
     }
 
     .modal-sm {
-        width: 300px
+        width: 700px
     }
 }
 

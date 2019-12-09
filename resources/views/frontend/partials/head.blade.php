@@ -4,6 +4,7 @@
 
 <!-- Mirrored from preview.hasthemes.com/purified/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Oct 2019 10:43:03 GMT -->
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Mustang Cleaners</title>

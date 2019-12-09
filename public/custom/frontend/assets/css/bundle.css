@@ -200,7 +200,8 @@ select,
 .p-rl{padding-right:0;padding-left:0;}
 /*colored background*/
  .white-bg { background: #FFFFFF; }
- .gray-bg { background: #edf0f2; }
+ /* .gray-bg { background: #edf0f2; } */
+ .gray-bg { background: #edf0f2b0; }
  .blue-bg { background: #213047; }
  .green-bg { background: #52b6bc; }
  .black-bg { background: #000; }
