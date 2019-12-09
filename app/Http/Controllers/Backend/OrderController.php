@@ -81,4 +81,12 @@ class OrderController extends Controller
         $service_type = ServiceType::find($service_type_id);
         return response()->json(['item_details' => $items_details, $service_type->service_types]);
     }
+
+    public function addToCart(Request $request)
+    {
+        $id = $request->id;
+        $quantity = $request->quantity;
+        $item = ItemList::find($id);
+        return response()->json(['item' => $item, 'quantity' => $quantity]);
+    }
 }
