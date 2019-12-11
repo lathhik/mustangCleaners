@@ -113,3 +113,74 @@ input[type="number"] {
     margin-left: 70px;
     font-size: 20px;
 }
+
+.item-cart{
+    /*margin: auto;*/
+    margin-left: 50px;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    display: block;
+    height: 300px;
+    width: 350px;
+    background-color: #faf5e8;
+    overflow: auto;
+}
+
+.hr{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    /*margin-left: 15px;*/
+    /*color: red;*/
+    border: .5px solid white;
+}
+
+.bag{
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.cart-title{
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-radius: 3px;
+    background-color: #288e6d;
+    width: 335px;
+    margin-left: 50px;
+    margin-bottom: -80px;
+    margin-top: 80px;
+    height: 40px;
+}
+
+.cart-title h3{
+    margin: 5px;
+    color: white;
+    font-weight: bold;
+
+}
+
+
+.service_type{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.grand_total{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f5f0f0;
+}
+
+.checkout{
+    background-color: #288e6d;
+    /*margin: auto;*/
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    /*height: 30px;*/
+}
+
+.checkout a{
+    /*margin: auto;*/
+    font-size: 20px;
+    color: white;
+}

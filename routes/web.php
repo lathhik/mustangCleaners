@@ -26,6 +26,13 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('dashboard', 'HomeController@dashboard')->name('customer-dashboard');
         Route::get('customer-order', 'HomeController@viewOrderPage')->name('customer-order');
         Route::post('customer-order', 'CustomerOrderController@customerOrder')->name('customer-order');
+
+
+// Ajax Routes
+        Route::post('add-item-cart', 'ItemCartController@addItemCart')->name('add-item-cart');
+        Route::post('add-to-cart', 'ItemCartController@addToCart')->name('add-to-cart');
+
+
     });
 
 
@@ -74,13 +81,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
         // Ajax Route
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
-        Route::put('add-item-cart', 'OrderController@addItemCart')->name('add-item-cart');
-        Route::post('add-to-cart', 'OrderController@addToCart')->name('add-to-cart');
+
 
     });
 
 });
-
 
 Auth::routes();
 

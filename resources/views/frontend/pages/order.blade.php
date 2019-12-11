@@ -2,104 +2,160 @@
 @section('content')
 
     <div class="container">
-        <br>
-        <br>
-        <h1 class="place-order">Place Your Order</h1>
-        <hr class="hr">
-        @include('messages.succFail')
-        <form action="{{route('customer-order')}}" class="border" method="post">
-            @csrf
-            <div class="form-row">
-                <div class="col -md-12">
-                    <div class="row">
-                        <h3 class="text-center"><b>Service Type</b></h3>
-                    </div>
-                    <div class="row">
-                        <ul class="nav nav-tabs" id="tab" role="tablist">
-                            @foreach($services as $service)
-                                <li class="nav-item {{($loop->first)?'active':''}}">
-                                    <a class="nav-item " id="tab" data-toggle="tab"
-                                       href="#tab-{{$service->id}}"
-                                       role="tab" aria-controls="tab-{{$service->id}}"
-                                       aria-selected="true">{{$service->service_types}}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
-                    <br>
-                    <div class="tab-content">
-                        @foreach($services  as  $service)
-                            <div class="{{(!$loop->first)?'tab-pane':'tab-pane active'}}" id="tab-{{$service->id}}"
-                                 role="tabpanel"
-                                 aria-labelledby="tab-{{$service->id}}">
-                                <ul class="">
-                                    @foreach($service->items as $item)
-                                        <form action="" method="post">
-                                            @csrf
-                                            <li class="">
-                                                <div class="d-inline col-md-4 item_name" style="display: inline">
-                                                    {{$item->items}}
-                                                </div>
-                                                <div class="d-inline" style="display: inline">
-                                                    ${{$item->amount}}
-                                                    &nbsp
-                                                    <button type="button" class="fa fa-plus-circle add"
-                                                            data-toggle="modal"
-                                                            aria-labelledby="add" data-target=""></button>
-                                                </div>
-                                                <input type="hidden" name="id" value="{{$item->id}}">
-                                                <input type="hidden" name="_token"
-                                                       value="{{csrf_token()}}">
-                                            </li>
-                                        </form>
-                                        <br>
+        <div class="row">
+            <br>
+            <br>
+            <h1 class="place-order">Place Your Order</h1>
+            <hr class="hr">
+            @include('messages.succFail')
+            <div class="col-md-8">
+                <form action="{{route('customer-order')}}" class="border" method="post">
+                    @csrf
+                    <div class="form-row">
+                        <div class="col -md-8">
+                            <div class="row">
+                                <h3 class=""><b>Service Type</b></h3>
+                            </div>
+                            <div class="row">
+                                <ul class="nav nav-tabs" id="tab" role="tablist">
+                                    @foreach($services as $service)
+                                        <li class="nav-item {{($loop->first)?'active':''}}">
+                                            <a class="nav-item " id="tab" data-toggle="tab"
+                                               href="#tab-{{$service->id}}"
+                                               role="tab" aria-controls="tab-{{$service->id}}"
+                                               aria-selected="true">{{$service->service_types}}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-                <br>
 
-                <div class="row">
-                    <h3 class="text-center"><b>Pick Up Date/Time</b></h3>
-                    <div class="form-group col-md-6 ">
-                        <div class="form-group">
-                            <label for="pick_date">Pick Up Date</label>
-                            <input class="form-control" type="date" name="pickup_date" id="pick_date">
-                            @if($errors->has('pickup_date'))
-                                <p class="text-danger">{{$errors->first('pickup_date')}}</p>
-                            @endif
+                            <br>
+                            <div class="tab-content">
+                                @foreach($services  as  $service)
+                                    <div class="{{(!$loop->first)?'tab-pane':'tab-pane active'}}"
+                                         id="tab-{{$service->id}}"
+                                         role="tabpanel"
+                                         aria-labelledby="tab-{{$service->id}}">
+                                        <ul class="">
+                                            @foreach($service->items as $item)
+                                                <form action="" method="post">
+                                                    @csrf
+                                                    <li class="">
+                                                        <div class="d-inline col-md-4 item_name"
+                                                             style="display: inline">
+                                                            {{$item->items}}
+                                                        </div>
+                                                        <div class="d-inline" style="display: inline">
+                                                            ${{$item->amount}}
+                                                            &nbsp
+                                                            <button type="button" class="fa fa-plus-circle add"
+                                                                    data-toggle="modal"
+                                                                    aria-labelledby="add" data-target=""></button>
+                                                        </div>
+                                                        <input type="hidden" name="id" value="{{$item->id}}">
+                                                        <input type="hidden" name="_token"
+                                                               value="{{csrf_token()}}">
+                                                    </li>
+                                                </form>
+                                                <br>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
+                        <br>
+
+                        {{--                        <div class="row">--}}
+                        {{--                            <h3 class="text-center"><b>Pick Up Date/Time</b></h3>--}}
+                        {{--                            <div class="form-group col-md-6 ">--}}
+                        {{--                                <div class="form-group">--}}
+                        {{--                                    <label for="pick_date">Pick Up Date</label>--}}
+                        {{--                                    <input class="form-control" type="date" name="pickup_date" id="pick_date">--}}
+                        {{--                                    @if($errors->has('pickup_date'))--}}
+                        {{--                                        <p class="text-danger">{{$errors->first('pickup_date')}}</p>--}}
+                        {{--                                    @endif--}}
+                        {{--                                </div>--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="row"></div>--}}
+                        {{--                            <div class="form-group col-md-6">--}}
+                        {{--                                <label for="pick_time_from">Time From</label>--}}
+                        {{--                                <input type="time" class="form-control" name="pickup_time_from" id="pick_time_from">--}}
+                        {{--                                @if($errors->has('pickup_time_from'))--}}
+                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>--}}
+                        {{--                                @endif--}}
+                        {{--                            </div>--}}
+                        {{--                            <div class="form-group col-md-6">--}}
+                        {{--                                <label for="pick_time_to">Time To</label>--}}
+                        {{--                                <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">--}}
+                        {{--                                @if($errors->has('pickup_time_to'))--}}
+                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>--}}
+                        {{--                                @endif--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                     </div>
-                    <div class="row"></div>
-                    <div class="form-group col-md-6">
-                        <label for="pick_time_from">Time From</label>
-                        <input type="time" class="form-control" name="pickup_time_from" id="pick_time_from">
-                        @if($errors->has('pickup_time_from'))
-                            <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>
-                        @endif
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="pick_time_to">Time To</label>
-                        <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">
-                        @if($errors->has('pickup_time_to'))
-                            <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
-                        @endif
-                    </div>
+                    {{--    </div>--}}
+                    {{--                    <div>--}}
+                    {{--                        <button class="btn btn-lg col-md-offset-5" type="submit" id="order_submit">--}}
+                    {{--                            Order--}}
+                    {{--                        </button>--}}
+                    {{--                    </div>--}}
+                </form>
+            </div>
+
+            <div class="cart-title col-md-4">
+                <h3 class="text-center">My Bag</h3>
+            </div>
+            <div class="col-md-4 item-cart">
+                <div class="border-danger" style="">
+                    <br>
+                    @if(session('cart'))
+                        @foreach(session('cart') as $id => $details)
+                            @foreach($details as $det=>$value)
+                                @php
+                                    @endphp
+                            @endforeach
+                            <div class="col-md-12">
+                                <h6 class="service_type">{{$details['service_type']}}
+                                </h6>
+                                {{--                                {{$id}}--}}
+                                <div class="col-md-2 quantity">
+                                    <span>{{$details['quantity']}}x</span>
+                                </div>
+                                <div class="col-md-8 item_name">
+                                    <h7>{{$details['item_name']}}
+                                    </h7>
+                                </div>
+                                <div class="col-md-2 total_amt">
+                                    <span>${{$details['total_amount']}}</span>
+                                </div>
+                                <hr class="hr">
+                            </div>
+
+                        @endforeach
+
+                        <div class="col-md-12 grand_total">
+                            <div class="col-md-10">
+                                <h7>Grand Total</h7>
+                            </div>
+                            <div class="col-md-2">
+                                <h7>$<span class="total_amt"></span></h7>
+                            </div>
+                        </div>
+                    @else
+                        <div class="bag">
+                            <h4>Bag is Empty</h4>
+                        </div>
+                    @endif
+                    @if(session('cart'))
+                        <div class="col-md-12 checkout btn btn-sm">
+                            <a>Checkout</a>
+                        </div>
+                    @endif
                 </div>
             </div>
-            {{--    </div>--}}
-            <div>
-                <button class="btn btn-lg col-md-offset-5" type="submit" id="order_submit">
-                    Order
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-
-    <br><br><br>
 
     <!-- Modal -->
     <div class="modal fade active" id="add-item" tabindex="-1" role="dialog" aria-labelledby="add"
@@ -142,31 +198,30 @@
     <script>
         $(document).ready(function () {
             $('.add').on('click', function () {
-                $('#add-item').modal();
+
                 var id = $(this).closest('li').find('[name=id]').val();
-                console.log(id);
+                // console.log(id);
                 var ajaxRoute = '{{route('add-item-cart')}}';
-                // var token = $('input[name=_token]').attr('value');
+                var token = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: ajaxRoute,
-                    type: "PUT",
+                    type: "POST",
                     data: {
-                        // _token: token,
+                        _token: token,
                         id: id
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     dataType: "JSON",
                     success: function (item) {
-                        console.log(item[0]);
+                        $('#add-item').modal();
                         $('.service_type').html(item[0]);
                         $.each(item, function (key, value) {
-                            console.log(value.items);
                             $('.title').html(value.items);
                             $('.amount').html(value.amount);
                             $('.hidden_id').val(value.id);
                         })
+                    },
+                    error: function (data) {
+                        console.log('something went wrong');
                     }
                 });
             });
@@ -211,9 +266,6 @@
                 var quantity = $('.quantity-field').val();
                 var amount = $('.amount').text();
                 var id = $('.hidden_id').val();
-                console.log(quantity);
-                console.log(amount);
-                console.log(id);
 
                 var ajaxRoute = '{{route('add-to-cart')}}';
 
@@ -222,16 +274,18 @@
                     url: ajaxRoute,
                     data: {
                         id: id,
-                        quantity: quantity
+                        quantity: quantity,
                     },
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
                     dataType: 'JSON',
-                    success:function (order) {
+                    success: function (order) {
                         console.log(order);
                     }
                 });
+                $('#add-item').modal('hide');
+
             });
         });
     </script>
