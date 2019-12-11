@@ -31,7 +31,8 @@ Route::group(['namespace' => 'Frontend'], function () {
 // Ajax Routes
         Route::post('add-item-cart', 'ItemCartController@addItemCart')->name('add-item-cart');
         Route::post('add-to-cart', 'ItemCartController@addToCart')->name('add-to-cart');
-
+        Route::delete('delete-item-cart', 'ItemCartController@deleteItemCart')->name('delete-item-cart');
+        Route::patch('update-item-cart', 'ItemCartController@updateItemCart')->name('update-item-cart');
 
     });
 

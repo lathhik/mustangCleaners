@@ -114,18 +114,29 @@
                         <div id="myBag">
                             @foreach($carts as $cart)
                                 @php($total += $cart->total)
-                                <div class="col-md-12" id="pre-items-{{$cart->item_id}}">
+                                <div class="col-md-12 main" id="pre-items-{{$cart->item_id}}">
+                                    <input type="hidden" value="{{$cart->id}}" class="hidden_cart_id">
+                                    <input type="hidden" value="{{$cart->item_id}}" class="hidden_item_id">
                                     <h6 class="service_type">{{$cart->items->serviceType->service_types}}
                                     </h6>
-                                    <div class="col-md-2 quantity">
+                                    <div class="col-md-1 quantity">
                                         <span id="2">{{$cart->quantity}}x</span>
                                     </div>
-                                    <div class="col-md-8 item_name">
+                                    <div class="col-md-6 item_name">
                                         <h7>{{$cart->items->items}}
                                         </h7>
                                     </div>
                                     <div class="col-md-2 total_amt">
                                         <span>${{ $cart->total}}</span>
+
+                                    </div>
+                                    <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
+                                         title="Delete">
+                                        <span class="fa fa-trash"></span>
+                                    </div>
+                                    <div class="col-md-1 btn btn-xs btn-success update" data-toggle="tooltip"
+                                         title="Edit">
+                                        <span class="fa fa-edit"></span>
                                     </div>
                                     <hr class="hr">
                                 </div>
@@ -133,10 +144,10 @@
                         </div>
                         @if(!empty($cart))
                             <div class="col-md-12 grand_total">
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <h7>Grand Total</h7>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <h7>$<span class="total_amt">{{$total}}</span></h7>
                                 </div>
                             </div>
@@ -178,7 +189,8 @@
                             <h4 class="title" style="display: inline"></h4>
                             <b class="" id="amt">$<span class="amount" style="">$</span></b>
                             <input type="button" value="-" class="button-minus" data-field="quantity">
-                            <input type="number" step="1" max="100" name="quantity" value="" class="quantity-field" id="quantity-field"
+                            <input type="number" step="1" max="100" name="quantity" value="" class="quantity-field"
+                                   id="quantity-field"
                                    data-field="quantity">
                             <input type="button" value="+" class="button-plus" data-field="quantity">
                             <input type="hidden" value="" class="hidden_id">
@@ -197,15 +209,23 @@
         <div class="col-md-12">
             <h6 class="service_type">
             </h6>
-            <div class="col-md-2 quantity">
+            <div class="col-md-1 quantity">
                 <span id="quantity"></span>
             </div>
-            <div class="col-md-8 item_name item_name">
+            <div class="col-md-6 item_name item_name">
                 <h7>
                 </h7>
             </div>
             <div class="col-md-2 total_amt">
                 <span class="total"></span>
+            </div>
+            <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
+                 title="Delete">
+                <span class="fa fa-trash"></span>
+            </div>
+            <div class="col-md-1 btn btn-xs btn-success update" data-toggle="tooltip"
+                 title="Edit">
+                <span class="fa fa-edit"></span>
             </div>
             <hr class="hr">
         </div>
@@ -312,6 +332,70 @@
                 $('#add-item').modal('hide');
 
             });
+
+            $('.total_amt').hover(function () {
+                $(this).css('cursor', 'pointer');
+                // $('.tooltip').show();
+            }, function () {
+                $(this).css('cursor', 'auto');
+            });
+
+            $('.delete').on('click', function () {
+                var id = $(this).closest('.main').find('.hidden').val();
+
+                var ajaxRoute = '{{route('delete-item-cart')}}';
+
+                $.ajax({
+                    url: ajaxRoute,
+                    method: 'DELETE',
+                    data: {
+                        id: id
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+
+                    }
+
+
+                });
+            });
+
+            $('.update').on('click', function () {
+                var cart_id = $(this).closest('.main').find('.hidden_cart_id').val();
+                var item_id = $(this).closest('.main').find('.hidden_item_id').val();
+
+                console.log(item_id);
+
+                var ajaxRoute = '{{route('update-item-cart')}}';
+
+                $.ajax({
+                    url: ajaxRoute,
+                    method: 'PATCH',
+                    data: {
+                        cart_id: cart_id,
+                        item_id: item_id,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    dataType: 'JSON',
+                    success: function (data) {
+                        console.log(data);
+                        $('#add-item').modal();
+                        $('.service_type').html(data.service_type);
+                        $('.quantity-field').val(data.cart.quantity);
+                        $('.title').html(data.item.items);
+                        $('.amount').html(data.item.amount);
+                        $('.hidden_id').val(data.item.id);
+                    }
+
+                });
+            });
+
         });
     </script>
 @endsection
