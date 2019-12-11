@@ -74,7 +74,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
         // Ajax Route
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
-        Route::put('add-item-cart','OrderController@addItemCart')->name('add-item-cart');
+        Route::put('add-item-cart', 'OrderController@addItemCart')->name('add-item-cart');
+        Route::post('add-to-cart', 'OrderController@addToCart')->name('add-to-cart');
+
     });
 
 });

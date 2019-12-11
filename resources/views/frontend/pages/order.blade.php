@@ -114,16 +114,18 @@
                 </div>
                 <div class="modal-body">
                     <form action="">
+                        @csrf
                         <div class="input-group">
                             <div class="">
                                 <h3 class="service_type"></h3>
                             </div>
-                            <h3 class="title" style="display: inline"></h3>
+                            <h4 class="title" style="display: inline"></h4>
                             <b class="" id="amt">$<span class="amount" style="">$</span></b>
                             <input type="button" value="-" class="button-minus" data-field="quantity">
                             <input type="number" step="1" max="100" name="quantity" value="1" class="quantity-field"
                                    data-field="quantity">
                             <input type="button" value="+" class="button-plus" data-field="quantity">
+                            <input type="hidden" value="" class="hidden_id">
                         </div>
                     </form>
                 </div>
@@ -163,6 +165,7 @@
                             console.log(value.items);
                             $('.title').html(value.items);
                             $('.amount').html(value.amount);
+                            $('.hidden_id').val(value.id);
                         })
                     }
                 });
@@ -206,7 +209,29 @@
 
             $('.add-to-cart').on('click', function () {
                 var quantity = $('.quantity-field').val();
+                var amount = $('.amount').text();
+                var id = $('.hidden_id').val();
                 console.log(quantity);
+                console.log(amount);
+                console.log(id);
+
+                var ajaxRoute = '{{route('add-to-cart')}}';
+
+                $.ajax({
+                    type: 'POST',
+                    url: ajaxRoute,
+                    data: {
+                        id: id,
+                        quantity: quantity
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    dataType: 'JSON',
+                    success:function (order) {
+                        console.log(order);
+                    }
+                });
             });
         });
     </script>
