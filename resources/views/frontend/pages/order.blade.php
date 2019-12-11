@@ -142,12 +142,14 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="col-md-12 grand_total" style="display: {{!empty($cart)? 'block': 'none'}}">
-                            <div class="col-md-10">
-                                <h7>Grand Total</h7>
-                            </div>
-                            <div class="col-md-2">
-                                <h7>$<span class="total_amt">{{$total}}</span></h7>
+                        <div class="col-md-12 total_emp" style="display: {{!empty($cart)? 'block': 'none'}}">
+                            <div class="grand_total col-md-12">
+                                <div class="col-md-8">
+                                    <h7>Grand Total</h7>
+                                </div>
+                                <div class="col-md-2">
+                                    <h7>$<span class="total_amt">{{$total}}</span></h7>
+                                </div>
                             </div>
                             <div class="col-md-12 checkout btn btn-sm">
                                 <a>Checkout</a>
@@ -335,7 +337,7 @@
             });
 
             $('.delete').on('click', function () {
-                var id = $(this).closest('.main').find('.hidden').val();
+                var id = $(this).closest('.main').find('.hidden_cart_id').val();
 
                 var ajaxRoute = '{{route('delete-item-cart')}}';
 

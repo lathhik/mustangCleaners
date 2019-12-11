@@ -165,16 +165,23 @@ input[type="number"] {
 }
 
 .grand_total{
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     background-color: #f5f0f0;
+    margin: auto;
+    height: 50px;
+    /*margin-bottom: 100px;*/
+}
+
+.total_emp{
+    margin-top: 40px;
 }
 
 .checkout{
     background-color: #288e6d;
     /*margin: auto;*/
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     margin-top: 10px;
     /*height: 30px;*/
 }
@@ -191,9 +198,10 @@ input[type="number"] {
     /*border: 1px solid red;*/
     /*display: none;*/
     /*background-color: black;*/
-    margin-left: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
 }
 
 .edit{
-    margin-left: 2px;
+    margin-left: 15px;
 }
