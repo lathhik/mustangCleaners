@@ -1,10 +1,10 @@
 /*
 Template:  mxpro - multipurpose html template
-Author: 
+Author:
 Version: 1
 Design and Developed by: HasTech
-NOTE: This is main style sheet of template, 
-This file contains the styling for the actual Template. 
+NOTE: This is main style sheet of template,
+This file contains the styling for the actual Template.
 Please do not change anything here! write in a custom.css file if required!
 
 */
@@ -12,7 +12,7 @@ Please do not change anything here! write in a custom.css file if required!
 [  Table of contents  ]
 ================================================
 01. General
-02. Page section margin padding 
+02. Page section margin padding
 03. Section title 1
 04. Section title 2
 05. button
@@ -35,7 +35,7 @@ Please do not change anything here! write in a custom.css file if required!
 *************************/
 /* google-font */
 @import url('https://fonts.googleapis.com/css?family=Courgette|Montserrat:300,400,500,600,700,800,900');
-body { 
+body {
   color: #444444;
   font-family: 'Montserrat', sans-serif;
   font-size: 14px;
@@ -58,10 +58,10 @@ input {
     outline: medium none;
     color: #686868;
 }
-.uppercase { 
+.uppercase {
     text-transform: uppercase
 }
-.capitalize { 
+.capitalize {
     text-transform: capitalize
 }
 h1, h2, h3, h4, h5, h6 {
@@ -115,7 +115,7 @@ label {
     text-shadow: none;
 }
 ::selection {
-    background: #4fc1f0;
+    background: #009cdc;
     color: #fff;
     text-shadow: none;
 }
@@ -203,7 +203,7 @@ select,
  /* .gray-bg { background: #edf0f2; } */
  .gray-bg { background: #edf0f2b0; }
  .blue-bg { background: #213047; }
- .green-bg { background: #52b6bc; }
+ .green-bg { background: #009cdc; }
  .black-bg { background: #000; }
  .default-bg { background: #50C1F0; }
  .transparent-bg { background: transparent; }
@@ -399,7 +399,7 @@ select,
 
 
 /***************************
-    Page section padding 
+    Page section padding
 ****************************/
 .ptb-0 { padding: 0 }
 .ptb-10 { padding: 10px 0 }
@@ -429,7 +429,7 @@ select,
 .ptb-280 { padding: 280px 0 }
 
 /***************************
-    Page section margin 
+    Page section margin
 ****************************/
 .mtb-0 { margin: 0 }
 .mtb-10 { margin: 10px 0 }
@@ -484,7 +484,7 @@ select,
 }
 .bg-opacity-1{position:relative;}
 .bg-opacity-1::before {
-  background: #52b6bc;
+  background: #009cdc;
   content: "";
   height: 100%;
   left: 0;

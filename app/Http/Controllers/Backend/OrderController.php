@@ -73,20 +73,4 @@ class OrderController extends Controller
         return response()->json(['delivery_time_form' => $delivery_time_from, 'delivery_time_to' => $delivery_time_to, 'delivery_date' => $delivery_date, 'order_id' => $order_id]);
     }
 
-    public function addItemCart(Request $request)
-    {
-        $id = $request->id;
-        $items_details = ItemList::find($id);
-        $service_type_id = $items_details->service_type_id;
-        $service_type = ServiceType::find($service_type_id);
-        return response()->json(['item_details' => $items_details, $service_type->service_types]);
-    }
-
-    public function addToCart(Request $request)
-    {
-        $id = $request->id;
-        $quantity = $request->quantity;
-        $item = ItemList::find($id);
-        return response()->json(['item' => $item, 'quantity' => $quantity]);
-    }
 }
