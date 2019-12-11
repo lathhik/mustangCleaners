@@ -202,7 +202,7 @@
         </div>
     </div>
     <div class="d-none" id="bagContent" style="display: none;">
-        <div class="col-md-12">
+        <div class="col-md-12" id="pre-items">
             <h6 class="service_type">
             </h6>
             <div class="col-md-1 quantity">
@@ -244,7 +244,6 @@
                     },
                     dataType: "JSON",
                     success: function (item) {
-                        console.log(item);
                         $('#add-item').modal();
                         $('.service_type').html(item.service_type);
                         $('.quantity-field').val(item.quantity);
@@ -294,12 +293,9 @@
                 decrementValue(e);
             });
 
-            $('.add-to-cart').on('click', function () {
+            $(document).on('click','.add-to-cart', function () {
                 var quantity = $('.quantity-field').val();
                 var id = $('.hidden_id').val();
-                console.log(quantity);
-                console.log(id);
-
                 var ajaxRoute = '{{route('add-to-cart')}}';
                 $.ajax({
                     type: 'POST',
@@ -313,15 +309,13 @@
                     },
                     dataType: 'JSON',
                     success: function (cart) {
-                        console.log(cart.item.items);
-                        console.log(cart.cart.total);
-                        console.log(cart);
                         var bagContent = $('#bagContent').children().clone();
                         $('#pre-items-' + cart.item.id).remove();
                         bagContent.find('.service_type').html(cart.service_type);
                         bagContent.find('.item_name').html(cart.item.items);
                         bagContent.find('.quantity').html(cart.cart.quantity + 'x');
                         bagContent.find('.total_amt').html(('$' + cart.cart.total));
+                        $('#pre-items').attr('id', 'pre-items-'+cart.item.id);
                         $('#myBag').append(bagContent);
                     }
                 });
@@ -380,7 +374,6 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        console.log(data);
                         $('#add-item').modal();
                         $('.service_type').html(data.service_type);
                         $('.quantity-field').val(data.cart.quantity);
