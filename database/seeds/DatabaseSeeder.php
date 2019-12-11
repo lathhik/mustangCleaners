@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
             ['status' => 'Delivered', 'identifier' => 5],
             ['status' => 'Cancelled', 'identifier' => 6]
         ]);
+
+
     }
 }
 
