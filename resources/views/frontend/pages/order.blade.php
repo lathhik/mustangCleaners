@@ -131,24 +131,18 @@
                                 </div>
                             @endforeach
                         </div>
-                        @if(!empty($cart))
-                            <div class="col-md-12 grand_total">
-                                <div class="col-md-10">
-                                    <h7>Grand Total</h7>
-                                </div>
-                                <div class="col-md-2">
-                                    <h7>$<span class="total_amt">{{$total}}</span></h7>
-                                </div>
+                        <div class="col-md-12 grand_total" style="display: {{!empty($cart)? 'block': 'none'}}">
+                            <div class="col-md-10">
+                                <h7>Grand Total</h7>
                             </div>
-                        @endif
-
-                        @if(!empty($cart))
+                            <div class="col-md-2">
+                                <h7>$<span class="total_amt">{{$total}}</span></h7>
+                            </div>
                             <div class="col-md-12 checkout btn btn-sm">
                                 <a>Checkout</a>
                             </div>
-                        @endif
-                    @else
-                        <div class="bag">
+                        </div>
+                        <div class="bag" style="display: {{empty($cart)? 'block': 'none'}}">
                             <h4>Bag is Empty</h4>
                         </div>
                     @endif
@@ -178,7 +172,8 @@
                             <h4 class="title" style="display: inline"></h4>
                             <b class="" id="amt">$<span class="amount" style="">$</span></b>
                             <input type="button" value="-" class="button-minus" data-field="quantity">
-                            <input type="number" step="1" max="100" name="quantity" value="" class="quantity-field" id="quantity-field"
+                            <input type="number" step="1" max="100" name="quantity" value="" class="quantity-field"
+                                   id="quantity-field"
                                    data-field="quantity">
                             <input type="button" value="+" class="button-plus" data-field="quantity">
                             <input type="hidden" value="" class="hidden_id">

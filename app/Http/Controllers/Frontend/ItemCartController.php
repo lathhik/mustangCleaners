@@ -21,7 +21,11 @@ class ItemCartController extends Controller
         $service_type = ServiceType::find($service_type_id);
 
         $cart = Cart::where('item_id', $items_details->id)->first();
-        $quantity = $cart->quantity;
+        if($cart){
+            $quantity = $cart->quantity;
+        }else{
+            $quantity = 1;
+        }
         return response()->json(['item_details' => $items_details, 'service_type' => $service_type->service_types, 'quantity' => $quantity]);
     }
 
