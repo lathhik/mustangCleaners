@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Cart;
 use App\Models\ItemList;
 use App\Models\ServiceType;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ItemCartController extends Controller
 {
@@ -17,7 +20,9 @@ class ItemCartController extends Controller
         $service_type_id = $items_details->service_type_id;
         $service_type = ServiceType::find($service_type_id);
 
-        return response()->json(['item_details' => $items_details, $service_type->service_types]);
+        $cart = Cart::where('item_id', $items_details->id)->first();
+        $quantity = $cart->quantity;
+        return response()->json(['item_details' => $items_details, 'service_type' => $service_type->service_types, 'quantity' => $quantity]);
     }
 
     public function addToCart(Request $request)
@@ -25,69 +30,50 @@ class ItemCartController extends Controller
         $id = $request->id;
         $quantity = $request->quantity;
         $item = ItemList::find($id);
+        $item_amount = $item->amount;
 
         $service_type = ServiceType::where('id', $item->service_type_id)->first();
+        $service_type = $service_type->service_types;
 
-        if (!$item) {
+        $cart = Cart::all();
+        if (!$cart) {
             abort(404);
         }
-        $cart = session()->get('cart');
 
-        $amt2 = 0;
-        $amt= 0;
+        if (empty($cart)) {
+            $cart = new Cart();
+            $cart->item_id = $id;
+            $cart->user_id = Auth::guard('customer')->user()->id;
+            $cart->quantity = $quantity;
+            $cart->total = $quantity * $item_amount;
+            $cart->save();
 
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    'service_type' => $service_type->service_types,
-                    'item_name' => $item->items,
-                    'quantity' => $quantity,
-                    'item_amount' => $item->amount,
-                    'total_amount' => $quantity * $item->amount,
-                    'grand_total'=>$item->amount
-                ]
-            ];
-
-            session()->put('cart', $cart);
-            return redirect()->back();
-        }
-        if (isset($cart[$id])) {
-            $cart = [
-              $id=>[
-                  'service_type' => $service_type->service_types,
-                  'item_name' => $item->items,
-                  'quantity' => $quantity,
-                  'item_amount' => $item->amount,
-                  'total_amount' => $quantity * $item->amount,
-                  'grand_total'=>$amt2,
-              ]
-            ];
-            session()->put('cart', $cart);
-
-            foreach (session('cart') as $id => $value){
-                $amt = $value['total_amount'];
-                $amt2 += $amt;
-            }
-
-            return response()->json(['cart', $cart]);
-        }
-        $cart[$id] = [
-            'service_type' => $service_type->service_types,
-            'item_name' => $item->items,
-            'quantity' => $quantity,
-            'item_amount' => $item->amount,
-            'total_amount' => $quantity * $item->amount,
-            'grand_total'=>$amt2
-        ];
-
-        foreach (session('cart') as $id => $value){
-            $amt = $value['total_amount'];
-            $amt2 += $amt;
+            return response()->json(['cart' => $cart, 'item' => $item, 'service_type' => $service_type]);
         }
 
-        session()->put('cart', $cart);
 
+        $cart_with_id = Cart::find($id);
+        if ($cart_with_id) {
+            $cart_with_id->item_id = $id;
+            $cart_with_id->user_id = Auth::guard('customer')->user()->id;
+            $cart_with_id->quantity = $quantity;
+            $cart_with_id->total = $quantity * $item_amount;
 
-        return response()->json(['item' => $item, 'quantity' => $quantity, $cart,'amt'=> $amt2]);
+            $cart_with_id->save();
+
+            return response()->json(['cart' => $cart_with_id, 'item' => $item, 'service_type' => $service_type, 'quantity' => $quantity]);
+        }
+
+        $cart = new Cart();
+        $cart->item_id = $id;
+        $cart->user_id = Auth::guard('customer')->user()->id;
+        $cart->quantity = $quantity;
+        $cart->total = $quantity * $item_amount;
+
+        $cart->save();
+
+        $cart = Cart::find($id);
+
+        return response()->json(['item' => $item, 'quantity' => $quantity, 'cart' => $cart, 'service_type' => $service_type]);
     }
 }
