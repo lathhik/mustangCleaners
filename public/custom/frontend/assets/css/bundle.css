@@ -115,7 +115,7 @@ label {
     text-shadow: none;
 }
 ::selection {
-    background: #009cdc;
+    background: #163D83;
     color: #fff;
     text-shadow: none;
 }
@@ -203,7 +203,7 @@ select,
  /* .gray-bg { background: #edf0f2; } */
  .gray-bg { background: #edf0f2b0; }
  .blue-bg { background: #213047; }
- .green-bg { background: #009cdc; }
+ .green-bg { background: #163D83; }
  .black-bg { background: #000; }
  .default-bg { background: #50C1F0; }
  .transparent-bg { background: transparent; }
@@ -484,7 +484,7 @@ select,
 }
 .bg-opacity-1{position:relative;}
 .bg-opacity-1::before {
-  background: #009cdc;
+  background: #163D83;
   content: "";
   height: 100%;
   left: 0;

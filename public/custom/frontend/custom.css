@@ -116,12 +116,12 @@ input[type="number"] {
 
 .item-cart{
     /*margin: auto;*/
-    margin-left: 50px;
+    margin-left: 10px;
     margin-top: 80px;
     margin-bottom: 50px;
     display: block;
     height: 300px;
-    width: 350px;
+    width: 390px;
     background-color: #faf5e8;
     overflow: auto;
 }
@@ -145,7 +145,7 @@ input[type="number"] {
     border-radius: 3px;
     background-color: #288e6d;
     width: 335px;
-    margin-left: 50px;
+    margin-left: 32px;
     margin-bottom: -80px;
     margin-top: 80px;
     height: 40px;
@@ -183,4 +183,17 @@ input[type="number"] {
     /*margin: auto;*/
     font-size: 20px;
     color: white;
+}
+
+.delete{
+    /*height: 25px;*/
+    /*width: 50px;*/
+    /*border: 1px solid red;*/
+    /*display: none;*/
+    /*background-color: black;*/
+    margin-left: 20px;
+}
+
+.edit{
+    margin-left: 2px;
 }

@@ -21,9 +21,10 @@ class ItemCartController extends Controller
         $service_type = ServiceType::find($service_type_id);
 
         $cart = Cart::where('item_id', $items_details->id)->first();
-        if($cart){
+
+        if ($cart) {
             $quantity = $cart->quantity;
-        }else{
+        } else {
             $quantity = 1;
         }
         return response()->json(['item_details' => $items_details, 'service_type' => $service_type->service_types, 'quantity' => $quantity]);
@@ -56,16 +57,16 @@ class ItemCartController extends Controller
         }
 
 
-        $cart_with_id = Cart::find($id);
-        if ($cart_with_id) {
-            $cart_with_id->item_id = $id;
-            $cart_with_id->user_id = Auth::guard('customer')->user()->id;
-            $cart_with_id->quantity = $quantity;
-            $cart_with_id->total = $quantity * $item_amount;
+        $cart_with_item_id = Cart::where('item_id', $item->id)->first();
+        if ($cart_with_item_id) {
+            $cart_with_item_id->item_id = $id;
+            $cart_with_item_id->user_id = Auth::guard('customer')->user()->id;
+            $cart_with_item_id->quantity = $quantity;
+            $cart_with_item_id->total = $quantity * $item_amount;
 
-            $cart_with_id->save();
+            $cart_with_item_id->save();
 
-            return response()->json(['cart' => $cart_with_id, 'item' => $item, 'service_type' => $service_type, 'quantity' => $quantity]);
+            return response()->json(['cart' => $cart_with_item_id, 'item' => $item, 'service_type' => $service_type, 'quantity' => $quantity]);
         }
 
         $cart = new Cart();
@@ -76,8 +77,30 @@ class ItemCartController extends Controller
 
         $cart->save();
 
-        $cart = Cart::find($id);
+        $cart = Cart::find($cart->id);
 
         return response()->json(['item' => $item, 'quantity' => $quantity, 'cart' => $cart, 'service_type' => $service_type]);
+    }
+
+    public function deleteItemCart(Request $request)
+    {
+        $id = $request->id;
+        $item_cart = Cart::find($id);
+        $item_cart->delete();
+        return response()->json(['success' => "deleted"]);
+    }
+
+    public function updateItemCart(Request $request)
+    {
+        $cart_id = $request->cart_id;
+        $item_id = $request->item_id;
+        $item = ItemList::find($item_id);
+
+        $service_type_id = $item->service_type_id;
+        $service_type = ServiceType::find($service_type_id);
+
+        $item_cart = Cart::find($cart_id);
+
+        return response()->json(['item' => $item, 'service_type' => $service_type->service_types,'cart'=>$item_cart]);
     }
 }
