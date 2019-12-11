@@ -244,7 +244,6 @@
                     },
                     dataType: "JSON",
                     success: function (item) {
-                        console.log(item);
                         $('#add-item').modal();
                         $('.service_type').html(item.service_type);
                         $('.quantity-field').val(item.quantity);
@@ -297,8 +296,6 @@
             $('.add-to-cart').on('click', function () {
                 var quantity = $('.quantity-field').val();
                 var id = $('.hidden_id').val();
-                console.log(quantity);
-                console.log(id);
 
                 var ajaxRoute = '{{route('add-to-cart')}}';
                 $.ajax({
@@ -313,9 +310,6 @@
                     },
                     dataType: 'JSON',
                     success: function (cart) {
-                        console.log(cart.item.items);
-                        console.log(cart.cart.total);
-                        console.log(cart);
                         var bagContent = $('#bagContent').children().clone();
                         $('#pre-items-' + cart.item.id).remove();
                         bagContent.find('.service_type').html(cart.service_type);
@@ -338,7 +332,6 @@
 
             $('.delete').on('click', function () {
                 var id = $(this).closest('.main').find('.hidden_cart_id').val();
-
                 var ajaxRoute = '{{route('delete-item-cart')}}';
 
                 $.ajax({
@@ -352,8 +345,7 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        console.log(data);
-
+                        $('#pre-items-' + data.item.item_id).remove();
                     }
 
 
@@ -363,8 +355,6 @@
             $('.update').on('click', function () {
                 var cart_id = $(this).closest('.main').find('.hidden_cart_id').val();
                 var item_id = $(this).closest('.main').find('.hidden_item_id').val();
-
-                console.log(item_id);
 
                 var ajaxRoute = '{{route('update-item-cart')}}';
 
@@ -380,7 +370,6 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        console.log(data);
                         $('#add-item').modal();
                         $('.service_type').html(data.service_type);
                         $('.quantity-field').val(data.cart.quantity);
