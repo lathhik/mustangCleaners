@@ -49,7 +49,6 @@
                                                         <th>Order Number</th>
                                                         <th>Customer Name</th>
                                                         <th>Customer Phone</th>
-                                                        <th>Order Type Name</th>
                                                         <th>Order Status</th>
                                                         <th>Pick Up Location</th>
                                                         <th>Pick Up Time</th>
@@ -68,7 +67,6 @@
                                                             <td>{{$order->id}}</td>
                                                             <td>{{$order->customer->first_name}}</td>
                                                             <td>{{$order->customer->phone}}</td>
-                                                            <td>{{$order->serviceType->service_types}}</td>
                                                             <td>{{$order->orderStatus->status}}</td>
                                                             <td>{{$pickup_address}}</td>
                                                             <td>{{$order->pickup_time_from}}

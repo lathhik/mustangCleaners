@@ -179,82 +179,73 @@
                     <h5 class="modal-title text-center" id="add">Please Select Quantity</h5>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <form action="{{route('customer-order')}}" method="post">
                         @csrf
                         <div class="row">
-                            <div class="col-md-12">
-                                <form action="">
-                                    <div class="row">
-                                        <h3 class="text-center"><b>Pick Up Date/Time</b></h3>
-                                        <div class="form-group col-md-6 ">
-                                            <div class="form-group">
-                                                <label for="pick_date">Pick Up Date</label>
-                                                <input class="form-control" type="date" name="pickup_date" id="pick_date">
-                                                @if($errors->has('pickup_date'))
-                                                    <p class="text-danger">{{$errors->first('pickup_date')}}</p>
-                                                @endif
-                                            </div>
-                                        </div>
-                                        <div class="row"></div>
-                                        <div class="form-group col-md-6">
-                                            <label for="pick_time_from">Time From</label>
-                                            <input type="time" class="form-control" name="pickup_time_from"
-                                                   id="pick_time_from">
-                                            @if($errors->has('pickup_time_from'))
-                                                <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>
-                                            @endif
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="pick_time_to">Time To</label>
-                                            <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">
-                                            @if($errors->has('pickup_time_to'))
-                                                <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </form>
-
+                            <h3 class="text-center"><b>Pick Up Date/Time</b></h3>
+                            <div class="form-group col-md-6 ">
+                                <div class="form-group">
+                                    <label for="pick_date">Pick Up Date</label>
+                                    <input class="form-control" type="date" name="pickup_date" id="pick_date">
+                                    @if($errors->has('pickup_date'))
+                                        <p class="text-danger">{{$errors->first('pickup_date')}}</p>
+                                    @endif
+                                </div>
                             </div>
+                            <div class="row"></div>
+                            <div class="form-group col-md-6">
+                                <label for="pick_time_from">Time From</label>
+                                <input type="time" class="form-control" name="pickup_time_from"
+                                       id="pick_time_from">
+                                @if($errors->has('pickup_time_from'))
+                                    <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>
+                                @endif
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="pick_time_to">Time To</label>
+                                <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">
+                                @if($errors->has('pickup_time_to'))
+                                    <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                            <button type="submit" class="btn btn-primary order">Order</button>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-                    <button type="button" class="btn btn-primary add-to-cart">Add To Cart</button>
+            </div>
+        </div>
 
+
+        <div class="d-none" id="bagContent" style="display: none;">
+            <div class="col-md-12 main" id="pre-items">
+                <input type="hidden" value="" class="hidden_cart_id">
+                <input type="hidden" value="" class="hidden_item_id">
+                <h6 class="service_type">
+                </h6>
+                <div class="col-md-1 quantity">
+                    <span id="quantity"></span>
                 </div>
+                <div class="col-md-6 item_name item_name">
+                    <h7>
+                    </h7>
+                </div>
+                <div class="col-md-2">
+                    $<span class="total_amt">0</span>
+                </div>
+                <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
+                     title="Delete">
+                    <span class="fa fa-trash"></span>
+                </div>
+                <div class="col-md-1 btn btn-xs btn-success update" data-toggle="tooltip"
+                     title="Edit">
+                    <span class="fa fa-edit"></span>
+                </div>
+                <hr class="hr">
             </div>
         </div>
-    </div>
-
-
-    <div class="d-none" id="bagContent" style="display: none;">
-        <div class="col-md-12 main" id="pre-items">
-            <input type="hidden" value="" class="hidden_cart_id">
-            <input type="hidden" value="" class="hidden_item_id">
-            <h6 class="service_type">
-            </h6>
-            <div class="col-md-1 quantity">
-                <span id="quantity"></span>
-            </div>
-            <div class="col-md-6 item_name item_name">
-                <h7>
-                </h7>
-            </div>
-            <div class="col-md-2">
-                $<span class="total_amt">0</span>
-            </div>
-            <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
-                 title="Delete">
-                <span class="fa fa-trash"></span>
-            </div>
-            <div class="col-md-1 btn btn-xs btn-success update" data-toggle="tooltip"
-                 title="Edit">
-                <span class="fa fa-edit"></span>
-            </div>
-            <hr class="hr">
-        </div>
-    </div>
     </div>
 @endsection
 @section('script')
@@ -348,37 +339,11 @@
 
             $('#myBag').on('click', '.update', function () {
                 var item_id = $(this).closest('.main').find('.hidden_item_id').val();
-                var ajaxRoute = '{{route('add-item-cart')}}';
-                console.log(item_id);
-                $.ajax({
-                    url: ajaxRoute,
-                    method: 'POST',
-                    data: {
-                        id: item_id,
-                    },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                    },
-                    dataType: 'JSON',
-                    success: function (item) {
-                        $('#add-item').modal();
-                        $('#modal_service_type').html(item.service_type);
-                        $('#modal_quantity_field').val(item.quantity);
-                        $('#modal_title').html(item.item_details.items);
-                        $('#modal_amount').html(item.item_details.amount);
-                        $('#modal_hidden_id').val(item.item_details.id);
-                    }
-
-                });
+                addTocart(item_id)
             });
 
-            $('.checkout').on('click', function () {
-
-                $('#checkout').modal();
-            });
             function addTocart(id) {
                 var ajaxRoute = '{{route('add-item-cart')}}';
-
                 $.ajax({
                     url: ajaxRoute,
                     type: "POST",
@@ -400,6 +365,8 @@
                     }
                 });
             }
+
+
             function incrementValue(e) {
                 e.preventDefault();
                 var fieldName = $(e.target).data('field');
@@ -424,6 +391,7 @@
                     parent.find('input[name=' + fieldName + ']').val(0);
                 }
             }
+
             function recalculateGrandTotal() {
                 var sum = 0;
                 $('.total_amt').each(function () {
@@ -432,6 +400,19 @@
                 $('#grand_total_amt').text((sum).toFixed(2));
             }
 
+            $('.checkout').on('click', function () {
+                $('#checkout').modal();
+            });
         });
     </script>
+
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+            @if($errors->has(['pickup_date','pickup_time_from','pickup_time_to']))
+            $(document).ready(function () {
+                $('#checkout').modal('show');
+            });
+            @endif
+        </script>
+    @endif
 @endsection
