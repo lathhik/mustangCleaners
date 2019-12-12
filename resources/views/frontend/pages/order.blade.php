@@ -65,41 +65,7 @@
                             </div>
                         </div>
                         <br>
-
-                        {{--                        <div class="row">--}}
-                        {{--                            <h3 class="text-center"><b>Pick Up Date/Time</b></h3>--}}
-                        {{--                            <div class="form-group col-md-6 ">--}}
-                        {{--                                <div class="form-group">--}}
-                        {{--                                    <label for="pick_date">Pick Up Date</label>--}}
-                        {{--                                    <input class="form-control" type="date" name="pickup_date" id="pick_date">--}}
-                        {{--                                    @if($errors->has('pickup_date'))--}}
-                        {{--                                        <p class="text-danger">{{$errors->first('pickup_date')}}</p>--}}
-                        {{--                                    @endif--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="row"></div>--}}
-                        {{--                            <div class="form-group col-md-6">--}}
-                        {{--                                <label for="pick_time_from">Time From</label>--}}
-                        {{--                                <input type="time" class="form-control" name="pickup_time_from" id="pick_time_from">--}}
-                        {{--                                @if($errors->has('pickup_time_from'))--}}
-                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>--}}
-                        {{--                                @endif--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="form-group col-md-6">--}}
-                        {{--                                <label for="pick_time_to">Time To</label>--}}
-                        {{--                                <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">--}}
-                        {{--                                @if($errors->has('pickup_time_to'))--}}
-                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>--}}
-                        {{--                                @endif--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                     </div>
-                    {{--    </div>--}}
-                    {{--                    <div>--}}
-                    {{--                        <button class="btn btn-lg col-md-offset-5" type="submit" id="order_submit">--}}
-                    {{--                            Order--}}
-                    {{--                        </button>--}}
-                    {{--                    </div>--}}
                 </form>
             </div>
 
@@ -141,7 +107,8 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="col-md-12 total_emp" style="display: {{!empty($cart)? 'block': 'none'}}">
+                        <div class="col-md-12" id="checkout_section"
+                             style="display: {{!empty($cart)? 'block': 'none'}}">
                             <div class="grand_total col-md-12">
                                 <div class="col-md-8">
                                     <h7>Grand Total</h7>
@@ -154,7 +121,7 @@
                                 <a>Checkout</a>
                             </div>
                         </div>
-                        <div class="bag" style="display: {{empty($cart)? 'block': 'none'}}">
+                        <div class="bag" id="empty_bag" style="display: {{empty($cart)? 'block': 'none'}}">
                             <h4>Bag is Empty</h4>
                         </div>
                     @endif
@@ -202,6 +169,7 @@
     </div>
     <div class="d-none" id="bagContent" style="display: none;">
         <div class="col-md-12 main" id="pre-items">
+            <input type="hidden" value="" class="hidden_cart_id">
             <input type="hidden" value="" class="hidden_item_id">
             <h6 class="service_type">
             </h6>
@@ -293,7 +261,7 @@
 
             function recalculateGrandTotal() {
                 var sum = 0;
-                $('.total_amt').each(function(){
+                $('.total_amt').each(function () {
                     sum += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
                 });
                 $('#grand_total_amt').text((sum).toFixed(2));
@@ -315,9 +283,11 @@
                     },
                     dataType: 'JSON',
                     success: function (cart) {
+                        console.log(cart);
                         var bagContent = $('#bagContent').children().clone();
                         bagContent.find('.service_type').html(cart.service_type);
                         bagContent.find('.hidden_item_id').val(cart.item.id);
+                        bagContent.find('.hidden_cart_id').val(cart.cart.id);
                         bagContent.find('.item_name').html(cart.item.items);
                         bagContent.find('.quantity').html(cart.cart.quantity + 'x');
                         bagContent.find('.total_amt').text((cart.cart.total).toFixed(2));
@@ -325,6 +295,10 @@
                         $('#myBag').append(bagContent);
                         $('#pre-items-' + cart.item.id).remove();
                         recalculateGrandTotal();
+                        if ($('#myBag .main').length >= 0) {
+                            $('#checkout_section').show();
+                            $('#empty_bag').hide();
+                        }
                     }
                 });
                 $('#add-item').modal('hide');
@@ -338,7 +312,7 @@
                 $(this).css('cursor', 'auto');
             });
 
-            $('.delete').on('click', function () {
+            $('#myBag').on('click', '.delete', function () {
                 var id = $(this).closest('.main').find('.hidden_cart_id').val();
                 var ajaxRoute = '{{route('delete-item-cart')}}';
                 $.ajax({
@@ -353,13 +327,16 @@
                     dataType: 'JSON',
                     success: function (data) {
                         $('#pre-items-' + data.item.item_id).remove();
+                        recalculateGrandTotal();
+                        if ($('#myBag .main').length === 0) {
+                            $('#checkout_section').hide();
+                            $('#empty_bag').show();
+                        }
                     }
-
-
                 });
             });
 
-            $('#myBag').on('click','.update', function () {
+            $('#myBag').on('click', '.update', function () {
                 var item_id = $(this).closest('.main').find('.hidden_item_id').val();
                 var ajaxRoute = '{{route('add-item-cart')}}';
                 console.log(item_id);
