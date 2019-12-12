@@ -65,34 +65,6 @@
                             </div>
                         </div>
                         <br>
-
-                        {{--                        <div class="row">--}}
-                        {{--                            <h3 class="text-center"><b>Pick Up Date/Time</b></h3>--}}
-                        {{--                            <div class="form-group col-md-6 ">--}}
-                        {{--                                <div class="form-group">--}}
-                        {{--                                    <label for="pick_date">Pick Up Date</label>--}}
-                        {{--                                    <input class="form-control" type="date" name="pickup_date" id="pick_date">--}}
-                        {{--                                    @if($errors->has('pickup_date'))--}}
-                        {{--                                        <p class="text-danger">{{$errors->first('pickup_date')}}</p>--}}
-                        {{--                                    @endif--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="row"></div>--}}
-                        {{--                            <div class="form-group col-md-6">--}}
-                        {{--                                <label for="pick_time_from">Time From</label>--}}
-                        {{--                                <input type="time" class="form-control" name="pickup_time_from" id="pick_time_from">--}}
-                        {{--                                @if($errors->has('pickup_time_from'))--}}
-                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>--}}
-                        {{--                                @endif--}}
-                        {{--                            </div>--}}
-                        {{--                            <div class="form-group col-md-6">--}}
-                        {{--                                <label for="pick_time_to">Time To</label>--}}
-                        {{--                                <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">--}}
-                        {{--                                @if($errors->has('pickup_time_to'))--}}
-                        {{--                                    <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>--}}
-                        {{--                                @endif--}}
-                        {{--                            </div>--}}
-                        {{--                        </div>--}}
                     </div>
                     {{--    </div>--}}
                     {{--                    <div>--}}
@@ -201,6 +173,67 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade active" id="checkout" tabindex="-1" role="dialog" aria-labelledby="add"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title text-center" id="add">Please Select Quantity</h5>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form action="">
+                                    <div class="row">
+                                        <h3 class="text-center"><b>Pick Up Date/Time</b></h3>
+                                        <div class="form-group col-md-6 ">
+                                            <div class="form-group">
+                                                <label for="pick_date">Pick Up Date</label>
+                                                <input class="form-control" type="date" name="pickup_date" id="pick_date">
+                                                @if($errors->has('pickup_date'))
+                                                    <p class="text-danger">{{$errors->first('pickup_date')}}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="row"></div>
+                                        <div class="form-group col-md-6">
+                                            <label for="pick_time_from">Time From</label>
+                                            <input type="time" class="form-control" name="pickup_time_from"
+                                                   id="pick_time_from">
+                                            @if($errors->has('pickup_time_from'))
+                                                <p class="text-danger">{{$errors->first('pickup_time_from')}}</p>
+                                            @endif
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="pick_time_to">Time To</label>
+                                            <input type="time" class="form-control" name="pickup_time_to" id="pick_time_to">
+                                            @if($errors->has('pickup_time_to'))
+                                                <p class="text-danger">{{$errors->first('pickup_time_to')}}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                    <button type="button" class="btn btn-primary add-to-cart">Add To Cart</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="d-none" id="bagContent" style="display: none;">
         <div class="col-md-12">
             <h6 class="service_type">
@@ -380,6 +413,11 @@
 
                 });
             });
+
+            $('.checkout').on('click', function () {
+
+                $('#checkout').modal();
+            })
 
         });
     </script>
