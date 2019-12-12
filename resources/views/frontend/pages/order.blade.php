@@ -126,9 +126,8 @@
                                         <h7>{{$cart->items->items}}
                                         </h7>
                                     </div>
-                                    <div class="col-md-2 total_amt">
-                                        <span>${{ $cart->total}}</span>
-
+                                    <div class="col-md-2 ">
+                                        $<span class="total_amt">{{ $cart->total}}</span>
                                     </div>
                                     <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
                                          title="Delete">
@@ -148,7 +147,7 @@
                                     <h7>Grand Total</h7>
                                 </div>
                                 <div class="col-md-2">
-                                    <h7>$<span class="total_amt">{{$total}}</span></h7>
+                                    <h7>$<span id="grand_total_amt">{{$total}}</span></h7>
                                 </div>
                             </div>
                             <div class="col-md-12 checkout btn btn-sm">
@@ -180,16 +179,16 @@
                         @csrf
                         <div class="input-group">
                             <div class="">
-                                <h3 class="service_type"></h3>
+                                <h3 id="modal_service_type"></h3>
                             </div>
-                            <h4 class="title" style="display: inline"></h4>
-                            <b class="" id="amt">$<span class="amount" style="">$</span></b>
+                            <h4 id="modal_title" style="display: inline"></h4>
+                            <b class="" id="amt">$<span id="modal_amount" style="">$</span></b>
                             <input type="button" value="-" class="button-minus" data-field="quantity">
-                            <input type="number" step="1" max="100" name="quantity" value="" class="quantity-field"
-                                   id="quantity-field"
+                            <input type="number" step="1" max="100" name="quantity" value=""
+                                   id="modal_quantity_field" class="quantity-field"
                                    data-field="quantity">
                             <input type="button" value="+" class="button-plus" data-field="quantity">
-                            <input type="hidden" value="" class="hidden_id">
+                            <input type="hidden" value="" id="modal_hidden_id">
                         </div>
                     </form>
                 </div>
@@ -202,7 +201,8 @@
         </div>
     </div>
     <div class="d-none" id="bagContent" style="display: none;">
-        <div class="col-md-12" id="pre-items">
+        <div class="col-md-12 main" id="pre-items">
+            <input type="hidden" value="" class="hidden_item_id">
             <h6 class="service_type">
             </h6>
             <div class="col-md-1 quantity">
@@ -212,8 +212,8 @@
                 <h7>
                 </h7>
             </div>
-            <div class="col-md-2 total_amt">
-                <span class="total"></span>
+            <div class="col-md-2">
+                $<span class="total_amt">0</span>
             </div>
             <div class="col-md-1 btn btn-xs btn-danger delete" data-toggle="tooltip"
                  title="Delete">
@@ -245,18 +245,17 @@
                     dataType: "JSON",
                     success: function (item) {
                         $('#add-item').modal();
-                        $('.service_type').html(item.service_type);
-                        $('.quantity-field').val(item.quantity);
-                        $('.title').html(item.item_details.items);
-                        $('.amount').html(item.item_details.amount);
-                        $('.hidden_id').val(item.item_details.id);
+                        $('#modal_service_type').html(item.service_type);
+                        $('#modal_quantity_field').val(item.quantity);
+                        $('#modal_title').html(item.item_details.items);
+                        $('#modal_amount').html(item.item_details.amount);
+                        $('#modal_hidden_id').val(item.item_details.id);
                     },
                     error: function (data) {
                         console.log('something went wrong');
                     }
                 });
             });
-
             $('.quantity-field').width(70);
 
             function incrementValue(e) {
@@ -264,7 +263,6 @@
                 var fieldName = $(e.target).data('field');
                 var parent = $(e.target).closest('div');
                 var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
                 if (!isNaN(currentVal) && currentVal >= 0) {
                     parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
                 } else {
@@ -293,9 +291,17 @@
                 decrementValue(e);
             });
 
-            $(document).on('click','.add-to-cart', function () {
-                var quantity = $('.quantity-field').val();
-                var id = $('.hidden_id').val();
+            function recalculateGrandTotal() {
+                var sum = 0;
+                $('.total_amt').each(function(){
+                    sum += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
+                });
+                $('#grand_total_amt').text((sum).toFixed(2));
+            }
+
+            $(document).on('click', '.add-to-cart', function () {
+                var quantity = $('#modal_quantity_field').val();
+                var id = $('#modal_hidden_id').val();
                 var ajaxRoute = '{{route('add-to-cart')}}';
                 $.ajax({
                     type: 'POST',
@@ -310,13 +316,15 @@
                     dataType: 'JSON',
                     success: function (cart) {
                         var bagContent = $('#bagContent').children().clone();
-                        $('#pre-items-' + cart.item.id).remove();
                         bagContent.find('.service_type').html(cart.service_type);
+                        bagContent.find('.hidden_item_id').val(cart.item.id);
                         bagContent.find('.item_name').html(cart.item.items);
                         bagContent.find('.quantity').html(cart.cart.quantity + 'x');
-                        bagContent.find('.total_amt').html(('$' + cart.cart.total));
-                        $('#pre-items').attr('id', 'pre-items-'+cart.item.id);
+                        bagContent.find('.total_amt').text((cart.cart.total).toFixed(2));
+                        $('#pre-items').attr('id', 'pre-items-' + cart.item.id);
                         $('#myBag').append(bagContent);
+                        $('#pre-items-' + cart.item.id).remove();
+                        recalculateGrandTotal();
                     }
                 });
                 $('#add-item').modal('hide');
@@ -332,9 +340,7 @@
 
             $('.delete').on('click', function () {
                 var id = $(this).closest('.main').find('.hidden_cart_id').val();
-
                 var ajaxRoute = '{{route('delete-item-cart')}}';
-
                 $.ajax({
                     url: ajaxRoute,
                     method: 'DELETE',
@@ -346,40 +352,34 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        console.log(data);
-
+                        $('#pre-items-' + data.item.item_id).remove();
                     }
 
 
                 });
             });
 
-            $('.update').on('click', function () {
-                var cart_id = $(this).closest('.main').find('.hidden_cart_id').val();
+            $('#myBag').on('click','.update', function () {
                 var item_id = $(this).closest('.main').find('.hidden_item_id').val();
-
+                var ajaxRoute = '{{route('add-item-cart')}}';
                 console.log(item_id);
-
-                var ajaxRoute = '{{route('update-item-cart')}}';
-
                 $.ajax({
                     url: ajaxRoute,
-                    method: 'PATCH',
+                    method: 'POST',
                     data: {
-                        cart_id: cart_id,
-                        item_id: item_id,
+                        id: item_id,
                     },
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
                     dataType: 'JSON',
-                    success: function (data) {
+                    success: function (item) {
                         $('#add-item').modal();
-                        $('.service_type').html(data.service_type);
-                        $('.quantity-field').val(data.cart.quantity);
-                        $('.title').html(data.item.items);
-                        $('.amount').html(data.item.amount);
-                        $('.hidden_id').val(data.item.id);
+                        $('#modal_service_type').html(item.service_type);
+                        $('#modal_quantity_field').val(item.quantity);
+                        $('#modal_title').html(item.item_details.items);
+                        $('#modal_amount').html(item.item_details.amount);
+                        $('#modal_hidden_id').val(item.item_details.id);
                     }
 
                 });
