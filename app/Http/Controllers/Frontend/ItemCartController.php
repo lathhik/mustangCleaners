@@ -63,9 +63,7 @@ class ItemCartController extends Controller
             $cart_with_item_id->user_id = Auth::guard('customer')->user()->id;
             $cart_with_item_id->quantity = $quantity;
             $cart_with_item_id->total = $quantity * $item_amount;
-
             $cart_with_item_id->save();
-
             return response()->json(['cart' => $cart_with_item_id, 'item' => $item, 'service_type' => $service_type, 'quantity' => $quantity]);
         }
 
@@ -74,7 +72,6 @@ class ItemCartController extends Controller
         $cart->user_id = Auth::guard('customer')->user()->id;
         $cart->quantity = $quantity;
         $cart->total = $quantity * $item_amount;
-
         $cart->save();
 
         $cart = Cart::find($cart->id);
