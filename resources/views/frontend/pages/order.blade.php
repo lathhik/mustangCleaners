@@ -260,57 +260,13 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            var token = $('meta[name="csrf-token"]').attr('content');
             $('.add').on('click', function () {
                 var id = $(this).closest('li').find('[name=id]').val();
-                var ajaxRoute = '{{route('add-item-cart')}}';
-                var token = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: ajaxRoute,
-                    type: "POST",
-                    data: {
-                        _token: token,
-                        id: id
-                    },
-                    dataType: "JSON",
-                    success: function (item) {
-                        $('#add-item').modal();
-                        $('#modal_service_type').html(item.service_type);
-                        $('#modal_quantity_field').val(item.quantity);
-                        $('#modal_title').html(item.item_details.items);
-                        $('#modal_amount').html(item.item_details.amount);
-                        $('#modal_hidden_id').val(item.item_details.id);
-                    },
-                    error: function (data) {
-                        console.log('something went wrong');
-                    }
-                });
+                addTocart(id);
             });
+            /*yo code milaunu paryo */
             $('.quantity-field').width(70);
-
-            function incrementValue(e) {
-                e.preventDefault();
-                var fieldName = $(e.target).data('field');
-                var parent = $(e.target).closest('div');
-                var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-                if (!isNaN(currentVal) && currentVal >= 0) {
-                    parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
-                } else {
-                    parent.find('input[name=' + fieldName + ']').val(0);
-                }
-            }
-
-            function decrementValue(e) {
-                e.preventDefault();
-                var fieldName = $(e.target).data('field');
-                var parent = $(e.target).closest('div');
-                var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
-
-                if (!isNaN(currentVal) && currentVal > 0) {
-                    parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
-                } else {
-                    parent.find('input[name=' + fieldName + ']').val(0);
-                }
-            }
 
             $('.input-group').on('click', '.button-plus', function (e) {
                 incrementValue(e);
@@ -319,14 +275,6 @@
             $('.input-group').on('click', '.button-minus', function (e) {
                 decrementValue(e);
             });
-
-            function recalculateGrandTotal() {
-                var sum = 0;
-                $('.total_amt').each(function () {
-                    sum += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
-                });
-                $('#grand_total_amt').text((sum).toFixed(2));
-            }
 
             $(document).on('click', '.add-to-cart', function () {
                 var quantity = $('#modal_quantity_field').val();
@@ -345,6 +293,7 @@
                     dataType: 'JSON',
                     success: function (cart) {
                         console.log(cart);
+                        $('#pre-items-' + cart.item.id).remove();
                         var bagContent = $('#bagContent').children().clone();
                         bagContent.find('.service_type').html(cart.service_type);
                         bagContent.find('.hidden_item_id').val(cart.item.id);
@@ -352,9 +301,9 @@
                         bagContent.find('.item_name').html(cart.item.items);
                         bagContent.find('.quantity').html(cart.cart.quantity + 'x');
                         bagContent.find('.total_amt').text((cart.cart.total).toFixed(2));
-                        $('#pre-items').attr('id', 'pre-items-' + cart.item.id);
+                        bagContent.attr('id', 'pre-items-' + cart.item.id);
                         $('#myBag').append(bagContent);
-                        $('#pre-items-' + cart.item.id).remove();
+
                         recalculateGrandTotal();
                         if ($('#myBag .main').length >= 0) {
                             $('#checkout_section').show();
@@ -363,7 +312,6 @@
                     }
                 });
                 $('#add-item').modal('hide');
-
             });
 
             $('.total_amt').hover(function () {
@@ -387,7 +335,8 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        $('#pre-items-' + data.item.item_id).remove();
+                        console.log(data.cart);
+                        $('#pre-items-' + data.cart.item_id).remove();
                         recalculateGrandTotal();
                         if ($('#myBag .main').length === 0) {
                             $('#checkout_section').hide();
@@ -426,7 +375,62 @@
             $('.checkout').on('click', function () {
 
                 $('#checkout').modal();
-            })
+            });
+            function addTocart(id) {
+                var ajaxRoute = '{{route('add-item-cart')}}';
+
+                $.ajax({
+                    url: ajaxRoute,
+                    type: "POST",
+                    data: {
+                        _token: token,
+                        id: id
+                    },
+                    dataType: "JSON",
+                    success: function (item) {
+                        $('#add-item').modal();
+                        $('#modal_service_type').html(item.service_type);
+                        $('#modal_quantity_field').val(item.quantity);
+                        $('#modal_title').html(item.item_details.items);
+                        $('#modal_amount').html(item.item_details.amount);
+                        $('#modal_hidden_id').val(item.item_details.id);
+                    },
+                    error: function (data) {
+                        console.log('something went wrong');
+                    }
+                });
+            }
+            function incrementValue(e) {
+                e.preventDefault();
+                var fieldName = $(e.target).data('field');
+                var parent = $(e.target).closest('div');
+                var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+                if (!isNaN(currentVal) && currentVal >= 0) {
+                    parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+                } else {
+                    parent.find('input[name=' + fieldName + ']').val(0);
+                }
+            }
+
+            function decrementValue(e) {
+                e.preventDefault();
+                var fieldName = $(e.target).data('field');
+                var parent = $(e.target).closest('div');
+                var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+                if (!isNaN(currentVal) && currentVal > 0) {
+                    parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+                } else {
+                    parent.find('input[name=' + fieldName + ']').val(0);
+                }
+            }
+            function recalculateGrandTotal() {
+                var sum = 0;
+                $('.total_amt').each(function () {
+                    sum += parseFloat($(this).text());  // Or this.innerHTML, this.innerText
+                });
+                $('#grand_total_amt').text((sum).toFixed(2));
+            }
 
         });
     </script>

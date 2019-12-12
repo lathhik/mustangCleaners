@@ -32,27 +32,25 @@ class ItemCartController extends Controller
 
     public function addToCart(Request $request)
     {
-
         $id = $request->id;
         $quantity = $request->quantity;
         $item = ItemList::find($id);
         $item_amount = $item->amount;
         $service_type = $item->serviceType->service_types;
         $cart = Cart::updateOrCreate(
-            ['user_id' => Auth::guard('customer')->id, 'item_id' => $id],
+            ['user_id' => Auth::guard('customer')->user()->id, 'item_id' => $id],
             ['quantity' => $quantity, 'total' => $quantity * $item_amount]
         );
         return response()
-            ->json(['item' => $item, 'quantity' => $quantity,
-                'cart' => $cart, 'service_type' => $service_type]);
+            ->json(['item' => $item, 'cart' => $cart, 'service_type' => $service_type]);
     }
 
     public function deleteItemCart(Request $request)
     {
         $id = $request->id;
-        $item_cart = Cart::find($id);
-        $item_cart->delete();
-        return response()->json(['success' => "deleted", 'item' => $item_cart]);
+        $cart = Cart::find($id);
+        $cart->delete();
+        return response()->json(['success' => "deleted", 'cart' => $cart]);
     }
 
     public function updateItemCart(Request $request)
