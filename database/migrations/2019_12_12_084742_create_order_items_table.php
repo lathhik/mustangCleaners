@@ -18,7 +18,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('order_id')->unsigned();
             $table->integer('item_id')->unsigned();
             $table->integer('quantity');
-            $table->integer('total');
+            $table->float('total');
             $table->timestamps();
         });
 

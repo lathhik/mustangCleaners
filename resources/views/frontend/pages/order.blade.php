@@ -1,4 +1,4 @@
-@extends('frontend.master')
+    @extends('frontend.master')
 @section('content')
 
     <div class="container">
@@ -6,7 +6,7 @@
             <br>
             <br>
             <h1 class="place-order">Place Your Order</h1>
-            <hr class="hr">
+{{--            <hr class="hr">--}}
             @include('messages.succFail')
             <div class="col-md-8">
                 <form action="{{route('customer-order')}}" class="border" method="post">

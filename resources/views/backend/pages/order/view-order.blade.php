@@ -75,10 +75,9 @@
 
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
-                                                                        <a href=""
+                                                                        <a href="{{route('update-order-status',$order->id)}}"
                                                                            id="status"
-                                                                           class="btn btn-danger btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}"
-                                                                           data-toggle="modal" data-target="#quantity">
+                                                                           class="btn btn-danger btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Start Processing'}}
                                                                             @else
@@ -102,7 +101,8 @@
                                                                             @endif
                                                                         </a>
                                                                     @else
-                                                                        <button class="btn btn-secondary btn-sm">Completed
+                                                                        <button class="btn btn-secondary btn-sm">
+                                                                            Completed
                                                                         </button>
                                                                     @endif
                                                                 @endif
@@ -136,7 +136,6 @@
                                                         <th>Order Number</th>
                                                         <th>Customer Name</th>
                                                         <th>Customer Phone</th>
-                                                        <th>Order Type Name</th>
                                                         <th>Order Status</th>
                                                         <th>Delivery Location</th>
                                                         <th>Delivery Date</th>
@@ -156,7 +155,6 @@
                                                                 <td>{{$order->id}}</td>
                                                                 <td>{{$order->customer->first_name}}</td>
                                                                 <td>{{$order->customer->phone}}</td>
-                                                                <td>{{$order->serviceType->service_types}}</td>
                                                                 <td>{{$order->orderStatus->status}}</td>
                                                                 <td>{{$delivery_address}}</td>
                                                                 <td>
@@ -239,12 +237,11 @@
                                         <div class="main-card mb-12 card">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table style="width: 950px" id="example3"
-                                                       class="table table-hover table-striped table-bordered text-center table-responsive">
+                                                <table  id="example3"
+                                                       class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
-                                                        <th>Order Type Name</th>
                                                         <th>Order Status</th>
                                                         <th>Delivery Time</th>
                                                         <th>Action</th>
@@ -258,7 +255,6 @@
                                                         @endphp
                                                         <tr>
                                                             <td>{{$order->id}}</td>
-                                                            <td>{{$order->serviceType->service_types}}</td>
                                                             <td>{{$order->orderStatus->status}}</td>
                                                             <td>{{$order->delivery_time_from}}
                                                                 -{{$order->delivery_time_to}}</td>
@@ -286,48 +282,47 @@
     </div>
 
     <!-- Modal -->
-{{--    <div class="modal fade" id="quantity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"--}}
-{{--         aria-hidden="true">--}}
-{{--        <div class="modal-dialog" role="document">--}}
-{{--            <div class="modal-content">--}}
-{{--                <div class="modal-header"  >--}}
-{{--                    <h4 class="modal-title" id="exampleModalCenterTitle">Enter Quantity</h4>--}}
-{{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                        <span aria-hidden="true">&times;</span>--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--                <div class="modal-body">--}}
-{{--                    <form action="{{route('update-order-status',$order->id)}}" method="post">--}}
-{{--                        @csrf--}}
-{{--                        <div class="container">--}}
-{{--                            <div class="row">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Quantity in Kgs</label>--}}
-{{--                                    <input type="number" class="form-control" name="quantity" required>--}}
-{{--                                </div>--}}
-{{--                                &nbsp;&nbsp;--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Price/kg</label>--}}
-{{--                                    <input type="number" class="form-control" name="price_per_kg" value="{{$order->serviceType->price}}" required>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <button type="submit" class="btn btn-primary modal-submit float-right status-submit">Submit</button>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    <div class="modal fade" id="quantity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"--}}
+    {{--         aria-hidden="true">--}}
+    {{--        <div class="modal-dialog" role="document">--}}
+    {{--            <div class="modal-content">--}}
+    {{--                <div class="modal-header"  >--}}
+    {{--                    <h4 class="modal-title" id="exampleModalCenterTitle">Enter Quantity</h4>--}}
+    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+    {{--                        <span aria-hidden="true">&times;</span>--}}
+    {{--                    </button>--}}
+    {{--                </div>--}}
+    {{--                <div class="modal-body">--}}
+    {{--                    <form action="{{route('update-order-status',$order->id)}}" method="post">--}}
+    {{--                        @csrf--}}
+    {{--                        <div class="container">--}}
+    {{--                            <div class="row">--}}
+    {{--                                <div class="form-group">--}}
+    {{--                                    <label for="">Quantity in Kgs</label>--}}
+    {{--                                    <input type="number" class="form-control" name="quantity" required>--}}
+    {{--                                </div>--}}
+    {{--                                &nbsp;&nbsp;--}}
+    {{--                                <div class="form-group">--}}
+    {{--                                    <label for="">Price/kg</label>--}}
+    {{--                                    <input type="number" class="form-control" name="price_per_kg" value="{{$order->serviceType->price}}" required>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <button type="submit" class="btn btn-primary modal-submit float-right status-submit">Submit</button>--}}
+    {{--                    </form>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 @endsection
 
 @section('script')
     <script type="text/javascript">
         $(document).ready(function () {
-
             var delivery_date;
-
             $('.delivery_date').on('change', function () {
                 delivery_date = $(this).parent().find('.delivery_date').val();
+                console.log(delivery_date);
             });
 
             $('.delivery_time_from').on('change', function () {

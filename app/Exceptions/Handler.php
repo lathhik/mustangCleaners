@@ -63,7 +63,7 @@ class Handler extends ExceptionHandler
                 $login = 'admin-login';
                 break;
             case 'customer':
-                $login = 'customer-login-form';
+                $login = 'customer-login';
                 break;
             default:
                 $login = 'login';

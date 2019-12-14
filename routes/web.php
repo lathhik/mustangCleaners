@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('index');
 
+    Route::group(['middleware' => 'auth:guest'], function () {
+    });
+
     Route::post('customer-register', 'CustomerController@registerAction')->name('customer-register');
     Route::post('customer-login', 'CustomerAuthController@loginAction')->name('customer-login');
     Route::get('customer-logout', 'CustomerAuthController@logout')->name('customer-logout');
@@ -33,7 +36,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('add-to-cart', 'ItemCartController@addToCart')->name('add-to-cart');
         Route::delete('delete-item-cart', 'ItemCartController@deleteItemCart')->name('delete-item-cart');
         Route::patch('update-item-cart', 'ItemCartController@updateItemCart')->name('update-item-cart');
-
+        Route::post('order-details', 'CustomerOrderController@orderDetails')->name('order-details');
     });
 
 
@@ -78,7 +81,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('delete-order-status/{id}', 'OrderStatusController@deleteOrderStatus')->name('delete-order-status');
 
         Route::get('view-orders', 'OrderController@getAllOrders')->name('view-orders');
-        Route::post('update-order/{id}', 'OrderController@updateOrderStatus')->name('update-order-status');
+        Route::get('update-order/{id}', 'OrderController@updateOrderStatus')->name('update-order-status');
 
         // Ajax Route
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');

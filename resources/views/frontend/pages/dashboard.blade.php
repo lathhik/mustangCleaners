@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-responsive table-bordered text-center">
+                <table class="table table-responsive table-bordered text-center customer-table">
                     <thead>
                     <th class="text-center">SN</th>
                     <th class="text-center">Order Status</th>
@@ -15,6 +15,7 @@
                     <tbody>
                     @foreach($orders as $order)
                         <tr>
+                            <input type="hidden" value="{{$order->id}}" id="order_id">
                             <td>{{$loop->iteration}}</td>
                             <td>{{$order->orderStatus->status}}</td>
                             <td>{{$order->delivery_date}}</td>
@@ -46,20 +47,22 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h5 class="modal-title text-center" id="add">Please Select Quantity</h5>
+                    <h5 class="modal-title text-center" id="add">Order Details</h5>
                 </div>
                 <div class="modal-body">
-                    <table class="table-bordered">
-                        <thead>
-                        <tr>
-                            <th>SN</th>
+                    <table class="table text-center details-table" style="">
+                        <thead class="text-center">
+                        <tr class="text-center">
+                            <th class="text-center">SN</th>
+                            <th class="text-center">Service Type</th>
+                            <th class="text-center">Items</th>
+                            <th class="text-center">per/Items</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Total</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td></td>
-                            <td></td>
+                        <tr style="border: none">
                         </tr>
                         </tbody>
                     </table>
@@ -72,9 +75,61 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            $('.view-order-details').on('click', function () {
+            $('.customer-table').on('click', '.view-order-details', function () {
                 $('#view-order').modal();
-            })
+
+                var current_col = $(this).closest('tr');
+                // var id = current_col.find("td:eq(0)").html();
+                var id = current_col.find('#order_id').val();
+                var ajaxRoute = '{{route('order-details')}}';
+
+                $.ajax({
+                    url: ajaxRoute,
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    dataType: 'JSON',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        // $('#view-order tbody' ).append(
+                        //     $.map(data , function (item, index) {
+                        //         return "<tr><td>" + item.customer_order +"</td><td>";
+                        //     }).join());
+
+                        var trHtml = '';
+                        var i = 1;
+                        var index = 0;
+                        var grand_total = 0;
+                        $.each(data.items, function (key, value) {
+                            trHtml += "<tr>";
+                            trHtml += "<td>" + i + "</td>";
+                            trHtml += "<td>" + data.service_types[index] + "</td>";
+                            trHtml += "<td>" + value.items + "</td>";
+                            trHtml += "<td>" + '$' + value.amount + "</td>";
+                            trHtml += "<td>" + data.quantities[index] + "</td>";
+                            trHtml += "<td>" + '$' + data.order_items[index].total + "</td>";
+                            grand_total += data.order_items[index].total;
+
+                            i++
+                            index++
+                            trHtml += "</tr>";
+                        });
+                        trHtml += "<tr>";
+                        trHtml += "<td colspan='5'>" + 'Grand Total = $' + grand_total + "</td>";
+                        trHtml += "</tr>";
+
+                        $('#view-order tbody').append(trHtml);
+
+
+                    }
+
+                })
+
+            });
         })
     </script>
 @stop

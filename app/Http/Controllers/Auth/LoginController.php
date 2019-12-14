@@ -54,6 +54,7 @@ class LoginController extends Controller
                 $guard = 'customer';
                 break;
         }
+
         return Auth::guard($guard);
     }
 

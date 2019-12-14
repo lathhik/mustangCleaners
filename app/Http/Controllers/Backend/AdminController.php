@@ -39,7 +39,6 @@ class AdminController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048'
         ]);
 
-
         $admin = new Admin();
         $admin->first_name = $request->first_name;
         $admin->last_name = $request->last_name;
@@ -50,11 +49,9 @@ class AdminController extends Controller
         $admin->contact = $request->contact;
         $admin->privilege = $request->privilege;
 
-
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $newName = str_random(20) . '.' . $file->getClientOriginalExtension();
-
             $image = Image::make($file);
 
             if (!file_exists(public_path('custom/backend/images/admins'))) {
@@ -85,7 +82,7 @@ class AdminController extends Controller
         $this->validate($request, [
             'first_name' => 'required|min:3|max:20|alpha',
             'last_name' => 'required|min:3|max:20|alpha',
-            'address' => 'required|min:3|max:30|alpha',
+            'address' => 'required|regex:/^[A-Za-z0-9\s\,]{3,30}$/',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'gender' => 'required',
             'privilege'=>'required'

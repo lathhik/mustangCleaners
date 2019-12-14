@@ -64,39 +64,48 @@
                 <p>Production demo phase.</p>
             </div>
             <div class="row ">
-                <div class="box-step animation animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0s" style="animation-delay: 0s;">
+                <div class="box-step animation animated fadeIn no-animate" data-animation="fadeIn"
+                     data-animation-delay="0s" style="animation-delay: 0s;">
                     <a class="item col-xs-12 col-sm-3 col-md-3 ">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_01.jpg" class="img-responsive1 " alt="">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_01.jpg" class="img-responsive1 "
+                                 alt="">
                         </div>
                         <h6 class="description">Step 1</h6>
-                        <h4 class="title" style="font-size: 22px;line-height: 28px; margin: 0; padding: 0;"><span>Bag up</span> all your dirty clothes</h4>
+                        <h4 class="title" style="font-size: 22px;line-height: 28px; margin: 0; padding: 0;">
+                            <span>Bag up</span> all your dirty clothes</h4>
                     </a>
-                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.25s" style="animation-delay: 0.25s;">
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
+                       data-animation="fadeIn" data-animation-delay="0.25s" style="animation-delay: 0.25s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_02.jpg" class="img-responsive1 img-xs--lg" alt="">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_02.jpg"
+                                 class="img-responsive1 img-xs--lg" alt="">
                         </div>
                         <h6 class="description">Step 2</h6>
                         <h4 class="title">We <span>pick up</span> yourclothes</h4>
                     </a>
-                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.50s" style="animation-delay: 0.5s;">
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
+                       data-animation="fadeIn" data-animation-delay="0.50s" style="animation-delay: 0.5s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_03.jpg" class="img-responsive1 img-xs--sm" alt="">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_03.jpg"
+                                 class="img-responsive1 img-xs--sm" alt="">
                         </div>
                         <h6 class="description">Step 3</h6>
                         <h4 class="title">We <span>clean</span> yourclothes</h4>
                     </a>
-                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate" data-animation="fadeIn" data-animation-delay="0.75s" style="animation-delay: 0.75s;">
+                    <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
+                       data-animation="fadeIn" data-animation-delay="0.75s" style="animation-delay: 0.75s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_04.jpg" class="img-responsive1 " alt="">
+                            <img src="custom\frontend\assets\img\how-it-works\img_icon_04.jpg" class="img-responsive1 "
+                                 alt="">
                         </div>
                         <h6 class="description">Step 4</h6>
                         <h4 class="title">We <span>deliver</span> clean, folded clothes</h4>
                     </a>
                 </div>
-                </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- featured-services-area-end -->
 
@@ -180,7 +189,7 @@
                 </div>
                 <div class="modal-body">
                     @include('messages.succFail')
-                    <form action="{{route('customer-login')}}" method="post">
+                    <form action="" method="">
                         @csrf
 
                         <div class="row form-group">
@@ -208,7 +217,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary modal-submit" id="login-submit">Login</button>
+                            <button type="button" class="btn btn-primary " id="login-submit">Login</button>
                         </div>
                     </form>
                     <div class="text-center">
@@ -221,7 +230,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -234,7 +242,7 @@
 
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('customer-register')}}" method="post" class="mt-4 form-horizontal">
+                    <form action="" method="post" class="mt-4 form-horizontal">
                         @csrf
                         <div class="row form-group">
                             <div class="col-md-6">
@@ -345,7 +353,7 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary modal-submit">Register</button>
+                            <button type="button" class="btn btn-primary">Register</button>
                         </div>
                     </form>
                     <br>
@@ -358,32 +366,42 @@
 
 
 @section('script')
-
-    <script type="text/javascript">
-        $('#registerButton').on('click', function () {
-            $('#login').hide();
+    <script>
+        $(document).ready(function () {
+            $('#login-submit').on('click', function () {
+                var email = $('#email').val();
+                var password = $('#pass').val();
+                console.log(email, password);
+            });
         });
     </script>
 
-    @if (count($errors) > 0)
-        <script type="text/javascript">
-            @if($errors->has(['login_email','login_password']))
-            $(document).ready(function () {
-                $('#login').modal('show');
-            });
-            @else
-            $(document).ready(function () {
-                $('#register').modal('show');
-            });
-            @endif
-        </script>
-    @endif
+{{--    <script type="text/javascript">--}}
+{{--        $('#registerButton').on('click', function () {--}}
+{{--            $('#login').hide();--}}
+{{--        });--}}
+{{--    </script>--}}
 
-    @if(session()->has('fail'))
-        <script>
-            $(document).ready(function () {
-                $('#login').modal('show');
-            });
-        </script>
-    @endif
+{{--    @if (count($errors) > 0)--}}
+{{--        <script type="text/javascript">--}}
+{{--            @if($errors->has(['login_email','login_password']))--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('#login').modal('show');--}}
+{{--            });--}}
+{{--            @else--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('#register').modal('show');--}}
+{{--            });--}}
+{{--            @endif--}}
+{{--        </script>--}}
+{{--    @endif--}}
+
+{{--    @if(session()->has('fail'))--}}
+{{--        <script>--}}
+{{--            $(document).ready(function () {--}}
+{{--                $('#login').modal('show');--}}
+{{--            });--}}
+{{--        </script>--}}
+{{--    @endif--}}
+
 @stop
