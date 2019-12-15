@@ -65,7 +65,7 @@
                                                             $pickup_address = $order->pickUpAddress->address_line_1.','.$order->pickUpAddress->address_line_2.','.$order->pickUpAddress->city.','.$order->pickUpAddress->zip;
                                                             $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
                                                         @endphp
-                                                        <tr value="{{$order->id}}">
+                                                        <tr >
                                                             <td class="order_id">{{$order->id}}</td>
                                                             <td>{{$order->customer->first_name}}</td>
                                                             <td>{{$order->customer->phone}}</td>
@@ -77,7 +77,6 @@
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <a href="{{route('update-order-status',$order->id)}}"
-                                                                           id="status"
                                                                            class="btn btn-danger btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Start Processing'}}
@@ -93,7 +92,6 @@
                                                                 @else
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <a href="{{route('update-order-status',$order->id)}}"
-                                                                           id="status"
                                                                            class="btn btn-success btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Start Processing'}}
@@ -109,8 +107,7 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-secondary btn-sm fa fa-eye show"
-                                                                        id="show"></button>
+                                                                <button type="button" class="btn btn-secondary btn-sm fa fa-eye view_order_items"></button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -285,9 +282,9 @@
         </div>
     </div>
 
-    <div class="modal" id="view-order" tabindex="-1" role="dialog" aria-labelledby="add"
+    <div class="modal" id="view-order" tabindex="1000" role="dialog" aria-labelledby="add"
          aria-hidden="true">
-        <div class="modal-dialog" role="">
+        <div class="modal-dialog modal-lg" role="">
             <div class="modal-content">
                 <div class="modal-header ">
                     <h5 class="modal-title modal-details" id="add">Order Details</h5>
@@ -308,8 +305,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr style="border: none" id="details-row">
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -374,12 +370,9 @@
             }
 
 
-            $('#order-table').on('click', 'tr', function (e) {
-                e.preventDefault();
+            $('.view_order_items').on('click', function (e) {
                 $('#view-order').modal();
-                $('#view-order').modal();
-                var id = $(this).attr('value');
-                console.log(id);
+                var id = $(this).closest('tr').find('.order_id').html();
                 var ajaxRoute = '{{route('order-details')}}';
                 $.ajax({
                     url: ajaxRoute,
@@ -392,7 +385,6 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
                     success: function (data) {
-
                         var trHtml = '';
                         var i = 1;
                         var index = 0;
@@ -402,7 +394,7 @@
                             trHtml += "<td>" + i + "</td>";
                             trHtml += "<td>" + data.service_types[index] + "</td>";
                             trHtml += "<td>" + value.items + "</td>";
-                            trHtml += "<td>" + '$' + value.amount + "</td>";
+                            trHtml += "<td>" + '$' + (value.amount).toFixed(2) + "</td>";
                             trHtml += "<td>" + data.quantities[index] + "</td>";
                             trHtml += "<td>" + '$' + data.order_items[index].total + "</td>";
                             grand_total += data.order_items[index].total;
@@ -412,7 +404,7 @@
                             trHtml += "</tr>";
                         });
                         trHtml += "<tr>";
-                        trHtml += "<td colspan='5' class='ml-4'>" + 'Grand Total = $' + grand_total + "</td>";
+                        trHtml += "<td colspan='5' class='ml-4'>" + 'Grand Total = $' + (grand_total).toFixed(2) + "</td>";
                         trHtml += "</tr>";
 
                         $('#view-order tbody').append(trHtml);
@@ -422,7 +414,7 @@
 
             });
             $('#view-order').on('hidden.bs.modal', function () {
-                $('#view-order').remove();
+                $('#view-order tbody').children().remove();
             });
         });
     </script>

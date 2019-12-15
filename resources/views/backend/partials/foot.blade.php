@@ -5,5 +5,4 @@
 <script src="{{asset('custom/frontend/assets/js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('custom/backend/assets/scripts/main.07a59de7b920cd76b874.js')}}"></script>
 @yield('script')
-</body>
-</html>
+

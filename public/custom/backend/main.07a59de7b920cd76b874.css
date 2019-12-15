@@ -12776,7 +12776,7 @@ a, button, .btn {
     left: 30px;
     top: 30px;
     height: calc(100% - 60px);
-    z-index: 14
+    z-index: 1;
 }
 
 .app-sidebar, .app-inner-layout .app-inner-layout__wrapper .app-inner-layout__sidebar.card {
@@ -12836,8 +12836,8 @@ a, button, .btn {
 
 .app-header__logo .logo-src {
     background: url(assets/images/logo.png) 50% 50% no-repeat;
-    height: 17px;
-    width: 68px
+    height: 25px;
+    width: 70px;
 }
 
 .app-sidebar__heading {

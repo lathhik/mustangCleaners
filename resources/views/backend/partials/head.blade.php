@@ -1,10 +1,4 @@
-<!doctype html>
-<html lang="en">
 
-
-<!-- Mirrored from demo.dashboardpack.com/kero-html-sidebar-pro/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2019 07:17:38 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
@@ -23,4 +17,4 @@
 {{--    <link rel="stylesheet" href="{{asset('custom/frontend/assets/css/bootstrap.min.css')}}">--}}
     <link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet"></head>
     <link rel="stylesheet" href="{{asset('custom/backend/custom.css')}}">
-<body>
+
