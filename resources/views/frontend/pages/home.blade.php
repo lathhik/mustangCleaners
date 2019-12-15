@@ -376,32 +376,32 @@
         });
     </script>
 
-{{--    <script type="text/javascript">--}}
-{{--        $('#registerButton').on('click', function () {--}}
-{{--            $('#login').hide();--}}
-{{--        });--}}
-{{--    </script>--}}
+    <script type="text/javascript">
+        $('#registerButton').on('click', function () {
+            $('#login').hide();
+        });
+    </script>
 
-{{--    @if (count($errors) > 0)--}}
-{{--        <script type="text/javascript">--}}
-{{--            @if($errors->has(['login_email','login_password']))--}}
-{{--            $(document).ready(function () {--}}
-{{--                $('#login').modal('show');--}}
-{{--            });--}}
-{{--            @else--}}
-{{--            $(document).ready(function () {--}}
-{{--                $('#register').modal('show');--}}
-{{--            });--}}
-{{--            @endif--}}
-{{--        </script>--}}
-{{--    @endif--}}
+    @if (count($errors) > 0)
+        <script type="text/javascript">
+            @if($errors->has(['login_email','login_password']))
+            $(document).ready(function () {
+                $('#login').modal('show');
+            });
+            @else
+            $(document).ready(function () {
+                $('#register').modal('show');
+            });
+            @endif
+        </script>
+    @endif
 
-{{--    @if(session()->has('fail'))--}}
-{{--        <script>--}}
-{{--            $(document).ready(function () {--}}
-{{--                $('#login').modal('show');--}}
-{{--            });--}}
-{{--        </script>--}}
-{{--    @endif--}}
+    @if(session()->has('fail'))
+        <script>
+            $(document).ready(function () {
+                $('#login').modal('show');
+            });
+        </script>
+    @endif
 
 @stop

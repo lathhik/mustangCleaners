@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Image;
+use Intervention\Image\Facades\Image;
 
 class AdminController extends Controller
 {
@@ -85,7 +85,7 @@ class AdminController extends Controller
             'address' => 'required|regex:/^[A-Za-z0-9\s\,]{3,30}$/',
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'gender' => 'required',
-            'privilege'=>'required'
+            'privilege' => 'required'
         ]);
 
 

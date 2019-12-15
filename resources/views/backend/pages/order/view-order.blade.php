@@ -1,5 +1,6 @@
 @extends('backend.master')
 @section('content')
+
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-bar">
             <div class="inner-bar-center">
@@ -42,7 +43,7 @@
                                         <div class="main-card mb-12 card">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table style="" id="example"
+                                                <table style="" id="order-table"
                                                        class="table table-hover table-striped table-bordered text-center table-responsive-lg">
                                                     <thead>
                                                     <tr>
@@ -53,6 +54,7 @@
                                                         <th>Pick Up Location</th>
                                                         <th>Pick Up Time</th>
                                                         <th>Action</th>
+                                                        <th>View Details</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -63,8 +65,8 @@
                                                             $pickup_address = $order->pickUpAddress->address_line_1.','.$order->pickUpAddress->address_line_2.','.$order->pickUpAddress->city.','.$order->pickUpAddress->zip;
                                                             $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
                                                         @endphp
-                                                        <tr>
-                                                            <td>{{$order->id}}</td>
+                                                        <tr value="{{$order->id}}">
+                                                            <td class="order_id">{{$order->id}}</td>
                                                             <td>{{$order->customer->first_name}}</td>
                                                             <td>{{$order->customer->phone}}</td>
                                                             <td>{{$order->orderStatus->status}}</td>
@@ -72,7 +74,6 @@
                                                             <td>{{$order->pickup_time_from}}
                                                                 -{{$order->pickup_time_to}}</td>
                                                             <td>
-
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <a href="{{route('update-order-status',$order->id)}}"
@@ -106,7 +107,10 @@
                                                                         </button>
                                                                     @endif
                                                                 @endif
-
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-secondary btn-sm fa fa-eye show"
+                                                                        id="show"></button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -237,7 +241,7 @@
                                         <div class="main-card mb-12 card">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table  id="example3"
+                                                <table id="example3"
                                                        class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
@@ -281,44 +285,45 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    {{--    <div class="modal fade" id="quantity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"--}}
-    {{--         aria-hidden="true">--}}
-    {{--        <div class="modal-dialog" role="document">--}}
-    {{--            <div class="modal-content">--}}
-    {{--                <div class="modal-header"  >--}}
-    {{--                    <h4 class="modal-title" id="exampleModalCenterTitle">Enter Quantity</h4>--}}
-    {{--                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-    {{--                        <span aria-hidden="true">&times;</span>--}}
-    {{--                    </button>--}}
-    {{--                </div>--}}
-    {{--                <div class="modal-body">--}}
-    {{--                    <form action="{{route('update-order-status',$order->id)}}" method="post">--}}
-    {{--                        @csrf--}}
-    {{--                        <div class="container">--}}
-    {{--                            <div class="row">--}}
-    {{--                                <div class="form-group">--}}
-    {{--                                    <label for="">Quantity in Kgs</label>--}}
-    {{--                                    <input type="number" class="form-control" name="quantity" required>--}}
-    {{--                                </div>--}}
-    {{--                                &nbsp;&nbsp;--}}
-    {{--                                <div class="form-group">--}}
-    {{--                                    <label for="">Price/kg</label>--}}
-    {{--                                    <input type="number" class="form-control" name="price_per_kg" value="{{$order->serviceType->price}}" required>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-    {{--                        <button type="submit" class="btn btn-primary modal-submit float-right status-submit">Submit</button>--}}
-    {{--                    </form>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+    <div class="modal" id="view-order" tabindex="-1" role="dialog" aria-labelledby="add"
+         aria-hidden="true">
+        <div class="modal-dialog" role="">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title modal-details" id="add">Order Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table text-center details-table" id="details-table" style="">
+                        <thead class="text-center">
+                        <tr class="text-center">
+                            <th class="text-center">SN</th>
+                            <th class="text-center">Service Type</th>
+                            <th class="text-center">Items</th>
+                            <th class="text-center">per/Items</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style="border: none" id="details-row">
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ($) {
+            jQuery.noConflict();
             var delivery_date;
             $('.delivery_date').on('change', function () {
                 delivery_date = $(this).parent().find('.delivery_date').val();
@@ -367,6 +372,58 @@
                     }
                 });
             }
+
+
+            $('#order-table').on('click', 'tr', function (e) {
+                e.preventDefault();
+                $('#view-order').modal();
+                $('#view-order').modal();
+                var id = $(this).attr('value');
+                console.log(id);
+                var ajaxRoute = '{{route('order-details')}}';
+                $.ajax({
+                    url: ajaxRoute,
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    dataType: 'JSON',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    success: function (data) {
+
+                        var trHtml = '';
+                        var i = 1;
+                        var index = 0;
+                        var grand_total = 0;
+                        $.each(data.items, function (key, value) {
+                            trHtml += "<tr>";
+                            trHtml += "<td>" + i + "</td>";
+                            trHtml += "<td>" + data.service_types[index] + "</td>";
+                            trHtml += "<td>" + value.items + "</td>";
+                            trHtml += "<td>" + '$' + value.amount + "</td>";
+                            trHtml += "<td>" + data.quantities[index] + "</td>";
+                            trHtml += "<td>" + '$' + data.order_items[index].total + "</td>";
+                            grand_total += data.order_items[index].total;
+
+                            i++
+                            index++
+                            trHtml += "</tr>";
+                        });
+                        trHtml += "<tr>";
+                        trHtml += "<td colspan='5' class='ml-4'>" + 'Grand Total = $' + grand_total + "</td>";
+                        trHtml += "</tr>";
+
+                        $('#view-order tbody').append(trHtml);
+                    }
+
+                });
+
+            });
+            $('#view-order').on('hidden.bs.modal', function () {
+                $('#view-order').remove();
+            });
         });
     </script>
 @stop

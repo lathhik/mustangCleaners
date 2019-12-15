@@ -20,7 +20,7 @@
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
-
+{{--    <link rel="stylesheet" href="{{asset('custom/frontend/assets/css/bootstrap.min.css')}}">--}}
     <link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet"></head>
     <link rel="stylesheet" href="{{asset('custom/backend/custom.css')}}">
 <body>

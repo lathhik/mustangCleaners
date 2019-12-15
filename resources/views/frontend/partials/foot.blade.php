@@ -1,4 +1,3 @@
-
 <!-- all js here -->
 <script src="{{asset('custom/frontend/assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
 <script src="{{asset('custom/frontend/assets/js/bootstrap.min.js')}}"></script>
@@ -18,15 +17,12 @@
 <script src="{{asset('custom/frontend/assets/js/main.js')}}"></script>
 <script src="{{asset('custom/frontend/custom.js')}}"></script>
 
-
+@yield('script')
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
-@yield('script')
 
 </body>
-
-<!-- Mirrored from preview.hasthemes.com/purified/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 14 Oct 2019 10:44:38 GMT -->
 </html>

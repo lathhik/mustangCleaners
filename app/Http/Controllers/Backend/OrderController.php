@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\CustomerOrder;
 use App\Models\ItemList;
+use App\Models\OrderItem;
 use App\Models\OrderStatus;
 use App\Models\ServiceType;
 use Illuminate\Foundation\Console\Presets\React;
@@ -71,6 +72,48 @@ class OrderController extends Controller
         $customer_order->save();
 
         return response()->json(['delivery_time_form' => $delivery_time_from, 'delivery_time_to' => $delivery_time_to, 'delivery_date' => $delivery_date, 'order_id' => $order_id]);
+    }
+
+
+    public function orderDetails(Request $request)
+    {
+        $order_id = $request->id;
+
+        $customer_order = CustomerOrder::where('id', $order_id)->first();
+        $order_items = OrderItem::where('order_id', $order_id)->get();
+        $item_id = [];
+        $quantity = [];
+        foreach ($order_items as $order_item) {
+            $item_id[] = $order_item->item_id;
+            $quantity[] = $order_item->quantity;
+        }
+
+        $items = [];
+        foreach ($item_id as $id) {
+            $items[] = ItemList::where('id', $id)->first();
+        }
+
+//        return response()->json(['items' => $items]);
+
+
+        $service_type_id = [];
+        foreach ($items as $item) {
+            $service_type_id[] = $item->service_type_id;
+
+        }
+        $service_types = [];
+        foreach ($service_type_id as $id) {
+            $service_types[] = ServiceType::where('id', $id)->pluck('service_types');
+        }
+
+        return response()->json([
+            'customer_order' => $customer_order,
+            'order_items' => $order_items,
+            'item-ids' => $item_id,
+            'quantities' => $quantity,
+            'items' => $items,
+            'service_types' => $service_types,
+        ]);
     }
 
 }

@@ -77,7 +77,6 @@
         $(document).ready(function () {
             $('.customer-table').on('click', '.view-order-details', function () {
                 $('#view-order').modal();
-
                 var current_col = $(this).closest('tr');
                 // var id = current_col.find("td:eq(0)").html();
                 var id = current_col.find('#order_id').val();
@@ -127,10 +126,10 @@
 
                     }
 
-                })
+                });
 
             });
-        })
+        });
     </script>
 @stop
 

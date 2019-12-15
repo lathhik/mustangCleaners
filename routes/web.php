@@ -85,7 +85,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
 
         // Ajax Route
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
-
+        Route::post('order-details', 'OrderController@orderDetails')->name('order-details');
 
     });
 
