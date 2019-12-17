@@ -12,6 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="{{asset('custom/frontend/assets/apple-touch-icon.png')}}">
     <!-- Place favicon.ico in the root directory -->
+
+
+    <!-- google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Marcellus+SC&display=swap');
+    </style>
+
     <!-- all css here -->
     <link rel="stylesheet" href="{{asset('custom/frontend/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('custom/frontend/assets/css/magnific-popup.css')}}">

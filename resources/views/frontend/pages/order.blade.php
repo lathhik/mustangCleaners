@@ -1,4 +1,4 @@
-    @extends('frontend.master')
+@extends('frontend.master')
 @section('content')
 
     <div class="container">
@@ -6,7 +6,7 @@
             <br>
             <br>
             <h1 class="place-order">Place Your Order</h1>
-{{--            <hr class="hr">--}}
+            {{--            <hr class="hr">--}}
             @include('messages.succFail')
             <div class="col-md-8">
                 <form action="{{route('customer-order')}}" class="border" method="post">
@@ -14,7 +14,7 @@
                     <div class="form-row">
                         <div class="col -md-8">
                             <div class="row">
-                                <h3 class=""><b>Service Type</b></h3>
+                                <h3 class="service-type"><b>Service Types With Items</b></h3>
                             </div>
                             <div class="row">
                                 <ul class="nav nav-tabs" id="tab" role="tablist">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="cart-title col-md-4">
-                <h3 class="text-center">My Bag</h3>
+                <h3 class="bag-title">My Bag</h3>
             </div>
             <div class="col-md-4 item-cart">
                 <div class="border-danger" style="">
@@ -290,7 +290,7 @@
                         bagContent.find('.hidden_item_id').val(cart.item.id);
                         bagContent.find('.hidden_cart_id').val(cart.cart.id);
                         bagContent.find('.item_name').html(cart.item.items);
-                        bagContent.find('.quantity').html(cart.cart.quantity + 'x');
+                        bagContent.find('.quantity').html((cart.cart.quantity) + 'x');
                         bagContent.find('.total_amt').text((cart.cart.total).toFixed(2));
                         bagContent.attr('id', 'pre-items-' + cart.item.id);
                         $('#myBag').append(bagContent);
@@ -326,7 +326,6 @@
                     },
                     dataType: 'JSON',
                     success: function (data) {
-                        console.log(data.cart);
                         $('#pre-items-' + data.cart.item_id).remove();
                         recalculateGrandTotal();
                         if ($('#myBag .main').length === 0) {
@@ -357,7 +356,7 @@
                         $('#modal_service_type').html(item.service_type);
                         $('#modal_quantity_field').val(item.quantity);
                         $('#modal_title').html(item.item_details.items);
-                        $('#modal_amount').html(item.item_details.amount);
+                        $('#modal_amount').html((item.item_details.amount).toFixed(2));
                         $('#modal_hidden_id').val(item.item_details.id);
                     },
                     error: function (data) {

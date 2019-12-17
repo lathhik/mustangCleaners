@@ -1,6 +1,5 @@
 @extends('backend.master')
 @section('content')
-
     <div class="app-inner-layout app-inner-layout-page">
         <div class="app-inner-bar">
             <div class="inner-bar-center">
@@ -65,7 +64,7 @@
                                                             $pickup_address = $order->pickUpAddress->address_line_1.','.$order->pickUpAddress->address_line_2.','.$order->pickUpAddress->city.','.$order->pickUpAddress->zip;
                                                             $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
                                                         @endphp
-                                                        <tr >
+                                                        <tr>
                                                             <td class="order_id">{{$order->id}}</td>
                                                             <td>{{$order->customer->first_name}}</td>
                                                             <td>{{$order->customer->phone}}</td>
@@ -107,7 +106,8 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-secondary btn-sm fa fa-eye view_order_items"></button>
+                                                                <button type="button"
+                                                                        class="btn btn-secondary btn-sm fa fa-eye view_order_items"></button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -120,7 +120,6 @@
                             </div>
                         </div>
                     @endif
-
                     @if(Auth::guard('admin')->user()->privilege != 'LA')
                         <div class="tab-pane tabs-animation fade  show"
                              id="tab-content-ready" role="tabpanel">
@@ -312,13 +311,10 @@
             </div>
         </div>
     </div>
-
-
 @endsection
-
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function ($) {
+        jQuery(document).ready(function ($) {
             jQuery.noConflict();
             var delivery_date;
             $('.delivery_date').on('change', function () {
@@ -370,7 +366,7 @@
             }
 
 
-            $('.view_order_items').on('click', function (e) {
+            $('.view_order_items').on('click', function () {
                 $('#view-order').modal();
                 var id = $(this).closest('tr').find('.order_id').html();
                 var ajaxRoute = '{{route('order-details')}}';

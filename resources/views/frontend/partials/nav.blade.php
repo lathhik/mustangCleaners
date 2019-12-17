@@ -6,9 +6,9 @@
                 <div class="main-menu menu-style-1">
                     <nav>
                         <ul>
-                            <li class="active"><a href="{{route('index')}}">home</a>
+                            <li class="{{isActiveRouteFront('index')}}"><a href="{{route('index')}}">home</a>
                             </li>
-                            <li><a href="">About Us</a></li>
+                            <li class="{{isActiveRouteFront('about')}}"><a href="{{route('about')}}">About Us</a></li>
                             <li><a href="">service</a>
                                 <ul class="sub-menu">
                                     <li><a href="">single-service</a></li>
@@ -22,7 +22,8 @@
                             </li>
                             <li><a href="">blog</a>
                             </li>
-                            <li><a href="">contact</a></li>
+                            <li class="{{isActiveRouteFront('contact')}}"><a href="{{route('contact')}}">contact</a>
+                            </li>
                         </ul>
                     </nav>
                 </div>

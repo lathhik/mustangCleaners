@@ -20,23 +20,26 @@
                             <a href="{{route('customer-order')}}">Order Now</a>
                         </div>
                     @endif
-                    <div class="header-text floatright hidden-xs hidden-sm">
-                        <div class="header-right">
-                            <div class="header-right-icons">
-                                <span class="icon-clock"></span>
+
+                    <div class="info">
+                        <div class="header-text floatright hidden-xs hidden-sm">
+                            <div class="header-right">
+                                <div class="header-right-icons">
+                                    <span class="icon-clock"></span>
+                                </div>
+                                <div class="header-right-text">
+                                    <span class="text">Open Hours :</span>
+                                    <span class="phone">8.00 - 18.00 Mon-Sat</span>
+                                </div>
                             </div>
-                            <div class="header-right-text">
-                                <span class="text">Open Hours :</span>
-                                <span class="phone">8.00 - 18.00 Mon-Sat</span>
-                            </div>
-                        </div>
-                        <div class="header-right">
-                            <div class="header-right-icons">
-                                <span class="icon-phone "></span>
-                            </div>
-                            <div class="header-right-text">
-                                <span class="text">Phone Number :</span>
-                                <span class="phone">xxxxxxxxxx</span>
+                            <div class="header-right">
+                                <div class="header-right-icons">
+                                    <span class="icon-phone "></span>
+                                </div>
+                                <div class="header-right-text">
+                                    <span class="text">Phone Number :</span>
+                                    <span class="phone">xxxxxxxxxx</span>
+                                </div>
                             </div>
                         </div>
                     </div>

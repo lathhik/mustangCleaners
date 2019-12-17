@@ -26,5 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+        $service_types = ServiceType::all();
+        View::share('service_types', $service_types);
+
     }
 }

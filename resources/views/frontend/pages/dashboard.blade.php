@@ -93,12 +93,6 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     },
                     success: function (data) {
-                        console.log(data);
-                        // $('#view-order tbody' ).append(
-                        //     $.map(data , function (item, index) {
-                        //         return "<tr><td>" + item.customer_order +"</td><td>";
-                        //     }).join());
-
                         var trHtml = '';
                         var i = 1;
                         var index = 0;
@@ -108,7 +102,7 @@
                             trHtml += "<td>" + i + "</td>";
                             trHtml += "<td>" + data.service_types[index] + "</td>";
                             trHtml += "<td>" + value.items + "</td>";
-                            trHtml += "<td>" + '$' + value.amount + "</td>";
+                            trHtml += "<td>" + '$' + (value.amount).toFixed(2) + "</td>";
                             trHtml += "<td>" + data.quantities[index] + "</td>";
                             trHtml += "<td>" + '$' + data.order_items[index].total + "</td>";
                             grand_total += data.order_items[index].total;
@@ -118,7 +112,7 @@
                             trHtml += "</tr>";
                         });
                         trHtml += "<tr>";
-                        trHtml += "<td colspan='5'>" + 'Grand Total = $' + grand_total + "</td>";
+                        trHtml += "<td colspan='5'>" + 'Grand Total = $' + (grand_total).toFixed(2) + "</td>";
                         trHtml += "</tr>";
 
                         $('#view-order tbody').append(trHtml);
@@ -128,6 +122,9 @@
 
                 });
 
+            });
+            $('#view-order').on('hidden.bs.modal', function () {
+                $('#view-order tbody').children().remove();
             });
         });
     </script>

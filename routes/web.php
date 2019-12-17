@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('index');
+    Route::get('about', 'HomeController@about')->name('about');
+    Route::get('contact', 'HomeController@contact')->name('contact');
+    Route::post('message', 'HomeController@message')->name('message');
+    Route::get('contact#contact-form')->name('message_error');
 
     Route::group(['middleware' => 'auth:guest'], function () {
     });

@@ -1,7 +1,7 @@
 $(function() {
 
 	// Get the form.
-	var form = $('#contact-form, #service-booking,#booking-form');
+	var form = $('#service-booking,#booking-form');
 
 	// Get the messages div.
 	var formMessages = $('.form-message');
