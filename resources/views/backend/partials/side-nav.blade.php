@@ -56,6 +56,12 @@
                             </a>
                         </li>
                     @endif
+                    <li class="{{isActiveRoute('view-bags')}}">
+                        <a href="{{route('view-bags')}}">
+                            <i class="fas fa-shopping-bag"></i>
+                            Bags
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -86,6 +86,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('view-orders', 'OrderController@getAllOrders')->name('view-orders');
         Route::get('update-order/{id}', 'OrderController@updateOrderStatus')->name('update-order-status');
 
+        Route::get('view-bags', 'BagController@viewBag')->name('view-bags');
+        Route::post('add-bag', 'BagController@addBag')->name('add-bag');
+        Route::get('edit-bag/{id}', 'BagController@editBag')->name('edit-bag');
+        Route::post('edit-bag-action/{id}', 'BagController@editBagAction')->name('edit-bag-action');
+        Route::get('delete-bag/{id}', 'BagController@deleteBag')->name('delete-bag');
+
+
         // Ajax Route
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
         Route::post('order-details', 'OrderController@orderDetails')->name('order-details');

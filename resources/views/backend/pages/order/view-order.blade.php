@@ -73,10 +73,11 @@
                                                             <td>{{$order->pickup_time_from}}
                                                                 -{{$order->pickup_time_to}}</td>
                                                             <td>
+                                                                {{--                                                                {{route('update-order-status',$order->id)}}--}}
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
-                                                                        <a href="{{route('update-order-status',$order->id)}}"
-                                                                           class="btn btn-danger btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                        <a href="#"
+                                                                           class="btn btn-danger btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Start Processing'}}
                                                                             @else
@@ -311,8 +312,25 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-12 d-none video-window">
+        <div class="row mt-4">
+            <div class="col-md-6 text-center">
+                <video id="video"></video>
+                <p>scanner</p>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
 @section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+
+    </script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             jQuery.noConflict();
@@ -412,6 +430,61 @@
             $('#view-order').on('hidden.bs.modal', function () {
                 $('#view-order tbody').children().remove();
             });
+
+            var order_id;
+            $('.picked-up').on('click', function () {
+                $('.video-window').removeClass('d-none');
+                order_id = $(this).closest('tr').find('.order_id').html();
+                console.log(order_id);
+                var data;
+                // let scanner = new Instascan.Scanner({video: document.getElementById('video')});
+
+                let opts = {
+                    continue: true,
+                    video: document.getElementById('video'),
+                };
+
+                let scanner = new Instascan.Scanner(opts);
+                scanner.addListener('scan', function (content) {
+                    data = content;
+                    if (data) {
+                        console.log(data);
+                        scanner.stop();
+                        $('.video-window').addClass('d-none');
+
+                        $.ajax({
+                            url: "update-order/" + order_id,
+                            type: "GET",
+                            data: {
+                                id: order_id,
+                                qr_data: data
+                            },
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            dataType: "JSON",
+                            success: function (ok) {
+                                if (ok.error) {
+                                    alert(ok.error);
+                                } else {
+
+                                }
+                            }
+                        });
+
+                    }
+                });
+                Instascan.Camera.getCameras().then(function (cameras) {
+                    if (cameras.length > 0) {
+                        scanner.start(cameras[0]);
+                    } else {
+                        console.error('No Cameras Found');
+                    }
+                }).catch(function (e) {
+                    console.error(e);
+                });
+            });
+
         });
     </script>
 @stop

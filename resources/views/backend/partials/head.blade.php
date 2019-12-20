@@ -9,10 +9,9 @@
 <meta name="description" content="">
 
 <title>@yield('title')</title>
-
-<link rel="icon" href="{{asset('custom/backend/favicon.ico')}}">
-<!-- Disable tap highlight on IE -->
 <meta name="msapplication-tap-highlight" content="no">
-<link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet"></head>
+<link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('custom/backend/custom.css')}}">
+
+
 

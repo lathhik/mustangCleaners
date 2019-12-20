@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bag;
+use App\Models\CustomerBag;
 use App\Models\CustomerOrder;
 use App\Models\ItemList;
 use App\Models\OrderItem;
@@ -42,20 +44,52 @@ class OrderController extends Controller
 
     public function updateOrderStatus(Request $request, $id)
     {
+        if ($request->id) {
+            $id = $request->id;
+            $customer_order = CustomerOrder::find($id);
+            $customer_id = $customer_order->customer_id;
 
-        $customer_orders = CustomerOrder::find($id);
-
-        $identi = $customer_orders->orderStatus->identifier;
-        $identi++;
-        $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
-        $customer_orders->order_status_id = $order_status_id;
+            if ($request->qr_data) {
+                $qr_data = $request->qr_data;
+                $bag = Bag::where('bags', $qr_data)->first();
 
 
-        if ($order_status_id == 5) {
-            $customer_orders->final_status = 'completed';
+                if ($bag) {
+                    $cusomer_bag = new CustomerBag();
+                    $cusomer_bag->customer_id = $customer_id;
+                    $cusomer_bag->bag_id = $bag->id;
+
+                    $identi = $customer_order->orderStatus->identifier;
+                    $identi++;
+                    $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
+                    $customer_order->order_status_id = $order_status_id;
+
+
+                    if ($order_status_id == 5) {
+                        $customer_order->final_status = 'completed';
+                    }
+                    $customer_order->save();
+                    return redirect()->route('view-orders');
+                } else {
+                    return response()->json(['error' => 'Not Valid Bag']);
+                }
+            } else {
+                $customer_order = CustomerOrder::find($id);
+
+                $identi = $customer_order->orderStatus->identifier;
+                $identi++;
+                $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
+                $customer_order->order_status_id = $order_status_id;
+
+                if ($order_status_id == 5) {
+                    $customer_order->final_status = 'completed';
+                }
+                $customer_order->save();
+                return redirect()->route('view-orders');
+            }
         }
-        $customer_orders->save();
-        return redirect()->route('view-orders');
+//        return response()->json(['data' => $request->qr_data, 'id' => $request->id, 'order' => $customer_order, $qr_data, $bag, 'customer_id' => $customer_id]);
+
     }
 
     public function deliveryTime(Request $request)
@@ -116,4 +150,8 @@ class OrderController extends Controller
         ]);
     }
 
+    public function completed()
+    {
+        $completed = CustomerOrder::where('final_status', 'completed')->get();
+    }
 }
