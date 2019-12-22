@@ -22,7 +22,7 @@ class OrderController extends Controller
     {
 
         $pickup_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
-            $q->where('identifier', '<', 3);
+            $q->where('identifier', '<', 2);
         })->get();
 
         $delivery_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
@@ -30,7 +30,7 @@ class OrderController extends Controller
         })->get();
 
         $laundry_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
-            $q->where('identifier', 3);
+            $q->whereIn('identifier', [2, 3]);
         })->get();
 
         $order_status = OrderStatus::all();
@@ -53,17 +53,25 @@ class OrderController extends Controller
                 $qr_data = $request->qr_data;
                 $bag = Bag::where('bags', $qr_data)->first();
 
-
                 if ($bag) {
-                    $cusomer_bag = new CustomerBag();
-                    $cusomer_bag->customer_id = $customer_id;
-                    $cusomer_bag->bag_id = $bag->id;
+                    $customer_bag = new CustomerBag();
+                    $customer_bag->customer_id = $customer_id;
+                    $customer_bag->bag_id = $bag->id;
 
-                    $identi = $customer_order->orderStatus->identifier;
-                    $identi++;
-                    $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
+                    $bag_exists = CustomerBag::where('customer_id', $customer_id)->first();
+
+                    if ($bag_exists) {
+                        $customer_bag_id = $bag_exists->id;
+                        $bag_to_clear = CustomerBag::find($customer_bag_id);
+                        $bag_to_clear->delete();
+                    }
+
+                    $customer_bag->save();
+
+                    $identifier = $customer_order->orderStatus->identifier;
+                    $identifier++;
+                    $order_status_id = OrderStatus::where('identifier', $identifier)->first()->id;
                     $customer_order->order_status_id = $order_status_id;
-
 
                     if ($order_status_id == 5) {
                         $customer_order->final_status = 'completed';
@@ -76,9 +84,9 @@ class OrderController extends Controller
             } else {
                 $customer_order = CustomerOrder::find($id);
 
-                $identi = $customer_order->orderStatus->identifier;
-                $identi++;
-                $order_status_id = OrderStatus::where('identifier', $identi)->first()->id;
+                $identifier = $customer_order->orderStatus->identifier;
+                $identifier++;
+                $order_status_id = OrderStatus::where('identifier', $identifier)->first()->id;
                 $customer_order->order_status_id = $order_status_id;
 
                 if ($order_status_id == 5) {
@@ -88,7 +96,6 @@ class OrderController extends Controller
                 return redirect()->route('view-orders');
             }
         }
-//        return response()->json(['data' => $request->qr_data, 'id' => $request->id, 'order' => $customer_order, $qr_data, $bag, 'customer_id' => $customer_id]);
 
     }
 
@@ -126,9 +133,6 @@ class OrderController extends Controller
         foreach ($item_id as $id) {
             $items[] = ItemList::where('id', $id)->first();
         }
-
-//        return response()->json(['items' => $items]);
-
 
         $service_type_id = [];
         foreach ($items as $item) {

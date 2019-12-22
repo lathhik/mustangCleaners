@@ -21,7 +21,6 @@ class CustomerOrderController extends Controller
 
     public function customerOrder(Order $request)
     {
-//        return $request->all();
         $customer_id = Auth::guard('customer')->user()->id;
 
 

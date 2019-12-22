@@ -79,7 +79,7 @@
                                                                         <a href="#"
                                                                            class="btn btn-danger btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
-                                                                                {{'Start Processing'}}
+                                                                                {{'Sent To Processing'}}
                                                                             @else
                                                                                 {{$status}}
                                                                             @endif
@@ -94,7 +94,7 @@
                                                                         <a href="{{route('update-order-status',$order->id)}}"
                                                                            class="btn btn-success btn-sm  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
-                                                                                {{'Start Processing'}}
+                                                                                {{'Sent To Processing'}}
                                                                             @else
                                                                                 {{$status}}
                                                                             @endif
@@ -131,7 +131,7 @@
                                             <div class="card-body">
                                                 @include('messages.succFail')
                                                 <table style="" id="example2"
-                                                       class="table table-hover table-striped table-bordered text-center table-responsive">
+                                                       class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
@@ -200,6 +200,7 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
+
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <a href="{{route('update-order-status',$order->id)}}"
                                                                            class="btn btn-success btn-sm deli_btn {{(Auth::guard('admin')->user()->privilege == 'SA' || empty($order->delivery_date)) ?'disabled':''}}"
@@ -243,9 +244,10 @@
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
+                                                        <th>Customer Name</th>
                                                         <th>Order Status</th>
-                                                        <th>Delivery Time</th>
                                                         <th>Action</th>
+                                                        <th>View Details</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -255,15 +257,37 @@
                                                             $status = $order_status->where('identifier',$identifier)->first()->status;
                                                         @endphp
                                                         <tr>
-                                                            <td>{{$order->id}}</td>
+                                                            <td class="order_id">{{$order->id}}</td>
+                                                            <td>{{$order->customer->first_name}}</td>
                                                             <td>{{$order->orderStatus->status}}</td>
-                                                            <td>{{$order->delivery_time_from}}
-                                                                -{{$order->delivery_time_to}}</td>
+
                                                             <td>
-                                                                <a href="{{route('update-order-status',$order->id)}}"
-                                                                   class="btn btn-success btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
-                                                                    {{$status}}
-                                                                </a>
+                                                                @if($order->orderStatus->status == 'Picked Up')
+                                                                    @if($order->orderStatus->identifier < 5)
+                                                                        <a href="#"
+                                                                           class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                            @if($order->orderStatus->status == 'Picked Up' && Auth::guard('admin')->user()->privilege == 'LA')
+                                                                                {{'Start Processing'}}
+                                                                            @endif
+                                                                        </a>
+                                                                    @endif
+                                                                @elseif($order->orderStatus->status == 'Processing Started')
+                                                                    @if($order->orderStatus->identifier < 5)
+                                                                        <a href="#"
+                                                                           class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                            @if($order->orderStatus->status == 'Processing Started' && Auth::guard('admin')->user()->privilege == 'LA')
+                                                                                {{'Sent For Delivery'}}
+                                                                            @else
+                                                                                {{$status}}
+                                                                            @endif
+                                                                        </a>
+                                                                    @endif
+                                                                @endif
+                                                            </td>
+
+                                                            <td>
+                                                                <button type="button"
+                                                                        class="btn btn-secondary btn-sm fa fa-eye view_order_items"></button>
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -313,25 +337,21 @@
         </div>
     </div>
 
-    <div class="col-md-12 d-none video-window">
-        <div class="row mt-4">
-            <div class="col-md-6 text-center">
-                <video id="video"></video>
-                <p>scanner</p>
-            </div>
+    <div class="modal" id="qr-scanner">
+        <div class="modal-close">
+            <span class="close-btn">&times;</span>
+        </div>
+        <div class="col-md-6 text-center">
+            <video id="video"></video>
         </div>
     </div>
+
 
 @endsection
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function () {
 
-        });
-
-    </script>
-    <script type="text/javascript">
         jQuery(document).ready(function ($) {
             jQuery.noConflict();
             var delivery_date;
@@ -431,13 +451,12 @@
                 $('#view-order tbody').children().remove();
             });
 
+
             var order_id;
+            var data;
             $('.picked-up').on('click', function () {
-                $('.video-window').removeClass('d-none');
+                $('#qr-scanner').modal();
                 order_id = $(this).closest('tr').find('.order_id').html();
-                console.log(order_id);
-                var data;
-                // let scanner = new Instascan.Scanner({video: document.getElementById('video')});
 
                 let opts = {
                     continue: true,
@@ -445,10 +464,10 @@
                 };
 
                 let scanner = new Instascan.Scanner(opts);
+
                 scanner.addListener('scan', function (content) {
                     data = content;
                     if (data) {
-                        console.log(data);
                         scanner.stop();
                         $('.video-window').addClass('d-none');
 
@@ -467,11 +486,10 @@
                                 if (ok.error) {
                                     alert(ok.error);
                                 } else {
-
+                                    //
                                 }
                             }
                         });
-
                     }
                 });
                 Instascan.Camera.getCameras().then(function (cameras) {
@@ -482,6 +500,11 @@
                     }
                 }).catch(function (e) {
                     console.error(e);
+                });
+
+                $('.close-btn').on('click', function () {
+                    $('#qr-scanner').modal('hide');
+                    scanner.stop();
                 });
             });
 

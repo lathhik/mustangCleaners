@@ -7,8 +7,50 @@ body {
     width: 100%;
 }
 
-.modal-details{
-    margin-left: 170px!important;
+.modal-details {
+    margin-left: 170px !important;
+}
+
+#view-order {
+    margin: auto;
 }
 
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    /*padding-top: 100px;*/
+    /*overflow: auto;*/
+    /*height: 400px;*/
+    /*width: 400px;*/
+    /*background-color: black;*/
+    margin-left: 400px;
+    margin-top: 70px;
+
+}
+
+.close {
+    /*float: right;*/
+    font-weight: bold;
+    /*z-index: 1001;*/
+    margin-left: 658px;
+    border: 1px solid red;
+}
+
+
+/*.modal-close {*/
+/*    height: 50px;*/
+/*    position: absolute;*/
+
+/*}*/
+
+.close-btn {
+    /*float: right;*/
+    color: red;
+    border: 1px solid red;
+}
+
+.close-btn:hover {
+    cursor: pointer;
+}
