@@ -114,6 +114,7 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
+                                                {{$pickup_orders->links()}}
                                             </div>
                                         </div>
                                     </div>
@@ -131,7 +132,7 @@
                                             <div class="card-body">
                                                 @include('messages.succFail')
                                                 <table style="" id="example2"
-                                                       class="table table-hover table-striped table-bordered text-center">
+                                                       class="table table-hover table-striped table-bordered text-center table-responsive">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
@@ -153,7 +154,7 @@
                                                         @endphp
                                                         @if(empty($order->final_status))
                                                             <tr>
-                                                                <td>{{$order->id}}</td>
+                                                                <td class="order_id">{{$order->id}}</td>
                                                                 <td>{{$order->customer->first_name}}</td>
                                                                 <td>{{$order->customer->phone}}</td>
                                                                 <td>{{$order->orderStatus->status}}</td>
@@ -201,17 +202,19 @@
                                                                 </td>
                                                                 <td>
 
-                                                                    @if($order->orderStatus->identifier < 5)
-                                                                        <a href="{{route('update-order-status',$order->id)}}"
-                                                                           class="btn btn-success btn-sm deli_btn {{(Auth::guard('admin')->user()->privilege == 'SA' || empty($order->delivery_date)) ?'disabled':''}}"
-                                                                           id="deli_btn-{{$order->id}}">
-                                                                            {{$status}}
-                                                                        </a>
-                                                                    @else
-                                                                        <button
-                                                                            class="btn btn-secondary btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
-                                                                            Completed
-                                                                        </button>
+                                                                    @if($status == 'Delivered')
+                                                                        @if($order->orderStatus->identifier < 5)
+                                                                            <button
+                                                                                class="btn btn-success btn-sm deli_btn picked-up {{(Auth::guard('admin')->user()->privilege == 'SA' || empty($order->delivery_date)) ?'disabled':''}}"
+                                                                                id="deli_btn-{{$order->id}}">
+                                                                                {{$status}}
+                                                                            </button>
+                                                                        @else
+                                                                            <button
+                                                                                class="btn btn-secondary btn-sm {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                                Completed
+                                                                            </button>
+                                                                        @endif
                                                                     @endif
 
                                                                 </td>
@@ -220,6 +223,7 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
+                                                {{$delivery_orders->links()}}
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +270,7 @@
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <button
                                                                             class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
-                                                                            @if($order->orderStatus->status == 'Picked Up' && Auth::guard('admin')->user()->privilege == 'LA')
+                                                                            @if($order->orderStatus->status == 'Picked Up' && Auth::guard('admin')->user()->privilege != 'PA')
                                                                                 {{'Start Processing'}}
                                                                             @endif
                                                                         </button>
@@ -275,7 +279,7 @@
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <button
                                                                             class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
-                                                                            @if($order->orderStatus->status == 'Processing Started' && Auth::guard('admin')->user()->privilege == 'LA')
+                                                                            @if($order->orderStatus->status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'PA')
                                                                                 {{'Sent For Delivery'}}
                                                                             @else
                                                                                 {{$status}}
@@ -293,6 +297,7 @@
                                                     @endforeach
                                                     </tbody>
                                                 </table>
+                                                {{$laundry_orders->links()}}
                                             </div>
                                         </div>
                                     </div>
@@ -486,14 +491,9 @@
                                 if (ok.error) {
                                     alert(ok.error);
                                 } else {
-                                    // setTimeout(function () {
-                                    //     location.reload(true);
-                                    // }, 1000);
-                                    $.ajaxStop(function () {
-                                        setInterval(function () {
-                                            location.reload(true);
-                                        }, 1000);
-                                    });
+                                    setTimeout(function () {
+                                        location.reload(true);
+                                    }, 1000);
                                 }
                             }
                         });

@@ -12844,10 +12844,11 @@ a, button, .btn {
     text-transform: uppercase;
     font-size: .7438rem;
     margin: 1rem 0;
-    color: #da624a;
+    color: #e64034!important;
     opacity: .6;
     white-space: nowrap;
-    position: relative
+    position: relative;
+    font-weight : bold;
 }
 
 .sidebar-mobile-overlay {
@@ -18076,7 +18077,7 @@ body .dropdown-menu.dropdown-menu-inline::before, body .dropdown-menu.dropdown-m
 
 .nav-link:hover .nav-link-icon {
     opacity: .9;
-    color: #da624a
+    color: re
 }
 
 .nav-link:disabled .nav-link-icon, .nav-link.disabled .nav-link-icon {
@@ -18086,7 +18087,7 @@ body .dropdown-menu.dropdown-menu-inline::before, body .dropdown-menu.dropdown-m
 .nav-item.nav-item-header {
     text-transform: uppercase;
     font-size: .75rem;
-    color: #6c757d;
+    color: #e64034;
     font-weight: bold;
     padding: .5rem 1rem
 }
@@ -21888,11 +21889,11 @@ legend {
     background: rgba(255, 255, 255, 0.2)
 }
 
-.app-logo {
-    height: 17px;
-    width: 68px;
-    background: url(assets/images/logo.png) 50% 50% no-repeat
-}
+/*.app-logo {*/
+/*    height: 17px;*/
+/*    width: 68px;*/
+/*    background: url(assets/images/logo.png) 50% 50% no-repeat*/
+/*}*/
 
 .app-logo-inverse {
     height: 17px;

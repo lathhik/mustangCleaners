@@ -8,6 +8,10 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
 <meta name="description" content="">
 
+{{--google fonts --}}
+<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ultra&display=swap" rel="stylesheet">
+
 <title>@yield('title')</title>
 <meta name="msapplication-tap-highlight" content="no">
 <link href="{{asset('custom/backend/main.07a59de7b920cd76b874.css')}}" rel="stylesheet">

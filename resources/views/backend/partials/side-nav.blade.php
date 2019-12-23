@@ -1,7 +1,7 @@
 <div class="app-sidebar-wrapper">
     <div class="app-sidebar sidebar-shadow">
         <div class="app-header__logo">
-            <a href="#" data-toggle="tooltip" data-placement="bottom" title="Mustang Cleaners"
+            <a href="{{route('dashboard')}}" data-toggle="tooltip" data-placement="bottom" title="Mustang Cleaners"
                class="logo-src"></a>
             <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                         <span class="hamburger-box">

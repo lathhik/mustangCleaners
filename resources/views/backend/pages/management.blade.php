@@ -18,9 +18,9 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-night-fade">
+                                <div class="card mb-3 widget-content  total_orders">
                                     <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
+                                        <div class="widget-content-left ">
                                             <div class="widget-heading">Total Orders</div>
                                             <div class="widget-subheading">Last Month</div>
                                         </div>
@@ -30,7 +30,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3 widget-content bg-night-fade">
+                                <div class="card mb-3 widget-content total_orders">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Total Orders</div>
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-arielle-smile">
+                                <div class="card mb-3 widget-content total_income">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Total Income</div>
@@ -55,7 +55,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3 widget-content bg-arielle-smile">
+                                <div class="card mb-3 widget-content  total_income">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Total Income</div>
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-happy-green">
+                                <div class="card mb-3 widget-content total_clients">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Followers</div>
@@ -79,7 +79,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card mb-3 widget-content bg-happy-green">
+                                <div class="card mb-3 widget-content total_clients">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Followers</div>

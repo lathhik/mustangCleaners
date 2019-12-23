@@ -23,15 +23,15 @@ class OrderController extends Controller
 
         $pickup_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', '<', 2);
-        })->get();
+        })->paginate(20);
 
         $delivery_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->where('identifier', '>', 3);
-        })->get();
+        })->paginate(20);
 
         $laundry_orders = CustomerOrder::with('pickUpAddress', 'deliveryAddress')->whereHas('orderStatus', function ($q) {
             $q->whereIn('identifier', [2, 3]);
-        })->get();
+        })->paginate(20);
 
         $order_status = OrderStatus::all();
 
@@ -77,9 +77,9 @@ class OrderController extends Controller
                         $customer_order->final_status = 'completed';
                     }
                     $customer_order->save();
-                    return redirect()->route('view-orders');
+                    return response()->json(['done']) ;
                 } else {
-                    return response()->json(['error' => 'Not Valid Bag']);
+                    return response()->json(['not done']) ;
                 }
             } else {
                 $customer_order = CustomerOrder::find($id);
@@ -93,7 +93,7 @@ class OrderController extends Controller
                     $customer_order->final_status = 'completed';
                 }
                 $customer_order->save();
-                return redirect()->route('view-orders');
+                return response()->json(['yes done']) ;
             }
         }
 
