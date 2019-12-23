@@ -8,16 +8,17 @@ body {
 }
 
 .modal-details {
-    margin-left: 170px !important;
+    margin-left: 320px !important;
 }
 
 #view-order {
-    margin: auto;
+    margin-top: 40px;
+    margin-left: 120px;
 }
 
 
 .modal {
-    display: none;
+    /*display: none;*/
     position: fixed;
     z-index: 1000;
     /*padding-top: 100px;*/

@@ -76,14 +76,14 @@
                                                                 {{--                                                                {{route('update-order-status',$order->id)}}--}}
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
-                                                                        <a href="#"
-                                                                           class="btn btn-danger btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                        <button
+                                                                            class="btn btn-danger btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Sent To Processing'}}
                                                                             @else
                                                                                 {{$status}}
                                                                             @endif
-                                                                        </a>
+                                                                        </button>
                                                                     @else
                                                                         <button class="btn btn-secondary btn-sm">
                                                                             Completed
@@ -264,23 +264,23 @@
                                                             <td>
                                                                 @if($order->orderStatus->status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
-                                                                        <a href="#"
-                                                                           class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                        <button
+                                                                            class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($order->orderStatus->status == 'Picked Up' && Auth::guard('admin')->user()->privilege == 'LA')
                                                                                 {{'Start Processing'}}
                                                                             @endif
-                                                                        </a>
+                                                                        </button>
                                                                     @endif
                                                                 @elseif($order->orderStatus->status == 'Processing Started')
                                                                     @if($order->orderStatus->identifier < 5)
-                                                                        <a href="#"
-                                                                           class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                        <button
+                                                                            class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($order->orderStatus->status == 'Processing Started' && Auth::guard('admin')->user()->privilege == 'LA')
                                                                                 {{'Sent For Delivery'}}
                                                                             @else
                                                                                 {{$status}}
                                                                             @endif
-                                                                        </a>
+                                                                        </button>
                                                                     @endif
                                                                 @endif
                                                             </td>
@@ -469,7 +469,7 @@
                     data = content;
                     if (data) {
                         scanner.stop();
-                        $('.video-window').addClass('d-none');
+                        $('#qr-scanner').modal('hide');
 
                         $.ajax({
                             url: "update-order/" + order_id,
@@ -486,7 +486,14 @@
                                 if (ok.error) {
                                     alert(ok.error);
                                 } else {
-                                    //
+                                    // setTimeout(function () {
+                                    //     location.reload(true);
+                                    // }, 1000);
+                                    $.ajaxStop(function () {
+                                        setInterval(function () {
+                                            location.reload(true);
+                                        }, 1000);
+                                    });
                                 }
                             }
                         });
