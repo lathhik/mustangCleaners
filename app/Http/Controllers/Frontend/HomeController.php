@@ -25,6 +25,7 @@ class HomeController extends Controller
                 ->where('location', 'HI');
         })->get();
         $headings = Heading::all();
+        return $home_images;
         return view('frontend.pages.home', compact(
             'testimonials',
             'home_images',
