@@ -25,10 +25,6 @@
         <h6>Admin Panel</h6>
     </div>
     <div class="app-header-right">
-        <div class="search-wrapper">
-            <i class="search-icon-wrapper typcn typcn-zoom-outline"></i>
-            <input type="text" style="width: 200px!important;" placeholder="Search...">
-        </div>
         <div class="header-btn-lg pr-0">
             <div class="header-dots">
                 <div class="dropdown">

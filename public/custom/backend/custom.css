@@ -60,16 +60,18 @@ body {
     color: #e64034;
     /*font-family: 'Lato', sans-serif;*/
     font-family: 'Ultra', serif;
-    font-size: 20px !important;
+    font-size: 30px !important;
     font-style: italic;
-
+    letter-spacing: 5px;
+    /*font-weight: bold;*/
 }
 
 .mustang-title .cleaners {
     color: #163D83;
     /*font-family: 'Lato', sans-serif;*/
     font-family: 'Ultra', serif;
-    font-size: 20px !important;
+    font-size: 40px !important;
+    letter-spacing: 5px;
 
 }
 
@@ -77,9 +79,10 @@ body {
     text-align: center;
     /*text-decoration: underline;*/
     margin-top: 37px !important;
-    margin-bottom: 10px !important;
-    border: 1px solid black;
-    padding: 4px !important;
+    margin-bottom: 30px !important;
+    /*border: 1px solid black;*/
+    padding: 5px !important;
+    margin-left: 200px!important;
 }
 
 .total_orders {
