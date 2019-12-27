@@ -3,54 +3,35 @@
     <!-- slider-area-start -->
     <div class="slider-area">
         <div class="slider1-active owl-carousel">
-            <div class="slider-wrapper bg-opacity pt-280 pb-300 text-center"
-                 style="background-image:url(https://images.pexels.com/photos/271711/pexels-photo-271711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
-                <div class="container">
-                    <div class="slider-content slider-text slider-text-animation">
-                        <span>Laundry and Dry  </span>
-                        <h1>Cleaning Services</h1>
-                        @if(!Auth::guard('customer')->user())
-                            <div class="get-quote offset-md-2" style="margin-right: 4px">
-                                <a href="" data-toggle="modal" data-target="#login">Order Now</a>
+            @foreach($home_images as $image)
+                @foreach($headings as $heading)
+                    <div class="slider-wrapper bg-opacity pt-280 pb-300 text-center"
+                         style="background-image:url({{asset('custom/backend/images/front_image/'.$image->images)}})">
+                        <div class="container">
+                            <div class="slider-content slider-text slider-text-animation">
+                                <span>{{$heading->heading_span}}</span>
+                                <h1>{{$heading->heading_h1}}</h1>
+                                @if(!Auth::guard('customer')->user())
+                                    <div class="get-quote offset-md-2" style="margin-right: 4px">
+                                        <a href="" data-toggle="modal" data-target="#login">Order Now</a>
+                                    </div>
+                                @else
+                                    @if(count($headings) == 2)
+                                        <a href="{{route('customer-order')}}">Download Now</a>
+                                    @else
+                                        <a href="{{route('customer-order')}}">Order Now</a>
+
+                                    @endif
+                                @endif
                             </div>
-                        @else
-                            <a href="{{route('customer-order')}}">Order Now</a>
-                        @endif
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="slider-wrapper bg-opacity pt-280 pb-300 text-center"
-                 style="background-image:url(https://images.pexels.com/photos/887751/pexels-photo-887751.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
-                <div class="container">
-                    <div class="slider-content slider-text slider-text-animation">
-                        <span>Available In Both </span>
-                        <h1>Android & IOS</h1>
-                        @if(!Auth::guard('customer')->user())
-                            <div class="get-quote  offset-md-2" style="margin-right: 4px">
-                                <a href="" data-toggle="modal" data-target="#login">Download Now</a>
-                            </div>
-                        @else
-                            <a href="{{route('customer-order')}}">Download Now</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="slider-wrapper bg-opacity pt-280 pb-300 text-center"
-                 style="background-image:url(https://images.pexels.com/photos/164558/pexels-photo-164558.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940)">
-                <div class="container">
-                    <div class="slider-content slider-text slider-text-animation">
-                        <span>Pickup & Drop</span>
-                        <h1>From Home</h1>
-                        @if(!Auth::guard('customer')->user())
-                            <div class="get-quote  offset-md-2" style="margin-right: 4px">
-                                <a href="" data-toggle="modal" data-target="#login">Order Now</a>
-                            </div>
-                        @else
-                            <a href="{{route('customer-order')}}">Order Now</a>
-                        @endif
-                    </div>
-                </div>
-            </div>
+                    @php
+                        $headings->shift()
+                    @endphp
+                    @break
+                @endforeach
+            @endforeach
         </div>
     </div>
     <!-- slider-area-end -->
@@ -68,7 +49,8 @@
                      data-animation-delay="0s" style="animation-delay: 0s;">
                     <a class="item col-xs-12 col-sm-3 col-md-3 ">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_01.jpg" class="img-responsive1 "
+                            <img src="{{asset('custom\frontend\assets\img\how-it-works\img_icon_01.jpg')}}"
+                                 class="img-responsive1 "
                                  alt="">
                         </div>
                         <h6 class="description">Step 1</h6>
@@ -78,7 +60,7 @@
                     <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
                        data-animation="fadeIn" data-animation-delay="0.25s" style="animation-delay: 0.25s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_02.jpg"
+                            <img src="{{asset('custom\frontend\assets\img\how-it-works\img_icon_02.jpg')}}"
                                  class="img-responsive1 img-xs--lg" alt="">
                         </div>
                         <h6 class="description">Step 2</h6>
@@ -87,7 +69,7 @@
                     <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
                        data-animation="fadeIn" data-animation-delay="0.50s" style="animation-delay: 0.5s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_03.jpg"
+                            <img src="{{asset('custom\frontend\assets\img\how-it-works\img_icon_03.jpg')}}"
                                  class="img-responsive1 img-xs--sm" alt="">
                         </div>
                         <h6 class="description">Step 3</h6>
@@ -96,7 +78,8 @@
                     <a class="item animation col-xs-12 col-sm-3 col-md-3 animated fadeIn no-animate"
                        data-animation="fadeIn" data-animation-delay="0.75s" style="animation-delay: 0.75s;">
                         <div class="icon">
-                            <img src="custom\frontend\assets\img\how-it-works\img_icon_04.jpg" class="img-responsive1 "
+                            <img src="{{asset('custom\frontend\assets\img\how-it-works\img_icon_04.jpg')}}"
+                                 class="img-responsive1 "
                                  alt="">
                         </div>
                         <h6 class="description">Step 4</h6>
@@ -120,54 +103,23 @@
             <div class="row">
                 <div class="col-offset">
                     <div class="testimonial-2-active owl-carousel">
-                        <div class="testimonial-wrapper-2 text-center mt-70 mb-30">
-                            <div class="testimonial-2-content">
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration in some form, by injected humour, or randomised words which
-                                    don't look even slightly believable. If you</p>
-                            </div>
-                            <div class="testimonial-2-information">
-                                <div class="testimonial-2-img">
-                                    <img src="assets/img/testimonial/2.png" alt="">
+                        @foreach($testimonials as $testimonial)
+                            <div class="testimonial-wrapper-2 text-center mt-70 mb-30">
+                                <div class="testimonial-2-content">
+                                    <p>{!! $testimonial->testimonials !!}</p>
                                 </div>
-                                <div class="testimonial-2-name">
-                                    <h3>Nathan Lopez</h3>
-                                    <span>Creative Director</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="testimonial-wrapper-2 text-center mt-70">
-                            <div class="testimonial-2-content">
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration in some form, by injected humour, or randomised words which
-                                    don't look even slightly believable. If you</p>
-                            </div>
-                            <div class="testimonial-2-information">
-                                <div class="testimonial-2-img">
-                                    <img src="assets/img/testimonial/1.png" alt="">
-                                </div>
-                                <div class="testimonial-2-name">
-                                    <h3>Mark Murray</h3>
-                                    <span>Creative Director</span>
+                                <div class="testimonial-2-information">
+                                    <div class="testimonial-2-img">
+                                        <img src="{{asset('custom/backend/images/testimonial/'.$testimonial->image)}}"
+                                             alt="" style="border-radius: 100px">
+                                    </div>
+                                    <div class="testimonial-2-name">
+                                        <h3>{{$testimonial->full_name}}</h3>
+                                        <span>{{$testimonial->occupation}}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="testimonial-wrapper-2 text-center mt-70">
-                            <div class="testimonial-2-content">
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                                    suffered alteration in some form, by injected humour, or randomised words which
-                                    don't look even slightly believable. If you</p>
-                            </div>
-                            <div class="testimonial-2-information">
-                                <div class="testimonial-2-img">
-                                    <img src="assets/img/testimonial/7.png" alt="">
-                                </div>
-                                <div class="testimonial-2-name">
-                                    <h3>Nathan Lopez</h3>
-                                    <span>Creative Director</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

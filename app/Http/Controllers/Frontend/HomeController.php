@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Cart;
 use App\Models\CustomerOrder;
-use App\Models\ItemList;
-use App\Models\OrderItem;
+use App\Models\Heading;
+use App\Models\Image;
 use App\Models\ServiceType;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.home');
+        $testimonials = Testimonial::where('priority', 1)->get();
+        $home_images = Image::where(function ($query) {
+            $query->where('priority', 1)
+                ->where('location', 'HI');
+        })->get();
+        $headings = Heading::all();
+        return view('frontend.pages.home', compact(
+            'testimonials',
+            'home_images',
+            'headings'));
     }
 
     public function dashboard()
@@ -39,12 +49,23 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('frontend.pages.about');
+        $testimonials = Testimonial::where('priority', 1)->get();
+        $about_image = Image::where(function ($query) {
+            $query->where('priority', 1)
+                ->where('location', 'AI');
+        })->first();
+
+        return view('frontend.pages.about', compact('about_image', 'testimonials'));
     }
 
     public function contact()
     {
-        return view('frontend.pages.contact');
+        $contact_image = Image::where(function ($query) {
+            $query->where('priority', 1)
+                ->where('location', 'CI');
+        })->first();
+
+        return view('frontend.pages.contact', compact('contact_image'));
     }
 
 

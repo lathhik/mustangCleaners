@@ -7,8 +7,14 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
 <meta name="description" content="">
+{{--<!--tinymce -->--}}
+{{--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--}}
+{{--<script>tinymce.init({selector:'textarea'});</script>--}}
 
-{{--google fonts --}}
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+
+
+<!--google fonts -->
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ultra&display=swap" rel="stylesheet">
 

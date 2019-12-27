@@ -25,14 +25,14 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="main-card mb-12 card">
+                                        <div class="main-card mb-12 card mt-1">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table width="935" id="example"
-                                                       class="table table-hover table-striped table-bordered text-center">
+                                                <table
+                                                       class="table table-hover table-striped table-bordered text-center" data-toggle="table">
                                                     <thead>
                                                     <tr>
-                                                        <th></th>
+                                                        <th>SN</th>
                                                         <th>Service Name</th>
                                                         <th>Action</th>
                                                     </tr>

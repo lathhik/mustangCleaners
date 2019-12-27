@@ -6,12 +6,12 @@
                 <ul class="nav">
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                            <span>View Items</span>
+                            <span>View Headings</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a role="tab" data-toggle="tab" class="nav-link " href="#tab-content-1">
-                            <span>Add Items</span>
+                            <span>Add Heading</span>
                         </a>
                     </li>
                 </ul>
@@ -25,34 +25,36 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="main-card mb-12 card  mt-1">
+                                    <div class="main-card mb-12 card">
                                         <div class="card-body">
                                             @include('messages.succFail')
                                             <table
-                                                   class="table table-hover table-striped table-bordered text-center" data-toggle="table">
+                                                class="table table-hover table-striped table-bordered text-center">
                                                 <thead>
                                                 <tr>
-                                                    <th>SN</th>
-                                                    <th>Service Type</th>
-                                                    <th>Items</th>
-                                                    <th>Price</th>
+                                                    <th>S.N.</th>
+                                                    <th>Heading_span</th>
+                                                    <th>Heading_h1</th>
                                                     <th>Action</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($items_lists as $item_list)
+                                                @foreach($headings as $heading)
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
-                                                        <td>{{$item_list->serviceType->service_types}}</td>
-                                                        <td>{{$item_list->items}}</td>
-                                                        <td>${{$item_list->amount}}</td>
                                                         <td>
-                                                            <a href="{{route('edit-item', $item_list->id)}}"
+                                                            {{$heading->heading_span}}
+                                                        </td>
+                                                        <td>
+                                                            {{$heading->heading_h1}}
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{route('edit-heading',$heading->id)}}"
                                                                class="btn btn-sm btn-success">
                                                                 <li class="fa fa-edit"></li>
                                                             </a>
                                                             &nbsp
-                                                            <a href="{{route('delete-item', $item_list->id)}}"
+                                                            <a href="{{route('delete-heading',$heading->id)}}"
                                                                class="btn btn-sm btn-danger"><i
                                                                     class="fa fa-trash"></i></a>
                                                         </td>
@@ -73,44 +75,32 @@
                                 <div class="col-md-12">
                                     <div class="main-card mb-3 card">
                                         <div class="card-body">
-                                            <h2 class="text-center">Add Items</h2>
-                                            <form class="" method="post" action="{{route('add-item')}}">
+                                            <h2 class="text-center">Add Heading</h2>
+                                            <form class="" method="post" action="{{route('add-heading')}}"
+                                                  enctype="multipart/form-data">
                                                 @csrf
                                                 <div class="position-relative form-group col-md-12">
                                                     <div class="row">
-                                                        <div class="form-group col-md-4">
-                                                            <label
-                                                                for="example" class="">Service Type:</label>
-                                                            <select name="service_type" id="" class="form-control">
-                                                                <option value="" disabled selected>Select Service Type
-                                                                </option>
-                                                                @foreach($services as $service )
-                                                                    <option
-                                                                        value="{{$service->id}}">{{$service->service_types}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            @if($errors->has('service_type'))
-                                                                <p class="text-danger">{{$errors->first('service_type')}}</p>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="heading_span">
+                                                                Heading
+                                                            </label>
+                                                            <input type="text" class="form-control" id="heading_span"
+                                                                   name="heading_span"
+                                                                   placeholder="Laundry and Dry" required>
+                                                            @if($errors->has('heading_span'))
+                                                                <p class="text-danger">{{$errors->first('heading_span')}}</p>
                                                             @endif
                                                         </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label
-                                                                for="example" class="">Item:</label>
-                                                            <input name="item" id="exampleEmail"
-                                                                   placeholder="" type="text"
-                                                                   class="form-control">
-                                                            @if($errors->has('item'))
-                                                                <p class="text-danger">{{$errors->first('item')}}</p>
-                                                            @endif
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label
-                                                                for="example" class="">Amount:</label>
-                                                            <input name="amount" id="exampleEmail"
-                                                                   placeholder="" type="number" step="any"
-                                                                   class="form-control">
-                                                            @if($errors->has('amount'))
-                                                                <p class="text-danger">{{$errors->first('amount')}}</p>
+                                                        <div class="form-group col-md-6">
+                                                            <label for="heading_h1">
+                                                                Heading
+                                                            </label>
+                                                            <input type="text" class="form-control" id="heading_h1" name="heading_h1"
+                                                                   placeholder="Cleaning Service" required>
+                                                            @if($errors->has('heading_h1'))
+                                                                <p class="text-danger">{{$errors->first('heading_h1')}}</p>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -130,6 +120,5 @@
             </div>
         </div>
     </div>
-
 
 @stop

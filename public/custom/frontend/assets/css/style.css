@@ -1637,7 +1637,7 @@ margin-right:10px;
 .gallery-icon a i{}
 /* map */
 #map {
-  height: 455px;
+  height: 465px;
   width: 100%;
 }
 /* contact-area */
@@ -1740,6 +1740,7 @@ margin-right:10px;
   font-size: 20px;
   font-weight: 400;
   margin-bottom: 4px;
+    margin-left: 120px;
 }
 .about-title > p {
   color: #8f8f8f;
@@ -1763,6 +1764,7 @@ margin-right:10px;
 }
 .about-title span {
   color: #163D83;
+    margin-left: 120px;
 }
 .progress-bar {
   background-color: #163D83;

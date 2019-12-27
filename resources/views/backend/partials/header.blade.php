@@ -278,8 +278,8 @@
                                  class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
                                 <div class="dropdown-menu-header">
                                     <div class="dropdown-menu-header-inner bg-drop bg-success">
-                                        <div class="menu-header-image opacity-2"
-                                             style="background-image: url('{{asset('custom/backend/assets/images/dropdown-header/city1.jpg')}}');"></div>
+                                        <div class="menu-header-image opacity-4"
+                                             style="background-image: url('{{asset('custom/backend/assets/images/dropdown-header/dry-logout-bg.jpeg')}}');"></div>
                                         <div class="menu-header-content text-left">
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">

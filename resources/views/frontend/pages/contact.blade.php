@@ -1,7 +1,8 @@
 @extends('frontend.master')
 @section('content')
     <!-- breadcrumb-banner-area -->
-    <div class="breadcrumb-banner-area bg-opacity-3 ptb-150" style="background-image:url(assets/img/bg/bg3.jpg)">
+    <div class="breadcrumb-banner-area bg-opacity-3 ptb-150"
+         style="background-image:url({{asset('custom/backend/images/front_image/'.$contact_image->images)}})">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -9,7 +10,7 @@
                         <h1>contact</h1>
                         <div class="breadcrumb-menu">
                             <ul>
-                                <li><a href="index.html">home</a></li>
+                                <li><a href="{{route('index')}}">home</a></li>
                                 <li><span>contact</span></li>
                             </ul>
                         </div>
@@ -20,9 +21,14 @@
     </div>
     <!-- breadcrumb-banner-area-end -->
     <!-- map-area-start -->
-    <div class="map pt-130 pb-100">
+    <div class="map pt-80 pb-100">
         <div class="container">
-            <div id="map"></div>
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6996667.580632219!2d-104.57247022934557!3d31.100236567634354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864070360b823249%3A0x16eb1c8f1808de3c!2sTexas%2C%20USA!5e0!3m2!1sen!2snp!4v1577437196231!5m2!1sen!2snp" width="1100" height="450" frameborder="0" style="border:0; margin-left:45px;" allowfullscreen="">
+
+                </iframe>
+
+            </div>
         </div>
     </div>
     <!-- map-area-end -->
@@ -41,10 +47,10 @@
                             <span>Phone:  +99 854 785 65</span>
                         </div>
                         <div class="contact-icon">
-                            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-                            <a href="https://www.pinterest.com/"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" target="_blank"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                     </div>
                 </div>

@@ -30,8 +30,9 @@
                                     @include('messages.succFail')
                                     <div class="main-card mb-12 card">
                                         <div class="card-body">
-                                            <table style="width: 950px" id="example"
-                                                   class="table table-hover table-striped table-bordered text-center">
+                                            <table data-toggle="table"
+                                                   data-sort-name="stargazers_count"
+                                                   data-sort-order="desc" class="text-center">
                                                 <thead>
                                                 <tr>
                                                     <th>Full Name</th>

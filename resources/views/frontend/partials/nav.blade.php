@@ -14,12 +14,6 @@
                                     <li><a href="">single-service</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="">gallery</a></li>
-                                    <li><a href="">testimonial</a></li>
-                                </ul>
-                            </li>
                             <li><a href="">blog</a>
                             </li>
                             <li class="{{isActiveRouteFront('contact')}}"><a href="{{route('contact')}}">contact</a>

@@ -18,6 +18,7 @@
 <script src="{{asset('custom/frontend/custom.js')}}"></script>
 
 @yield('script')
+
 <script>
     $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip();

@@ -39,11 +39,11 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="main-card mb-12 card">
+                                        <div class="main-card mb-12 card mt-1">
                                             <div class="card-body">
                                                 @include('messages.succFail')
                                                 <table style="" id="order-table"
-                                                       class="table table-hover table-striped table-bordered text-center table-responsive-lg">
+                                                       class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
@@ -128,11 +128,11 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="main-card mb-4 card">
+                                        <div class="main-card mb-12 card mt-1">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table style="" id="example2"
-                                                       class="table table-hover table-striped table-bordered text-center table-responsive">
+                                                <table style=""
+                                                       class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
@@ -240,10 +240,10 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="main-card mb-12 card">
+                                        <div class="main-card mb-12 card mt-1">
                                             <div class="card-body">
                                                 @include('messages.succFail')
-                                                <table id="example3"
+                                                <table
                                                        class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>

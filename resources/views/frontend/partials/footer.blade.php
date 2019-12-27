@@ -13,10 +13,10 @@
                                 born and I will give you</p>
                         </div>
                         <div class="footer-icon">
-                            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
-                            <a href="https://www.pinterest.com/"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/" target="-_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/" target="-_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.pinterest.com/" target="-_blank"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                     </div>
                 </div>
@@ -24,11 +24,9 @@
                     <div class="footer-wrapper mb-30">
                         <h4 class="footer-title">Information</h4>
                         <ul class="footer-menu">
+                            <li><a href="{{route('index')}}">Home</a></li>
                             <li><a href="{{route('about')}}">About Company</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Our Feature</a></li>
-                            <li><a href="#">Latest News</a></li>
-                            <li><a href="#">Cleaning Tips</a></li>
+                            <li><a href="{{route('contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>

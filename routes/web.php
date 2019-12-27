@@ -92,8 +92,28 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::post('edit-bag-action/{id}', 'BagController@editBagAction')->name('edit-bag-action');
         Route::get('delete-bag/{id}', 'BagController@deleteBag')->name('delete-bag');
 
+        Route::get('view-testimonial', 'TestimonialController@viewTesti')->name('view-testimonial');
+        Route::post('add-testi-action', 'TestimonialController@addTestiAction')->name('add-testi-action');
+        Route::get('view-testimonial#add-testi-error', 'TestimonialController@viewTesti')->name('testi-validation-error');
+        Route::get('delete-testimonial/{id}', 'TestimonialController@deleteTestimonial')->name('delete-testimonial');
+        Route::get('edit-testimonial/{id}', 'TestimonialController@editTesti')->name('edit-testimonial');
+        Route::post('edit-testi-action/{id}', 'TestimonialController@editTestiAction')->name('edit-testi-action');
 
-        // Ajax Route
+        Route::get('view-image-home', 'ImageController@viewImage')->name('view-image');
+        Route::post('add-image', 'ImageController@addImage')->name('add-image');
+        Route::get('delete-image/{id}', 'ImageController@deleteImage')->name('delete-image');
+        Route::get('edit-image/{id}', 'ImageController@editImage')->name('edit-image');
+        Route::post('edit-image-action/{id}', 'ImageController@editImageAction')->name('edit-image-action');
+        Route::get('update-image-priority/{id}', 'ImageController@updateImagePriority')->name('update-image-priority');
+
+        Route::get('view-heading', 'HeadingController@viewHeading')->name('view-heading');
+        Route::post('add-heading', 'HeadingController@addHeading')->name('add-heading');
+        Route::get('edit-heading/{id}', 'HeadingController@editHeading')->name('edit-heading');
+        Route::post('edit-heading-action/{id}', 'HeadingController@editHeadingAction')->name('edit-heading-action');
+        Route::get('delete-heading/{id}', 'HeadingController@deleteHeading')->name('delete-heading');
+
+
+        // Ajax Routez
         Route::post('delivery_time', "OrderController@deliveryTime")->name('delivery_time');
         Route::post('order-details', 'OrderController@orderDetails')->name('order-details');
 

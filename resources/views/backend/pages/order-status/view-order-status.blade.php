@@ -21,7 +21,7 @@
                                 <div class="main-card mb-12 card">
                                     <div class="card-body">
                                         @include('messages.succFail')
-                                        <table width="935" id="example"
+                                        <table
                                                class="table table-hover table-striped table-bordered text-center">
                                             <thead>
                                             <tr>

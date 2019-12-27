@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-responsive table-bordered text-center customer-table">
+                <table class="table table-hover table-responsive table-bordered text-center customer-table">
                     <thead>
                     <th class="text-center">SN</th>
                     <th class="text-center">Order Status</th>
