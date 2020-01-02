@@ -61,8 +61,8 @@
                                                         @php
                                                             $identifier = $order->orderStatus->identifier +1;
                                                             $status = $order_status->where('identifier',$identifier)->first()->status;
-                                                            $pickup_address = $order->pickUpAddress->address_line_1.','.$order->pickUpAddress->address_line_2.','.$order->pickUpAddress->city.','.$order->pickUpAddress->zip;
-                                                            $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
+                                                            $pickup_address = $order->pickUpAddress->address_line_1.' | '.$order->pickUpAddress->address_line_2.' | '.$order->pickUpAddress->city.' | '.$order->pickUpAddress->zip;
+                                                            $delivery_address = $order->deliveryAddress->address_line_1.' | '.$order->deliveryAddress->address_line_2.' | '.$order->deliveryAddress->city.' | '.$order->deliveryAddress->zip;
                                                         @endphp
                                                         <tr>
                                                             <td class="order_id">{{$order->id}}</td>
@@ -77,7 +77,7 @@
                                                                 @if($status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <button
-                                                                            class="btn btn-danger btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                            class="btn btn-danger btn-sm {{(Auth::guard('admin')->user()->privilege != 'SA')?'picked-up':''}}  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($status == 'Processing Started' && Auth::guard('admin')->user()->privilege != 'LA')
                                                                                 {{'Sent To Processing'}}
                                                                             @else
@@ -150,7 +150,7 @@
                                                         @php
                                                             $identifier = $order->orderStatus->identifier +1;
                                                             $status = $order_status->where('identifier',$identifier)->first()->status;
-                                                            $delivery_address = $order->deliveryAddress->address_line_1.','.$order->deliveryAddress->address_line_2.','.$order->deliveryAddress->city.','.$order->deliveryAddress->zip;
+                                                            $delivery_address = $order->deliveryAddress->address_line_1.' | '.$order->deliveryAddress->address_line_2.' | '.$order->deliveryAddress->city.' | '.$order->deliveryAddress->zip;
                                                         @endphp
                                                         @if(empty($order->final_status))
                                                             <tr>
@@ -205,9 +205,13 @@
                                                                     @if($status == 'Delivered')
                                                                         @if($order->orderStatus->identifier < 5)
                                                                             <button
-                                                                                class="btn btn-success btn-sm deli_btn picked-up {{(Auth::guard('admin')->user()->privilege == 'SA' || empty($order->delivery_date)) ?'disabled':''}}"
+                                                                                class="btn btn-success btn-sm deli_btn  {{(Auth::guard('admin')->user()->privilege == 'SA' || empty($order->delivery_date)) ?'disabled':'picked-up'}}"
                                                                                 id="deli_btn-{{$order->id}}">
-                                                                                {{$status}}
+                                                                                @if(Auth::guard('admin')->user()->privilege == 'SA')
+                                                                                    {{'Not Delivered'}}
+                                                                                @else
+                                                                                    {{$status}}
+                                                                                @endif
                                                                             </button>
                                                                         @else
                                                                             <button
@@ -244,7 +248,7 @@
                                             <div class="card-body">
                                                 @include('messages.succFail')
                                                 <table
-                                                       class="table table-hover table-striped table-bordered text-center">
+                                                    class="table table-hover table-striped table-bordered text-center">
                                                     <thead>
                                                     <tr>
                                                         <th>Order Number</th>
@@ -269,7 +273,7 @@
                                                                 @if($order->orderStatus->status == 'Picked Up')
                                                                     @if($order->orderStatus->identifier < 5)
                                                                         <button
-                                                                            class="btn btn-success btn-sm picked-up {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
+                                                                            class="btn btn-success btn-sm  {{(Auth::guard('admin')->user()->privilege != 'SA')?'picked-up':''}}  {{(Auth::guard('admin')->user()->privilege == 'SA')?'disabled':''}}">
                                                                             @if($order->orderStatus->status == 'Picked Up' && Auth::guard('admin')->user()->privilege != 'PA')
                                                                                 {{'Start Processing'}}
                                                                             @endif

@@ -22,7 +22,7 @@
 <div class="app-header">
     <div class="page-title-heading mustang-title">
         <span class="mustag">Mustang</span> <span class="cleaners">Cleaners</span>
-        <h6>Admin Panel</h6>
+{{--        <h6>Admin Panel</h6>--}}
     </div>
     <div class="app-header-right">
         <div class="header-btn-lg pr-0">

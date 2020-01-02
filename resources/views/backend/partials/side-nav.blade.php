@@ -64,27 +64,30 @@
                             </a>
                         </li>
                     @endif
-                    <li class="app-sidebar__heading">Clients Section</li>
-                    <li class="{{isActiveRoute('view-testimonial')}}">
-                        <a href="{{route('view-testimonial')}}">
-                            <i class="fa fa-user"></i>
-                            Testimonials
-                        </a>
-                    </li>
-
-                    <li class="app-sidebar__heading">Gallery</li>
-                    <li class="{{isActiveRoute('view-image')}}">
-                        <a href="{{route('view-image')}}">
-                            <i class="fa fa-image"></i>
-                            View/Add Images
-                        </a>
-                    </li>
-                    <li class="{{isActiveRoute('view-heading')}}">
-                        <a href="{{route('view-heading')}}">
-                            <i class="fa fa-image"></i>
-                            View/Add Headings
-                        </a>
-                    </li>
+                    @if(Auth::guard('admin')->user()->privilege == 'SA')
+                        <li class="app-sidebar__heading">Clients Section</li>
+                        <li class="{{isActiveRoute('view-testimonial')}}">
+                            <a href="{{route('view-testimonial')}}">
+                                <i class="fa fa-user"></i>
+                                Testimonials
+                            </a>
+                        </li>
+                    @endif
+                    @if(Auth::guard('admin')->user()->privilege=='SA')
+                        <li class="app-sidebar__heading">Gallery</li>
+                        <li class="{{isActiveRoute('view-image')}}">
+                            <a href="{{route('view-image')}}">
+                                <i class="fa fa-image"></i>
+                                View/Add Images
+                            </a>
+                        </li>
+                        <li class="{{isActiveRoute('view-heading')}}">
+                            <a href="{{route('view-heading')}}">
+                                <i class="fa fa-image"></i>
+                                View/Add Headings
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

@@ -13955,6 +13955,7 @@ a, button, .btn {
     background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%) !important
 }
 
+
 .bg-premium-dark {
     background-image: linear-gradient(to right, #434343 0%, black 100%) !important
 }
@@ -13991,6 +13992,7 @@ a, button, .btn {
 .bg-transparent {
     background: transparent !important
 }
+
 
 /*!
 Animate.css - http://daneden.me/animate

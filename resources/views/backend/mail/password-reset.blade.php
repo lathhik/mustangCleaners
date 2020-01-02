@@ -52,38 +52,49 @@
                                  class="logo-png">
                         </div>
                         <h4 class="mb-0">
-                            <span class="d-block">Welcome back,</span>
-                            <span>Please sign in to your account.</span></h4>
+                            <span class="d-block">Reset Your Password,</span></h4>
                         <div class="divider row"></div>
                         <div>
                             @include('messages.succFail')
-                            <form class="" method="post" action="{{route('admin-login')}}">
+                            <form class="" method="post" action="{{route('password-reset-action')}}">
                                 @csrf
+                                <input type="hidden" value="{{$token}}" name="token">
                                 <div class="form-row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-8">
                                         <div class="position-relative form-group"><label for="exampleEmail" class="">Email</label><input
                                                 name="email" id="exampleEmail" placeholder="Email here..." type="email"
                                                 class="form-control"></div>
+
+                                        @if($errors->has('email'))
+                                            <p class="text-danger">{{$errors->first('email')}}</p>
+                                        @endif
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="position-relative form-group"><label for="examplePassword" class="">Password</label><input
+
+                                    <div class="col-md-8">
+                                        <div class="position-relative form-group"><label for="examplePassword" class="">New
+                                                Password</label><input
                                                 name="password" id="examplePassword" placeholder="Password here..."
                                                 type="password"
-                                                class="form-control"></div>
+                                                class="form-control">
+                                            @if($errors->has('password'))
+                                                <p class="text-danger">{{$errors->first('password')}}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="position-relative form-group"><label for="examplePassword" class="">Confirm
+                                                Password</label><input
+                                                name="password_confirmation" id="examplePassword"
+                                                placeholder="Password here..."
+                                                type="password"
+                                                class="form-control">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="position-relative form-check"><input name="check" id="exampleCheck"
-                                                                                 type="checkbox"
-                                                                                 class="form-check-input"><label
-                                        for="exampleCheck" class="form-check-label">Keep me logged in</label></div>
                                 <div class="divider row"></div>
-                                <div class="d-flex align-items-center">
-                                    <div class="ml-auto"><a href="{{route('reset-password-email')}}"
-                                                            class="btn-lg btn btn-link">Recover
-                                            Password</a>
-                                        <button class="btn btn-primary btn-lg">Login to Dashboard</button>
-                                    </div>
-                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg float-right ml-2">Reset
+                                </button>
+                                <a href="{{route('admin-login')}}" class="btn btn-primary btn-lg float-right ">Back</a>
                             </form>
                         </div>
                     </div>
@@ -97,3 +108,4 @@
 
 <!-- Mirrored from demo.dashboardpack.com/kero-html-sidebar-pro/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Oct 2019 07:21:08 GMT -->
 </html>
+

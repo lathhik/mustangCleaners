@@ -21,13 +21,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('message', 'HomeController@message')->name('message');
     Route::get('contact#contact-form')->name('message_error');
 
-    Route::group(['middleware' => 'auth:guest'], function () {
-    });
-
     Route::post('customer-register', 'CustomerController@registerAction')->name('customer-register');
     Route::post('customer-login', 'CustomerAuthController@loginAction')->name('customer-login');
     Route::get('customer-logout', 'CustomerAuthController@logout')->name('customer-logout');
-
 
     Route::group(['middleware' => 'auth:customer'], function () {
         Route::get('dashboard', 'HomeController@dashboard')->name('customer-dashboard');
@@ -52,6 +48,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend'], function () {
         Route::get('admin-login', 'AdminAuthController@index')->name('admin-login');
         Route::post('admin-login', 'AdminAuthController@loginAction');
     });
+
+    Route::get('password-reset-email', 'AdminPasswordResetController@showResetForm')->name('reset-password-email');
+    Route::post('admin-email', 'AdminPasswordResetController@adminEmail')->name('admin-email');
+    Route::get('password-reset/{token}', 'AdminPasswordResetController@passwordReset')->name('password-reset');
+    Route::post('password-reset-action', 'AdminPasswordResetController@resetAction')->name('password-reset-action');
+
     Route::get('admin-logout', 'AdminAuthController@logOut')->name('admin-logout');
 
     Route::group(['middleware' => ['auth:admin']], function () {
